@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture — AMI Design System Audit</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="index.html">Overview</a>
+      <a href="tokens.html">Tokens</a>
+      <a href="components.html">Components</a>
+      <a href="screens.html">Screens</a>
+      <a href="assets.html">Assets</a>
+      <a href="architecture.html" class="active">Architecture</a>
+      <a href="patterns.html">Patterns</a>
+      <a href="remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="page-header">
+    <h1>File Architecture</h1>
+    <p class="subtitle">Structural analysis of the AMI Figma master file including page organization, component library spatial layout, section inventory, and naming convention documentation.</p>
+    <div class="meta">
+      <strong>Figma Key:</strong> qJsso3svT3WigDmllZmxUW &middot; <strong>Pages:</strong> 2 audited
+    </div>
+  </div>
+
+  <!-- Page Structure -->
+  <div class="section">
+    <h2 class="section-title">Figma Page Structure</h2>
+    <p class="section-desc">The master file contains two primary pages used for this audit.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <h4 style="font-size:16px;font-weight:600;margin-bottom:8px">Page 0:2 — Internal Only Canvas</h4>
+        <p style="font-size:13px;color:var(--text-support);margin-bottom:12px">The component library page containing all reusable UI components.</p>
+        <div style="font-size:12px;color:var(--text-support)">
+          <strong style="color:var(--text-default)">253+</strong> top-level component frames<br>
+          <strong style="color:var(--text-default)">570+</strong> total variants<br>
+          <strong style="color:var(--text-default)">6+</strong> naming systems in use
+        </div>
+      </div>
+      <div class="card">
+        <h4 style="font-size:16px;font-weight:600;margin-bottom:8px">Page 40009095:5940 — UI Designs + Prototype</h4>
+        <p style="font-size:13px;color:var(--text-support);margin-bottom:12px">Production screen designs for the AMI 2.0 platform, dated 02.18.26.</p>
+        <div style="font-size:12px;color:var(--text-support)">
+          <strong style="color:var(--text-default)">60</strong> sections<br>
+          <strong style="color:var(--text-default)">91+</strong> screens<br>
+          <strong style="color:var(--text-default)">381</strong> total frames
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Component Library Organization -->
+  <div class="section">
+    <h2 class="section-title">Component Library Organization</h2>
+    <p class="section-desc">Spatial organization and grouping of components on the Internal Only Canvas. Will be populated from metadata extraction in Phase 1.</p>
+
+    <div class="placeholder-section">
+      <h3>Component grouping analysis coming in Phase 1</h3>
+      <p>Categories: Form Controls, Navigation, Data Display, Feedback, Layout, Media. Each with spatial position and relationship mapping.</p>
+    </div>
+  </div>
+
+  <!-- Production Page Section Inventory -->
+  <div class="section">
+    <h2 class="section-title">Production Page Section Inventory</h2>
+    <p class="section-desc">All 60 sections from the UI Designs + Prototype page.</p>
+
+    <div class="placeholder-section">
+      <h3>Section inventory coming in Phase 1</h3>
+      <p>Full list of all sections with frame counts, breakpoint availability, and component usage per section.</p>
+    </div>
+  </div>
+
+  <!-- Naming Conventions -->
+  <div class="section">
+    <h2 class="section-title">Naming Convention Documentation</h2>
+    <p class="section-desc">Analysis of naming patterns used across the Figma file. See also the <a href="tokens.html#naming" style="color:var(--brand)">Token Naming Analysis</a> for token-specific naming.</p>
+
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:14px;font-weight:600;margin-bottom:12px">6 Color Naming Systems Identified</h4>
+      <table class="data-table" style="margin-top:8px">
+        <thead><tr><th>System</th><th>Pattern</th><th>Components Using</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>New Semantic</td><td><span class="token-name">Color/{role}/{category}/{state}</span></td><td>Button, Input, Badge, etc.</td><td><span class="status-badge status-good" style="margin-left:0">Target</span></td></tr>
+          <tr><td>Text & Icons</td><td><span class="token-name">Text & Icons/{color}</span></td><td>Navigation, Cards, SideNav</td><td><span class="status-badge status-gap" style="margin-left:0">Migrate</span></td></tr>
+          <tr><td>/Primary</td><td><span class="token-name">/Primary / {hex}</span></td><td>Footer</td><td><span class="status-badge status-drift" style="margin-left:0">Legacy</span></td></tr>
+          <tr><td>color/surface</td><td><span class="token-name">color/surface/interactive/{role}</span></td><td>Button (old variant)</td><td><span class="status-badge status-drift" style="margin-left:0">Deprecated</span></td></tr>
+          <tr><td>AMIO</td><td><span class="token-name">AMIO/Primary/{name}</span></td><td>Progress Bar, Medals</td><td><span class="status-badge status-gap" style="margin-left:0">Migrate</span></td></tr>
+          <tr><td>Tertiary</td><td><span class="token-name">Tertiary/{hex}</span></td><td>Tabs Selectors</td><td><span class="status-badge status-drift" style="margin-left:0">Legacy</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>

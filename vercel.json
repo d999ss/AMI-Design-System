@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    { "source": "/tokens", "destination": "/tokens.html" },
+    { "source": "/components", "destination": "/components.html" },
+    { "source": "/screens", "destination": "/screens.html" },
+    { "source": "/assets", "destination": "/assets.html" },
+    { "source": "/architecture", "destination": "/architecture.html" },
+    { "source": "/patterns", "destination": "/patterns.html" },
+    { "source": "/remediation", "destination": "/remediation.html" }
+  ],
+  "cleanUrls": true
+}

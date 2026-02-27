@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layout Patterns — AMI Design System Audit</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="index.html">Overview</a>
+      <a href="tokens.html">Tokens</a>
+      <a href="components.html">Components</a>
+      <a href="screens.html">Screens</a>
+      <a href="assets.html">Assets</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="patterns.html" class="active">Patterns</a>
+      <a href="remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="page-header">
+    <h1>Layout Patterns</h1>
+    <p class="subtitle">Grid systems, responsive breakpoints, page templates, and interaction patterns documented from the AMI design system.</p>
+  </div>
+
+  <!-- Breakpoints -->
+  <div class="section">
+    <h2 class="section-title">Responsive Breakpoints</h2>
+    <p class="section-desc">Four breakpoint tiers observed across production screens. No formal breakpoint tokens exist in Figma.</p>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-number" style="font-size:24px">XL</div>
+        <div class="stat-label">1536px</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="font-size:24px">L</div>
+        <div class="stat-label">1279px</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="font-size:24px">M</div>
+        <div class="stat-label">768px</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="font-size:24px">S</div>
+        <div class="stat-label">480px</div>
+      </div>
+    </div>
+
+    <div class="issue-card info" style="display:inline-block">
+      <h4>Gap: No Breakpoint Tokens</h4>
+      <p>These values are inferred from component variant names (XLarge, Large, Medium, Small). No formal breakpoint variables exist in the Figma file.</p>
+    </div>
+  </div>
+
+  <!-- Grid System -->
+  <div class="section">
+    <h2 class="section-title">Grid System</h2>
+    <p class="section-desc">Column counts, gutters, and margins extracted from representative screens. Will be populated in Phase 7.</p>
+
+    <div class="placeholder-section">
+      <h3>Grid specifications coming in Phase 7</h3>
+      <p>Column counts, gutter widths, and margin values extracted from Figma design context on 4-5 representative screens at each breakpoint.</p>
+    </div>
+  </div>
+
+  <!-- Page Templates -->
+  <div class="section">
+    <h2 class="section-title">Page Templates</h2>
+    <p class="section-desc">Shared layout patterns identified across production screens.</p>
+
+    <div class="placeholder-section">
+      <h3>Page template analysis coming in Phase 7</h3>
+      <p>Common layout structures: sidebar + content, full-width, card grid, list view, detail view patterns.</p>
+    </div>
+  </div>
+
+  <!-- Interaction Patterns -->
+  <div class="section">
+    <h2 class="section-title">Interaction Patterns</h2>
+    <p class="section-desc">Observable state patterns for interactive components.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Modals</h4>
+        <p style="font-size:13px;color:var(--text-support)">Open/closed states, backdrop overlay, size variants. Used for confirmations, forms, and alerts.</p>
+      </div>
+      <div class="card">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Dropdowns / Select</h4>
+        <p style="font-size:13px;color:var(--text-support)">Open/closed, multi-select, single-select. Elevation 2 shadow on open state.</p>
+      </div>
+      <div class="card">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Accordions</h4>
+        <p style="font-size:13px;color:var(--text-support)">Expand/collapse with chevron rotation. Petersburg serif headings optional.</p>
+      </div>
+      <div class="card">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Tabs</h4>
+        <p style="font-size:13px;color:var(--text-support)">Horizontal layout, active state with brand underline, hover states.</p>
+      </div>
+      <div class="card">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Tooltips</h4>
+        <p style="font-size:13px;color:var(--text-support)">Position variants (top, bottom, left, right). Dark background with inverted text.</p>
+      </div>
+      <div class="card">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Navigation Drawer</h4>
+        <p style="font-size:13px;color:var(--text-support)">Expanded/collapsed side nav states. Active item highlighting.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>
