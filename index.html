@@ -16,342 +16,130 @@
     padding: 64px;
   }
 
-  .page {
-    max-width: 1440px;
-    margin: 0 auto;
-  }
+  .page { max-width: 1440px; margin: 0 auto; }
 
-  .header {
-    margin-bottom: 64px;
-  }
+  .header { margin-bottom: 64px; }
+  .header h1 { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .header .subtitle { font-size: 18px; color: #787676; margin-bottom: 24px; }
+  .header .date { font-size: 14px; color: #9a6b5e; font-weight: 500; }
 
-  .header h1 {
-    font-size: 40px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
-  }
+  .toc { background: #fff; border-radius: 12px; border: 1px solid #ece9e5; padding: 32px; margin-bottom: 56px; }
+  .toc h3 { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+  .toc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .toc a { font-size: 13px; color: #9a6b5e; text-decoration: none; padding: 4px 0; }
+  .toc a:hover { text-decoration: underline; }
 
-  .header .subtitle {
-    font-size: 18px;
-    color: #787676;
-    margin-bottom: 24px;
-  }
+  .section { margin-bottom: 56px; }
+  .section-title { font-size: 24px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .section-desc { font-size: 14px; color: #787676; margin-bottom: 24px; line-height: 1.5; }
 
-  .header .date {
-    font-size: 14px;
-    color: #9a6b5e;
-    font-weight: 500;
-  }
-
-  .section {
-    margin-bottom: 56px;
-  }
-
-  .section-title {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-  }
-
-  .section-desc {
-    font-size: 14px;
-    color: #787676;
-    margin-bottom: 24px;
-  }
-
-  .status-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 500;
-    margin-left: 12px;
-    vertical-align: middle;
-  }
-
+  .status-badge { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; margin-left: 12px; vertical-align: middle; }
   .status-good { background: #e8f5e9; color: #0b8923; }
   .status-gap { background: #fff3e0; color: #e65100; }
   .status-drift { background: #fce4ec; color: #c62828; }
+  .status-new { background: #e3f2fd; color: #1565c0; }
 
-  /* Color Tokens */
-  .color-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-  }
+  .stat-row { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+  .stat-card { background: #fff; border-radius: 12px; border: 1px solid #ece9e5; padding: 24px; flex: 1; min-width: 180px; }
+  .stat-number { font-size: 36px; font-weight: 700; color: #9a6b5e; }
+  .stat-label { font-size: 13px; color: #787676; margin-top: 4px; }
 
-  .color-group {
-    background: #fff;
-    border-radius: 12px;
-    padding: 24px;
-    border: 1px solid #ece9e5;
-  }
-
-  .color-group h4 {
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #787676;
-    margin-bottom: 16px;
-  }
-
-  .color-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 0;
-    border-bottom: 1px solid #f7f6f5;
-  }
-
+  .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .color-group { background: #fff; border-radius: 12px; padding: 24px; border: 1px solid #ece9e5; }
+  .color-group h4 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #787676; margin-bottom: 16px; }
+  .color-row { display: flex; align-items: center; gap: 12px; padding: 6px 0; border-bottom: 1px solid #f7f6f5; }
   .color-row:last-child { border-bottom: none; }
+  .color-swatch { width: 28px; height: 28px; border-radius: 6px; border: 1px solid rgba(0,0,0,0.08); flex-shrink: 0; }
+  .color-info { flex: 1; min-width: 0; }
+  .color-name { font-size: 12px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .color-value { font-size: 11px; color: #787676; font-family: 'SF Mono', 'Fira Code', monospace; }
 
-  .color-swatch {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.08);
-    flex-shrink: 0;
-  }
-
-  .color-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .color-name {
-    font-size: 13px;
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .color-value {
-    font-size: 12px;
-    color: #787676;
-    font-family: 'SF Mono', 'Fira Code', monospace;
-  }
-
-  /* Typography */
-  .type-table {
-    width: 100%;
-    background: #fff;
-    border-radius: 12px;
-    border: 1px solid #ece9e5;
-    overflow: hidden;
-  }
-
-  .type-table th {
-    text-align: left;
-    padding: 12px 20px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #787676;
-    background: #fafafa;
-    border-bottom: 1px solid #ece9e5;
-  }
-
-  .type-table td {
-    padding: 14px 20px;
-    font-size: 14px;
-    border-bottom: 1px solid #f7f6f5;
-  }
-
+  .type-table { width: 100%; background: #fff; border-radius: 12px; border: 1px solid #ece9e5; overflow: hidden; margin-bottom: 16px; }
+  .type-table th { text-align: left; padding: 10px 16px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #787676; background: #fafafa; border-bottom: 1px solid #ece9e5; }
+  .type-table td { padding: 10px 16px; font-size: 13px; border-bottom: 1px solid #f7f6f5; }
   .type-table tr:last-child td { border-bottom: none; }
+  .token-name { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; background: #f7f6f5; padding: 2px 6px; border-radius: 4px; }
+  .type-table .legacy { background: #fff8f0; }
 
-  .token-name {
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    font-size: 13px;
-    background: #f7f6f5;
-    padding: 2px 8px;
-    border-radius: 4px;
-  }
+  .spacing-grid { display: flex; gap: 16px; flex-wrap: wrap; }
+  .spacing-item { background: #fff; border-radius: 12px; border: 1px solid #ece9e5; padding: 16px; text-align: center; min-width: 80px; }
+  .spacing-visual { background: #9a6b5e; margin: 0 auto 8px; border-radius: 4px; }
+  .spacing-label { font-size: 13px; font-weight: 600; }
+  .spacing-value { font-size: 11px; color: #787676; margin-top: 2px; }
+  .spacing-token { font-size: 10px; font-family: 'SF Mono', 'Fira Code', monospace; color: #b3b0ae; margin-top: 4px; }
 
-  /* Spacing */
-  .spacing-grid {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
+  .radius-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+  .radius-item { background: #fff; border: 2px solid #9a6b5e; padding: 16px; width: 110px; height: 110px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .radius-label { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .radius-value { font-size: 11px; color: #787676; }
 
-  .spacing-item {
-    background: #fff;
-    border-radius: 12px;
-    border: 1px solid #ece9e5;
-    padding: 20px;
-    text-align: center;
-    width: 120px;
-  }
+  .shadow-demo { background: #fff; border-radius: 12px; padding: 32px; display: flex; gap: 32px; flex-wrap: wrap; align-items: center; }
+  .shadow-box { width: 120px; height: 120px; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; color: #787676; }
+  .shadow-detail { flex: 1; min-width: 300px; }
+  .shadow-layer { display: flex; gap: 16px; padding: 8px 0; border-bottom: 1px solid #f7f6f5; font-size: 13px; }
+  .shadow-layer:last-child { border-bottom: none; }
+  .shadow-layer .label { font-weight: 500; min-width: 60px; }
+  .shadow-layer .val { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; color: #787676; }
 
-  .spacing-visual {
-    background: #9a6b5e;
-    margin: 0 auto 12px;
-    border-radius: 4px;
-  }
-
-  .spacing-label {
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .spacing-value {
-    font-size: 12px;
-    color: #787676;
-    margin-top: 2px;
-  }
-
-  .spacing-token {
-    font-size: 11px;
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    color: #b3b0ae;
-    margin-top: 4px;
-  }
-
-  /* Corner Radius */
-  .radius-grid {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .radius-item {
-    background: #fff;
-    border: 2px solid #9a6b5e;
-    padding: 20px;
-    width: 120px;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .radius-label {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .radius-value {
-    font-size: 12px;
-    color: #787676;
-  }
-
-  /* Gaps & Issues */
-  .issues-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 16px;
-  }
-
-  .issue-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 24px;
-    border-left: 4px solid;
-  }
-
+  .issues-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .issue-card { background: #fff; border-radius: 12px; padding: 24px; border-left: 4px solid; }
   .issue-card.gap { border-left-color: #e65100; }
   .issue-card.drift { border-left-color: #c62828; }
   .issue-card.naming { border-left-color: #f9a825; }
+  .issue-card.info { border-left-color: #1565c0; }
+  .issue-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .issue-card p { font-size: 13px; color: #787676; line-height: 1.5; }
 
-  .issue-card h4 {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-
-  .issue-card p {
-    font-size: 13px;
-    color: #787676;
-    line-height: 1.5;
-  }
-
-  /* Legacy Systems */
-  .legacy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 16px;
-  }
-
-  .legacy-card {
-    background: #fff;
-    border-radius: 12px;
-    border: 1px solid #ece9e5;
-    padding: 24px;
-  }
-
-  .legacy-card h4 {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .legacy-card .component {
-    font-size: 12px;
-    color: #9a6b5e;
-    margin-bottom: 12px;
-  }
-
-  .legacy-token {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    border-bottom: 1px solid #f7f6f5;
-    font-size: 13px;
-  }
-
+  .legacy-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; }
+  .legacy-card { background: #fff; border-radius: 12px; border: 1px solid #ece9e5; padding: 24px; }
+  .legacy-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .legacy-card .component { font-size: 12px; color: #9a6b5e; margin-bottom: 12px; }
+  .legacy-token { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #f7f6f5; font-size: 12px; }
   .legacy-token:last-child { border-bottom: none; }
+  .legacy-token .name { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; }
+  .legacy-token .val { color: #787676; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; }
 
-  .legacy-token .name { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; }
-  .legacy-token .val { color: #787676; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; }
+  .naming-table { width: 100%; background: #fff; border-radius: 12px; border: 1px solid #ece9e5; overflow: hidden; }
+  .naming-table th { text-align: left; padding: 10px 16px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #787676; background: #fafafa; border-bottom: 1px solid #ece9e5; }
+  .naming-table td { padding: 10px 16px; font-size: 13px; border-bottom: 1px solid #f7f6f5; vertical-align: top; }
+  .naming-table tr:last-child td { border-bottom: none; }
+  .naming-table .recommended { background: #e8f5e9; }
+  .naming-table .deprecated { background: #fff8f0; }
 
-  .recommendation {
-    background: #fff;
-    border-radius: 12px;
-    border: 2px solid #9a6b5e;
-    padding: 32px;
-  }
+  .font-card { background: #fff; border-radius: 12px; border: 1px solid #ece9e5; padding: 24px; margin-bottom: 16px; }
+  .font-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .font-card .meta { font-size: 12px; color: #787676; margin-bottom: 16px; }
+  .font-usage { display: flex; gap: 8px; flex-wrap: wrap; }
+  .font-tag { font-size: 11px; padding: 4px 10px; border-radius: 6px; background: #f7f6f5; color: #787676; }
+  .font-tag.primary { background: #f1e5e2; color: #9a6b5e; }
+  .font-tag.legacy { background: #fff3e0; color: #e65100; }
+  .font-tag.mobile { background: #e3f2fd; color: #1565c0; }
+  .font-tag.secondary { background: #f3e5f5; color: #7b1fa2; }
 
-  .recommendation h3 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #9a6b5e;
-    margin-bottom: 16px;
-  }
+  .alpha-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .alpha-card { background: #fff; border-radius: 12px; border: 1px solid #ece9e5; padding: 20px; }
+  .alpha-card h4 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #787676; margin-bottom: 12px; }
+  .alpha-swatch-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+  .alpha-swatch { width: 40px; height: 24px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.08); background-image: linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%); background-size: 8px 8px; background-position: 0 0, 0 4px, 4px -4px, -4px 0px; position: relative; overflow: hidden; }
+  .alpha-swatch .fill { position: absolute; inset: 0; }
+  .alpha-label { font-size: 11px; font-family: 'SF Mono', 'Fira Code', monospace; }
 
-  .recommendation ul {
-    list-style: none;
-    padding: 0;
-  }
+  .component-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .component-tag { background: #fff; border-radius: 8px; border: 1px solid #ece9e5; padding: 12px 16px; font-size: 13px; font-weight: 500; }
+  .component-tag .system { font-size: 11px; color: #787676; margin-top: 4px; }
+  .component-tag.new .system { color: #0b8923; }
+  .component-tag.mixed .system { color: #e65100; }
+  .component-tag.old .system { color: #c62828; }
 
-  .recommendation li {
-    padding: 8px 0;
-    padding-left: 24px;
-    position: relative;
-    font-size: 15px;
-    line-height: 1.5;
-    border-bottom: 1px solid #f7f6f5;
-  }
-
+  .recommendation { background: #fff; border-radius: 12px; border: 2px solid #9a6b5e; padding: 32px; }
+  .recommendation h3 { font-size: 20px; font-weight: 600; color: #9a6b5e; margin-bottom: 16px; }
+  .recommendation ul { list-style: none; padding: 0; }
+  .recommendation li { padding: 8px 0; padding-left: 24px; position: relative; font-size: 14px; line-height: 1.5; border-bottom: 1px solid #f7f6f5; }
   .recommendation li:last-child { border-bottom: none; }
+  .recommendation li::before { content: ''; position: absolute; left: 0; top: 14px; width: 8px; height: 8px; border-radius: 50%; background: #9a6b5e; }
 
-  .recommendation li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 14px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #9a6b5e;
-  }
+  .subsection { margin-top: 32px; }
+  .subsection-title { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #323131; }
 </style>
 </head>
 <body>
@@ -359,392 +147,637 @@
 
   <div class="header">
     <h1>AMI Design System Token Audit</h1>
-    <div class="subtitle">Figma Master File: AMI-Rebrand--Master-File-</div>
-    <div class="date">Audit Date: February 27, 2026</div>
+    <div class="subtitle">Figma Master File: AMI-Rebrand--Master-File- | Comprehensive Token Extraction</div>
+    <div class="date">Audit Date: February 27, 2026 | Source: Figma MCP Variable Extraction across 25+ components</div>
   </div>
 
-  <!-- COLOR TOKENS -->
-  <div class="section">
-    <h2 class="section-title">Color Tokens <span class="status-badge status-good">Foundation Present</span></h2>
-    <p class="section-desc">Semantic naming structure: Container / Border / Text &times; Neutral / Brand / Status</p>
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h3>Contents</h3>
+    <div class="toc-grid">
+      <a href="#summary">Executive Summary</a>
+      <a href="#primitives">Color Primitives</a>
+      <a href="#semantic-colors">Semantic Color System</a>
+      <a href="#transparency">Transparency & Alpha States</a>
+      <a href="#fonts">Font Families (4 Found)</a>
+      <a href="#typography">Typography Scale</a>
+      <a href="#spacing">Spacing System</a>
+      <a href="#radius">Corner Radius</a>
+      <a href="#strokes">Stroke Widths</a>
+      <a href="#elevation">Elevation & Shadows</a>
+      <a href="#layout">Layout Tokens</a>
+      <a href="#naming">Token Naming Analysis</a>
+      <a href="#components">Component Coverage</a>
+      <a href="#issues">Gaps & Issues</a>
+      <a href="#legacy">Legacy Systems</a>
+      <a href="#recommendations">Recommendations</a>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="section" id="summary">
+    <h2 class="section-title">Executive Summary</h2>
+    <p class="section-desc">Token extraction from 25+ Figma components reveals a design system in active transition. A strong new semantic foundation exists but coexists with 5+ legacy naming systems that need migration.</p>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-number">90+</div><div class="stat-label">Unique Color Tokens</div></div>
+      <div class="stat-card"><div class="stat-number">25+</div><div class="stat-label">Typography Styles</div></div>
+      <div class="stat-card"><div class="stat-number">16</div><div class="stat-label">Spacing Values</div></div>
+      <div class="stat-card"><div class="stat-number">5</div><div class="stat-label">Corner Radius Values</div></div>
+      <div class="stat-card"><div class="stat-number">4</div><div class="stat-label">Font Families</div></div>
+      <div class="stat-card"><div class="stat-number">6+</div><div class="stat-label">Legacy Systems</div></div>
+    </div>
+  </div>
+
+  <!-- COLOR PRIMITIVES -->
+  <div class="section" id="primitives">
+    <h2 class="section-title">Color Primitives <span class="status-badge status-good">Comprehensive</span></h2>
+    <p class="section-desc">Raw color values defined in the Figma file. These feed into the semantic color system.</p>
 
     <div class="color-grid">
       <div class="color-group">
-        <h4>Brand</h4>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#9a6b5e"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Brand/Interactive/Enable</div>
-            <div class="color-value">#9a6b5e</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#7d574d"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Brand/Interactive/Hover</div>
-            <div class="color-value">#7d574d</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#60433b"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Brand/Interactive/Pressed</div>
-            <div class="color-value">#60433b</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#c08676"></div>
-          <div class="color-info">
-            <div class="color-name">Border/Brand/Focus ring/Default</div>
-            <div class="color-value">#c08676</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#dfc2bb"></div>
-          <div class="color-info">
-            <div class="color-name">Border/Brand/Focus ring/Inverted</div>
-            <div class="color-value">#dfc2bb</div>
-          </div>
-        </div>
+        <h4>Brand - Dusty Rose</h4>
+        <div class="color-row"><div class="color-swatch" style="background:#c08676"></div><div class="color-info"><div class="color-name">Color/Dusty Rose/100</div><div class="color-value">#c08676</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#e7cdc0"></div><div class="color-info"><div class="color-name">Color/Dusty Rose/60</div><div class="color-value">#e7cdc0</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#CA9A8E"></div><div class="color-info"><div class="color-name">Secondary/CA9A8E</div><div class="color-value">#CA9A8E</div></div></div>
       </div>
 
       <div class="color-group">
-        <h4>Neutral</h4>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#090909"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Neutral/Interactive/Enable</div>
-            <div class="color-value">#090909</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#787676"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Neutral/Interactive/Hover</div>
-            <div class="color-value">#787676</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#b3b0ae"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Neutral/Interactive/Pressed</div>
-            <div class="color-value">#b3b0ae</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#dedad7"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Neutral/Interactive/Mute pressed</div>
-            <div class="color-value">#dedad7</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#ece9e5"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Neutral/Disabled/Default</div>
-            <div class="color-value">#ece9e5</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#f7f6f5"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Neutral/Interactive/Mute enable</div>
-            <div class="color-value">#f7f6f5</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#fafafa"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Neutral/Mute 1</div>
-            <div class="color-value">#fafafa</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#ffffff"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Neutral/Base</div>
-            <div class="color-value">#ffffff</div>
-          </div>
-        </div>
+        <h4>Black Scale</h4>
+        <div class="color-row"><div class="color-swatch" style="background:#000000"></div><div class="color-info"><div class="color-name">Color/Black/100</div><div class="color-value">#000000</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#323131"></div><div class="color-info"><div class="color-name">Color/Black/50</div><div class="color-value">#323131</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#818386"></div><div class="color-info"><div class="color-name">Color/Black/40</div><div class="color-value">#818386</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#e5e5e5"></div><div class="color-info"><div class="color-name">Color/Black/20</div><div class="color-value">#e5e5e5</div></div></div>
       </div>
 
       <div class="color-group">
-        <h4>Text</h4>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#090909"></div>
-          <div class="color-info">
-            <div class="color-name">Text/Neutral/Default</div>
-            <div class="color-value">#090909</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#787676"></div>
-          <div class="color-info">
-            <div class="color-name">Text/Neutral/Support</div>
-            <div class="color-value">#787676</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#787676"></div>
-          <div class="color-info">
-            <div class="color-name">Text/Neutral/Placeholder</div>
-            <div class="color-value">#787676</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#b3b0ae"></div>
-          <div class="color-info">
-            <div class="color-name">Text/Neutral/Disabled/Default</div>
-            <div class="color-value">#b3b0ae</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#ffffff"></div>
-          <div class="color-info">
-            <div class="color-name">Text/Neutral/Inverted</div>
-            <div class="color-value">#ffffff</div>
-          </div>
-        </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#9a6b5e"></div>
-          <div class="color-info">
-            <div class="color-name">Text/Brand/Default</div>
-            <div class="color-value">#9a6b5e</div>
-          </div>
-        </div>
+        <h4>Neutral Grey Scale</h4>
+        <div class="color-row"><div class="color-swatch" style="background:#fbfaf8"></div><div class="color-info"><div class="color-name">Color/Neutral Grey/20</div><div class="color-value">#fbfaf8</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#f7f5f1"></div><div class="color-info"><div class="color-name">Color/Neutral Grey/40</div><div class="color-value">#f7f5f1</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#e9e5de"></div><div class="color-info"><div class="color-name">Color/Neutral Grey/80</div><div class="color-value">#e9e5de</div></div></div>
       </div>
 
       <div class="color-group">
-        <h4>Status</h4>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#de3b2d"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Status/Interactive/Enable negative</div>
-            <div class="color-value">#de3b2d</div>
-          </div>
+        <h4>Foundation</h4>
+        <div class="color-row"><div class="color-swatch" style="background:#ffffff;border:1px solid #ddd"></div><div class="color-info"><div class="color-name">Color/White/100</div><div class="color-value">#ffffff</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#fcf4e8"></div><div class="color-info"><div class="color-name">Color/Warm Linen/100</div><div class="color-value">#fcf4e8</div></div></div>
+      </div>
+
+      <div class="color-group">
+        <h4>Utility / Status</h4>
+        <div class="color-row"><div class="color-swatch" style="background:#ff0000"></div><div class="color-info"><div class="color-name">Color/Utility/Red</div><div class="color-value">#ff0000</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#74cc4f"></div><div class="color-info"><div class="color-name">Color/Utility/Green</div><div class="color-value">#74cc4f</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#ffc32a"></div><div class="color-info"><div class="color-name">Color/Utility/Yellow</div><div class="color-value">#ffc32a</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANTIC COLORS -->
+  <div class="section" id="semantic-colors">
+    <h2 class="section-title">Semantic Color System <span class="status-badge status-good">Well Structured</span></h2>
+    <p class="section-desc">Context-aware tokens using Color/{role}/{category}/{state} naming. The foundation of the new design system.</p>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Container Colors</h3>
+      <div class="color-grid">
+        <div class="color-group">
+          <h4>Container / Brand</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#9a6b5e"></div><div class="color-info"><div class="color-name">Interactive/Enable</div><div class="color-value">#9a6b5e</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#7d574d"></div><div class="color-info"><div class="color-name">Interactive/Hover</div><div class="color-value">#7d574d</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#60433b"></div><div class="color-info"><div class="color-name">Interactive/Pressed</div><div class="color-value">#60433b</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#f9f3f1"></div><div class="color-info"><div class="color-name">Mute 2</div><div class="color-value">#f9f3f1</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#f1e5e2"></div><div class="color-info"><div class="color-name">Subtle 1</div><div class="color-value">#f1e5e2</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#9a6b5e"></div><div class="color-info"><div class="color-name">Medium 3</div><div class="color-value">#9a6b5e</div></div></div>
         </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#961307"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Status/Interactive/Hover negative</div>
-            <div class="color-value">#961307</div>
-          </div>
+
+        <div class="color-group">
+          <h4>Container / Neutral - Interactive</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#090909"></div><div class="color-info"><div class="color-name">Interactive/Enable</div><div class="color-value">#090909</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#787676"></div><div class="color-info"><div class="color-name">Interactive/Hover</div><div class="color-value">#787676</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#b3b0ae"></div><div class="color-info"><div class="color-name">Interactive/Pressed</div><div class="color-value">#b3b0ae</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#f7f6f5"></div><div class="color-info"><div class="color-name">Interactive/Mute enable</div><div class="color-value">#f7f6f5</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#ece9e5"></div><div class="color-info"><div class="color-name">Interactive/Mute hover</div><div class="color-value">#ece9e5</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#dedad7"></div><div class="color-info"><div class="color-name">Interactive/Mute pressed</div><div class="color-value">#dedad7</div></div></div>
         </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#6b0900"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Status/Interactive/Pressed negative</div>
-            <div class="color-value">#6b0900</div>
-          </div>
+
+        <div class="color-group">
+          <h4>Container / Neutral - Static</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#ffffff"></div><div class="color-info"><div class="color-name">Base</div><div class="color-value">#ffffff</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#fafafa"></div><div class="color-info"><div class="color-name">Mute 1</div><div class="color-value">#fafafa</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#f7f6f5"></div><div class="color-info"><div class="color-name">Mute 2</div><div class="color-value">#f7f6f5</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#ece9e5"></div><div class="color-info"><div class="color-name">Disabled/Default</div><div class="color-value">#ece9e5</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#090909"></div><div class="color-info"><div class="color-name">Static/Black</div><div class="color-value">#090909</div></div></div>
         </div>
-        <div class="color-row">
-          <div class="color-swatch" style="background:#0b8923"></div>
-          <div class="color-info">
-            <div class="color-name">Container/Status/Positive medium 3</div>
-            <div class="color-value">#0b8923</div>
-          </div>
+
+        <div class="color-group">
+          <h4>Container / Status</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#de3b2d"></div><div class="color-info"><div class="color-name">Interactive/Enable negative</div><div class="color-value">#de3b2d</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#961307"></div><div class="color-info"><div class="color-name">Interactive/Hover negative</div><div class="color-value">#961307</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#6b0900"></div><div class="color-info"><div class="color-name">Interactive/Pressed negative</div><div class="color-value">#6b0900</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#0b8923"></div><div class="color-info"><div class="color-name">Positive medium 3</div><div class="color-value">#0b8923</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#d9eddd"></div><div class="color-info"><div class="color-name">Success subtle 1</div><div class="color-value">#d9eddd</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#fee1de"></div><div class="color-info"><div class="color-name">Error subtle 1</div><div class="color-value">#fee1de</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#ffe5aa"></div><div class="color-info"><div class="color-name">Warning subtle 1</div><div class="color-value">#ffe5aa</div></div></div>
         </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Border Colors</h3>
+      <div class="color-grid">
+        <div class="color-group">
+          <h4>Border / Brand</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#c08676"></div><div class="color-info"><div class="color-name">Focus ring/Default</div><div class="color-value">#c08676</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#dfc2bb"></div><div class="color-info"><div class="color-name">Focus ring/Inverted</div><div class="color-value">#dfc2bb</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#c08676"></div><div class="color-info"><div class="color-name">Medium 2</div><div class="color-value">#c08676</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#9a6b5e"></div><div class="color-info"><div class="color-name">Medium 3</div><div class="color-value">#9a6b5e</div></div></div>
+        </div>
+
+        <div class="color-group">
+          <h4>Border / Neutral</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#090909"></div><div class="color-info"><div class="color-name">Default</div><div class="color-value">#090909</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#dedad7"></div><div class="color-info"><div class="color-name">Subtle 2</div><div class="color-value">#dedad7</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#b3b0ae"></div><div class="color-info"><div class="color-name">Text field/Enable</div><div class="color-value">#b3b0ae</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#090909"></div><div class="color-info"><div class="color-name">Text field/Hover</div><div class="color-value">#090909</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#b3b0ae"></div><div class="color-info"><div class="color-name">Disabled/Default</div><div class="color-value">#b3b0ae</div></div></div>
+        </div>
+
+        <div class="color-group">
+          <h4>Border / Status</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#de3b2d"></div><div class="color-info"><div class="color-name">Error medium 3</div><div class="color-value">#de3b2d</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#0b8923"></div><div class="color-info"><div class="color-name">Positive medium 3</div><div class="color-value">#0b8923</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#ef8f00"></div><div class="color-info"><div class="color-name">Warning medium 3</div><div class="color-value">#ef8f00</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Text Colors</h3>
+      <div class="color-grid">
+        <div class="color-group">
+          <h4>Text / Neutral</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#090909"></div><div class="color-info"><div class="color-name">Default</div><div class="color-value">#090909</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#787676"></div><div class="color-info"><div class="color-name">Support</div><div class="color-value">#787676</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#787676"></div><div class="color-info"><div class="color-name">Placeholder</div><div class="color-value">#787676</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#b3b0ae"></div><div class="color-info"><div class="color-name">Disabled/Default</div><div class="color-value">#b3b0ae</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#ffffff"></div><div class="color-info"><div class="color-name">Inverted</div><div class="color-value">#ffffff</div></div></div>
+        </div>
+
+        <div class="color-group">
+          <h4>Text / Neutral Interactive</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#090909"></div><div class="color-info"><div class="color-name">Enable</div><div class="color-value">#090909</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#787676"></div><div class="color-info"><div class="color-name">Hover</div><div class="color-value">#787676</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#b3b0ae"></div><div class="color-info"><div class="color-name">Pressed</div><div class="color-value">#b3b0ae</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#787676"></div><div class="color-info"><div class="color-name">Enable support</div><div class="color-value">#787676</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#4b4a4a"></div><div class="color-info"><div class="color-name">Hover support</div><div class="color-value">#4b4a4a</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#090909"></div><div class="color-info"><div class="color-name">Pressed support</div><div class="color-value">#090909</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#ffffff"></div><div class="color-info"><div class="color-name">Inverted enable</div><div class="color-value">#ffffff</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#ece9e5"></div><div class="color-info"><div class="color-name">Inverted hover</div><div class="color-value">#ece9e5</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#b3b0ae"></div><div class="color-info"><div class="color-name">Inverted pressed</div><div class="color-value">#b3b0ae</div></div></div>
+        </div>
+
+        <div class="color-group">
+          <h4>Text / Brand</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#9a6b5e"></div><div class="color-info"><div class="color-name">Default</div><div class="color-value">#9a6b5e</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#7d574d"></div><div class="color-info"><div class="color-name">Bold 1</div><div class="color-value">#7d574d</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#9a6b5e"></div><div class="color-info"><div class="color-name">Interactive/Enable</div><div class="color-value">#9a6b5e</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#60433b"></div><div class="color-info"><div class="color-name">Interactive/Hover</div><div class="color-value">#60433b</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#30211e"></div><div class="color-info"><div class="color-name">Interactive/Pressed</div><div class="color-value">#30211e</div></div></div>
+        </div>
+
+        <div class="color-group">
+          <h4>Text / Status</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#de3b2d"></div><div class="color-info"><div class="color-name">Error medium 3</div><div class="color-value">#de3b2d</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#961307"></div><div class="color-info"><div class="color-name">Error medium 3 (Badge)</div><div class="color-value">#961307</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#0b8923"></div><div class="color-info"><div class="color-name">Success bold 1</div><div class="color-value">#0b8923</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#065a18"></div><div class="color-info"><div class="color-name">Success bold 1 (Badge)</div><div class="color-value">#065a18</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#ef8f00"></div><div class="color-info"><div class="color-name">Warning medium 3</div><div class="color-value">#ef8f00</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#863300"></div><div class="color-info"><div class="color-name">Warning bold 2</div><div class="color-value">#863300</div></div></div>
+        </div>
+
+        <div class="color-group">
+          <h4>Icon Colors</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#090909"></div><div class="color-info"><div class="color-name">Icon/Neutral/Default</div><div class="color-value">#090909</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#090909"></div><div class="color-info"><div class="color-name">Icon/Neutral/Black</div><div class="color-value">#090909</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#787676"></div><div class="color-info"><div class="color-name">Icon/Interactive/Enable support</div><div class="color-value">#787676</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#090909"></div><div class="color-info"><div class="color-name">Icon/Interactive/Active support</div><div class="color-value">#090909</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#b3b0ae"></div><div class="color-info"><div class="color-name">Icon/Disabled/Default</div><div class="color-value">#b3b0ae</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#dc3426"></div><div class="color-info"><div class="color-name">Icon/Status/Error medium 3</div><div class="color-value">#dc3426</div></div></div>
+        </div>
+
+        <div class="color-group">
+          <h4>Section Backgrounds</h4>
+          <div class="color-row"><div class="color-swatch" style="background:#ffffff"></div><div class="color-info"><div class="color-name">Section bg/Neutral/Base</div><div class="color-value">#ffffff</div></div></div>
+          <div class="color-row"><div class="color-swatch" style="background:#f1e5e2"></div><div class="color-info"><div class="color-name">Section bg/Brand/Subtle 1</div><div class="color-value">#f1e5e2</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANSPARENCY & ALPHA -->
+  <div class="section" id="transparency">
+    <h2 class="section-title">Transparency & Alpha States <span class="status-badge status-new">Discovered</span></h2>
+    <p class="section-desc">Transparent color tokens with alpha channels, used for overlays, hover states, and ghost interactions.</p>
+
+    <div class="alpha-grid">
+      <div class="alpha-card">
+        <h4>Brand Transparent</h4>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#ffffff00"></div></div><div class="alpha-label">Enable: #ffffff00 (0%)</div></div>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#c0867633"></div></div><div class="alpha-label">Hover: #c0867633 (20%)</div></div>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#c086766b"></div></div><div class="alpha-label">Pressed: #c086766b (42%)</div></div>
+      </div>
+
+      <div class="alpha-card">
+        <h4>Neutral Transparent</h4>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#ffffff00"></div></div><div class="alpha-label">Enable: #ffffff00 (0%)</div></div>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#09090914"></div></div><div class="alpha-label">Hover: #09090914 (8%)</div></div>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#0909094f"></div></div><div class="alpha-label">Pressed: #0909094f (31%)</div></div>
+      </div>
+
+      <div class="alpha-card">
+        <h4>Neutral Mute Transparent</h4>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#ffffff00"></div></div><div class="alpha-label">Enable: #ffffff00 (0%)</div></div>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#0909090a"></div></div><div class="alpha-label">Hover: #0909090a (4%)</div></div>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#09090914"></div></div><div class="alpha-label">Pressed: #09090914 (8%)</div></div>
+      </div>
+
+      <div class="alpha-card">
+        <h4>Tinted & Status Transparent</h4>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#0909091f"></div></div><div class="alpha-label">Tinted Enable: #0909091f (12%)</div></div>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#e05d5133"></div></div><div class="alpha-label">Negative Hover: #e05d5133 (20%)</div></div>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#e05d516b"></div></div><div class="alpha-label">Negative Pressed: #e05d516b (42%)</div></div>
+        <div class="alpha-swatch-row"><div class="alpha-swatch"><div class="fill" style="background:#09090914"></div></div><div class="alpha-label">Border Default 08: #09090914 (8%)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FONT FAMILIES -->
+  <div class="section" id="fonts">
+    <h2 class="section-title">Font Families <span class="status-badge status-drift">4 Found</span></h2>
+    <p class="section-desc">Four distinct font families discovered across components. Only Graphik is the target standard.</p>
+
+    <div class="font-card">
+      <h4>Graphik</h4>
+      <div class="meta">Primary typeface - Used across all new semantic components</div>
+      <div class="font-usage">
+        <span class="font-tag primary">Button</span>
+        <span class="font-tag primary">Text Input</span>
+        <span class="font-tag primary">Chip</span>
+        <span class="font-tag primary">Accordion</span>
+        <span class="font-tag primary">Badge</span>
+        <span class="font-tag primary">Tabs</span>
+        <span class="font-tag primary">Select</span>
+        <span class="font-tag primary">Link</span>
+        <span class="font-tag primary">Tooltip</span>
+        <span class="font-tag primary">Modal</span>
+        <span class="font-tag primary">Cards</span>
+        <span class="font-tag primary">Training Center</span>
+        <span class="font-tag primary">Action Menu</span>
+        <span class="font-tag primary">Profile Menu</span>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <h4>Petersburg</h4>
+      <div class="meta">Secondary/serif typeface - Used for Headline/Small/Secondary (24px)</div>
+      <div class="font-usage">
+        <span class="font-tag secondary">Accordion Headings</span>
+        <span class="font-tag secondary">Secondary Headlines</span>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <h4>F37 Lineca</h4>
+      <div class="meta">Mobile typeface - Used only in TabMob styles, weight 615 (semibold-ish)</div>
+      <div class="font-usage">
+        <span class="font-tag mobile">TabMob/Title/Medium/H5-16-Medium</span>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <h4>Roboto</h4>
+      <div class="meta">Legacy typeface - Only in Footer and old Tabs Selectors. Needs migration.</div>
+      <div class="font-usage">
+        <span class="font-tag legacy">Footer (Desktop/P1, P3, Eyebrow)</span>
+        <span class="font-tag legacy">Tabs Selectors (Mobile/P2)</span>
       </div>
     </div>
   </div>
 
   <!-- TYPOGRAPHY -->
-  <div class="section">
-    <h2 class="section-title">Typography <span class="status-badge status-good">Foundation Present</span></h2>
-    <p class="section-desc">Primary font: Graphik. Legacy components still reference Roboto.</p>
+  <div class="section" id="typography">
+    <h2 class="section-title">Typography Scale <span class="status-badge status-good">Comprehensive</span></h2>
+    <p class="section-desc">25+ typography styles discovered. New semantic system uses two naming conventions that need unification.</p>
 
-    <table class="type-table">
-      <thead>
-        <tr>
-          <th>Style</th>
-          <th>Font</th>
-          <th>Weight</th>
-          <th>Size</th>
-          <th>Line Height</th>
-          <th>Letter Spacing</th>
-          <th>Token</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Footnote / Regular</strong></td>
-          <td>Graphik</td>
-          <td>Regular (400)</td>
-          <td>12px</td>
-          <td>18px</td>
-          <td>-0.2px</td>
-          <td><span class="token-name">font size/03</span></td>
-        </tr>
-        <tr>
-          <td><strong>Body / Small / Regular</strong></td>
-          <td>Graphik</td>
-          <td>Regular (400)</td>
-          <td>14px</td>
-          <td>20px</td>
-          <td>-0.2px</td>
-          <td><span class="token-name">font size/04</span></td>
-        </tr>
-        <tr>
-          <td><strong>Body / Medium / Regular</strong></td>
-          <td>Graphik</td>
-          <td>Regular (400)</td>
-          <td>16px</td>
-          <td>24px</td>
-          <td>-0.2px</td>
-          <td><span class="token-name">Font/Font size/5</span></td>
-        </tr>
-        <tr>
-          <td><strong>Body / Medium / Medium</strong></td>
-          <td>Graphik</td>
-          <td>Medium (500)</td>
-          <td>16px</td>
-          <td>24px</td>
-          <td>-0.2px</td>
-          <td><span class="token-name">Font/Font size/5</span></td>
-        </tr>
-        <tr>
-          <td><strong>Body / Large / Medium</strong></td>
-          <td>Graphik</td>
-          <td>Medium (500)</td>
-          <td>18px</td>
-          <td>26px</td>
-          <td>-0.2px</td>
-          <td><span class="token-name">font size/06</span></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="subsection">
+      <h3 class="subsection-title">Display & Headlines</h3>
+      <table class="type-table">
+        <thead><tr><th>Style</th><th>Font</th><th>Weight</th><th>Size</th><th>Line Height</th><th>Letter Spacing</th><th>Token</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Display / Small</strong></td><td>Graphik</td><td>Medium (500)</td><td>32px</td><td>1.2</td><td>-0.5px</td><td><span class="token-name">Display/Small (Medium)</span></td></tr>
+          <tr><td><strong>Headline / Regular</strong></td><td>Graphik</td><td>Medium (500)</td><td>28px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Headline/Regular (Medium)</span></td></tr>
+          <tr><td><strong>Headline / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>24px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Headline/Medium (Medium)</span></td></tr>
+          <tr><td><strong>Headline / Medium</strong></td><td>Graphik</td><td>Regular (400)</td><td>24px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Headline/Medium</span></td></tr>
+          <tr><td><strong>Headline / Small</strong></td><td>Graphik</td><td>Medium (500)</td><td>22px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Headline/Small (Medium)</span></td></tr>
+          <tr><td><strong>Headline / Small</strong></td><td>Graphik</td><td>Regular (400)</td><td>22px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Headline/Small</span></td></tr>
+          <tr><td><strong>Headline / Small Secondary</strong></td><td>Petersburg</td><td>Regular (400)</td><td>24px</td><td>30px</td><td>0</td><td><span class="token-name">Headline/Small/Secondary</span></td></tr>
+          <tr><td><strong>Headline / XS</strong></td><td>Graphik</td><td>Regular (400)</td><td>18px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Headline/XS</span></td></tr>
+          <tr><td><strong>Headline / XS Primary Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>20px</td><td>24px</td><td>-0.2px</td><td><span class="token-name">Headline/Extra small/Primary medium</span></td></tr>
+          <tr><td><strong>Headline / XS Primary Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>20px</td><td>24px</td><td>-0.2px</td><td><span class="token-name">Headline/Extra small/Primary regular</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Body, Footnote & Utility</h3>
+      <table class="type-table">
+        <thead><tr><th>Style</th><th>Font</th><th>Weight</th><th>Size</th><th>Line Height</th><th>Letter Spacing</th><th>Token</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Body / Large / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>18px</td><td>26px</td><td>-0.2px</td><td><span class="token-name">font size/06</span></td></tr>
+          <tr><td><strong>Body / Medium / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>16px</td><td>24px</td><td>-0.2px</td><td><span class="token-name">Font/Font size/5</span></td></tr>
+          <tr><td><strong>Body / Medium / Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>16px</td><td>24px</td><td>-0.2px</td><td><span class="token-name">Font/Font size/5</span></td></tr>
+          <tr><td><strong>Body / Medium / Reg underline</strong></td><td>Graphik</td><td>Regular (400)</td><td>16px</td><td>24px</td><td>-0.2px</td><td><span class="token-name">Body/Medium/Reg underline</span></td></tr>
+          <tr><td><strong>Body / Medium / Med underline</strong></td><td>Graphik</td><td>Medium (500)</td><td>16px</td><td>24px</td><td>-0.2px</td><td><span class="token-name">Body/Medium/Med underline</span></td></tr>
+          <tr><td><strong>Body / Small / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>14px</td><td>20px</td><td>-0.2px</td><td><span class="token-name">font size/04</span></td></tr>
+          <tr><td><strong>Body / Small / Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>14px</td><td>20px</td><td>-0.2px</td><td><span class="token-name">font size/04</span></td></tr>
+          <tr><td><strong>Footnote / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>12px</td><td>18px</td><td>-0.2px</td><td><span class="token-name">font size/03</span></td></tr>
+          <tr><td><strong>Footnote / Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>12px</td><td>18px</td><td>-0.2px</td><td><span class="token-name">font size/03</span></td></tr>
+          <tr><td><strong>Button / Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>16px</td><td>1.5</td><td>0</td><td><span class="token-name">Button/Regular</span></td></tr>
+          <tr><td><strong>Caption / Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>13px</td><td>24px</td><td>3px</td><td><span class="token-name">Caption/Regular</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Transitional & Legacy Styles</h3>
+      <table class="type-table">
+        <thead><tr><th>Style</th><th>Font</th><th>Weight</th><th>Size</th><th>Line Height</th><th>LS</th><th>System</th></tr></thead>
+        <tbody>
+          <tr class="legacy"><td><strong>Body / Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>16px</td><td>24px</td><td>0</td><td><span class="token-name">Transitional</span></td></tr>
+          <tr class="legacy"><td><strong>Body / Small</strong></td><td>Graphik</td><td>Regular (400)</td><td>13px</td><td>20px</td><td>0</td><td><span class="token-name">Transitional</span></td></tr>
+          <tr class="legacy"><td><strong>Body / XS</strong></td><td>Graphik</td><td>Regular (400)</td><td>12px</td><td>20px</td><td>0</td><td><span class="token-name">Transitional</span></td></tr>
+          <tr class="legacy"><td><strong>Desktop / P3</strong></td><td>Graphik</td><td>Regular (400)</td><td>13px</td><td>24px</td><td>0</td><td><span class="token-name">Transitional</span></td></tr>
+          <tr class="legacy"><td><strong>Desktop / P1</strong></td><td>Roboto</td><td>Regular</td><td>18px</td><td>-</td><td>-</td><td><span class="token-name">Legacy Footer</span></td></tr>
+          <tr class="legacy"><td><strong>Desktop / P3</strong></td><td>Roboto</td><td>Regular</td><td>13px</td><td>-</td><td>-</td><td><span class="token-name">Legacy Footer</span></td></tr>
+          <tr class="legacy"><td><strong>Desktop / Eyebrow</strong></td><td>Roboto</td><td>Regular</td><td>13px</td><td>-</td><td>3px</td><td><span class="token-name">Legacy Footer</span></td></tr>
+          <tr class="legacy"><td><strong>Mobile / P2</strong></td><td>Roboto</td><td>Regular (400)</td><td>14px</td><td>1.5</td><td>0</td><td><span class="token-name">Legacy Mobile</span></td></tr>
+          <tr class="legacy"><td><strong>TabMob H5-16-Medium</strong></td><td>F37 Lineca</td><td>Medium (615)</td><td>16px</td><td>1.3</td><td>0</td><td><span class="token-name">Mobile Tab</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Font Size Token Scale</h3>
+      <table class="type-table">
+        <thead><tr><th>Token (New)</th><th>Token (Old)</th><th>Value</th><th>Used By</th></tr></thead>
+        <tbody>
+          <tr><td><span class="token-name">Font/Font size/3</span></td><td><span class="token-name">font size/03</span></td><td>12px</td><td>Footnote</td></tr>
+          <tr><td><span class="token-name">Font/Font size/4</span></td><td><span class="token-name">font size/04</span></td><td>14px</td><td>Body Small</td></tr>
+          <tr><td><span class="token-name">Font/Font size/5</span></td><td><span class="token-name">font size/05</span></td><td>16px</td><td>Body Medium, Button</td></tr>
+          <tr><td>-</td><td><span class="token-name">font size/06</span></td><td>18px</td><td>Body Large, Headline XS</td></tr>
+          <tr><td><span class="token-name">Font/Font size/7</span></td><td><span class="token-name">font size/07</span></td><td>20px</td><td>Headline XS Primary</td></tr>
+          <tr><td><span class="token-name">Font/Font size/8</span></td><td>-</td><td>24px</td><td>Headline Medium/Small</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- SPACING -->
-  <div class="section">
-    <h2 class="section-title">Spacing <span class="status-badge status-naming">Naming Inconsistent</span></h2>
-    <p class="section-desc">Three naming conventions found: <code>Space/</code>, <code>spacing/</code>, and <code>Spacing/</code></p>
+  <div class="section" id="spacing">
+    <h2 class="section-title">Spacing System <span class="status-badge status-drift">3 Naming Systems</span></h2>
+    <p class="section-desc">16 spacing values across 3 naming conventions: <code>Space/</code> (new), <code>Spacing/</code> (transitional), <code>spacing/</code> (old). Full scale: 0 to 124px.</p>
 
     <div class="spacing-grid">
-      <div class="spacing-item">
-        <div class="spacing-visual" style="width:2px;height:2px"></div>
-        <div class="spacing-label">2px</div>
-        <div class="spacing-token">Space/2</div>
-      </div>
-      <div class="spacing-item">
-        <div class="spacing-visual" style="width:4px;height:4px"></div>
-        <div class="spacing-label">4px</div>
-        <div class="spacing-token">Space/4</div>
-      </div>
-      <div class="spacing-item">
-        <div class="spacing-visual" style="width:6px;height:6px"></div>
-        <div class="spacing-label">6px</div>
-        <div class="spacing-token">spacing/06</div>
-      </div>
-      <div class="spacing-item">
-        <div class="spacing-visual" style="width:8px;height:8px"></div>
-        <div class="spacing-label">8px</div>
-        <div class="spacing-token">Space/8</div>
-      </div>
-      <div class="spacing-item">
-        <div class="spacing-visual" style="width:12px;height:12px"></div>
-        <div class="spacing-label">12px</div>
-        <div class="spacing-token">Space/12</div>
-      </div>
-      <div class="spacing-item">
-        <div class="spacing-visual" style="width:16px;height:16px"></div>
-        <div class="spacing-label">16px</div>
-        <div class="spacing-token">Space/16</div>
-      </div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:1px;height:1px"></div><div class="spacing-label">0</div><div class="spacing-value">0px</div><div class="spacing-token">Spacing/0</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:2px;height:2px"></div><div class="spacing-label">2</div><div class="spacing-value">2px</div><div class="spacing-token">Space/2</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:4px;height:4px"></div><div class="spacing-label">4</div><div class="spacing-value">4px</div><div class="spacing-token">Space/4</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:6px;height:6px"></div><div class="spacing-label">6</div><div class="spacing-value">6px</div><div class="spacing-token">Space/6</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:8px;height:8px"></div><div class="spacing-label">8</div><div class="spacing-value">8px</div><div class="spacing-token">Space/8</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:12px;height:12px"></div><div class="spacing-label">12</div><div class="spacing-value">12px</div><div class="spacing-token">Space/12</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:16px;height:16px"></div><div class="spacing-label">16</div><div class="spacing-value">16px</div><div class="spacing-token">Space/16</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:24px;height:24px"></div><div class="spacing-label">24</div><div class="spacing-value">24px</div><div class="spacing-token">Spacing/24</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:32px;height:32px"></div><div class="spacing-label">32</div><div class="spacing-value">32px</div><div class="spacing-token">Spacing/32</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:48px;height:32px"></div><div class="spacing-label">48</div><div class="spacing-value">48px</div><div class="spacing-token">Spacing/48</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:56px;height:32px"></div><div class="spacing-label">56</div><div class="spacing-value">56px</div><div class="spacing-token">Spacing/56</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:64px;height:32px"></div><div class="spacing-label">64</div><div class="spacing-value">64px</div><div class="spacing-token">Spacing/64</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:72px;height:32px"></div><div class="spacing-label">80</div><div class="spacing-value">80px</div><div class="spacing-token">Spacing/80</div></div>
+      <div class="spacing-item"><div class="spacing-visual" style="width:80px;height:32px"></div><div class="spacing-label">124</div><div class="spacing-value">124px</div><div class="spacing-token">Spacing/124</div></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Spacing Naming Comparison</h3>
+      <table class="naming-table">
+        <thead><tr><th>Value</th><th>New System (Space/)</th><th>Transitional (Spacing/)</th><th>Old System (spacing/)</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td>-</td><td class="recommended">Spacing/0</td><td class="deprecated">spacing/00</td></tr>
+          <tr><td>2</td><td class="recommended">Space/2</td><td>-</td><td class="deprecated">spacing/02</td></tr>
+          <tr><td>4</td><td class="recommended">Space/4</td><td>Spacing/4</td><td class="deprecated">spacing/04</td></tr>
+          <tr><td>6</td><td class="recommended">Space/6</td><td>-</td><td class="deprecated">spacing/06</td></tr>
+          <tr><td>8</td><td class="recommended">Space/8</td><td>Spacing/8</td><td class="deprecated">spacing/08</td></tr>
+          <tr><td>12</td><td class="recommended">Space/12</td><td>Spacing/12</td><td class="deprecated">spacing/12</td></tr>
+          <tr><td>16</td><td class="recommended">Space/16</td><td>Spacing/16</td><td class="deprecated">spacing/16</td></tr>
+          <tr><td>24</td><td>-</td><td class="recommended">Spacing/24</td><td class="deprecated">spacing/24</td></tr>
+          <tr><td>32</td><td>-</td><td class="recommended">Spacing/32</td><td>-</td></tr>
+          <tr><td>48</td><td>-</td><td class="recommended">Spacing/48</td><td>-</td></tr>
+          <tr><td>56</td><td>-</td><td class="recommended">Spacing/56</td><td>-</td></tr>
+          <tr><td>64</td><td>-</td><td class="recommended">Spacing/64</td><td>-</td></tr>
+          <tr><td>80</td><td>-</td><td class="recommended">Spacing/80</td><td>-</td></tr>
+          <tr><td>124</td><td>-</td><td class="recommended">Spacing/124</td><td>-</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
   <!-- CORNER RADIUS -->
-  <div class="section">
-    <h2 class="section-title">Corner Radius <span class="status-badge status-gap">Incomplete Scale</span></h2>
-    <p class="section-desc">Only 3 values defined. Missing Medium, Large, XL.</p>
+  <div class="section" id="radius">
+    <h2 class="section-title">Corner Radius <span class="status-badge status-good">5 Values Found</span></h2>
+    <p class="section-desc">Complete scale from Extra Small (4px) to Circle (999px). Previously only 3 were documented.</p>
 
     <div class="radius-grid">
-      <div class="radius-item" style="border-radius:8px">
-        <div class="radius-label">Small</div>
-        <div class="radius-value">8px</div>
-      </div>
-      <div class="radius-item" style="border-radius:12px">
-        <div class="radius-label">Medium Small</div>
-        <div class="radius-value">12px</div>
-      </div>
-      <div class="radius-item" style="border-radius:60px">
-        <div class="radius-label">Circle</div>
-        <div class="radius-value">999px</div>
-      </div>
-      <div class="radius-item" style="border-radius:16px;border-style:dashed;border-color:#b3b0ae">
-        <div class="radius-label" style="color:#b3b0ae">Medium</div>
-        <div class="radius-value">TBD</div>
-      </div>
-      <div class="radius-item" style="border-radius:20px;border-style:dashed;border-color:#b3b0ae">
-        <div class="radius-label" style="color:#b3b0ae">Large</div>
-        <div class="radius-value">TBD</div>
-      </div>
+      <div class="radius-item" style="border-radius:4px"><div class="radius-label">Extra Small</div><div class="radius-value">4px</div></div>
+      <div class="radius-item" style="border-radius:8px"><div class="radius-label">Small</div><div class="radius-value">8px</div></div>
+      <div class="radius-item" style="border-radius:12px"><div class="radius-label">Medium Small</div><div class="radius-value">12px</div></div>
+      <div class="radius-item" style="border-radius:16px"><div class="radius-label">Medium</div><div class="radius-value">16px</div></div>
+      <div class="radius-item" style="border-radius:60px"><div class="radius-label">Circle</div><div class="radius-value">999px</div></div>
     </div>
   </div>
 
   <!-- STROKE WIDTHS -->
-  <div class="section">
+  <div class="section" id="strokes">
     <h2 class="section-title">Stroke Widths <span class="status-badge status-good">Defined</span></h2>
     <div class="spacing-grid">
-      <div class="spacing-item">
-        <div style="width:64px;height:1px;background:#090909;margin:0 auto 12px"></div>
-        <div class="spacing-label">Extra Light</div>
-        <div class="spacing-value">1px</div>
+      <div class="spacing-item"><div style="width:64px;height:1px;background:#090909;margin:0 auto 12px"></div><div class="spacing-label">Extra Light</div><div class="spacing-value">1px</div></div>
+      <div class="spacing-item"><div style="width:64px;height:4px;background:#090909;margin:0 auto 12px;border-radius:2px"></div><div class="spacing-label">Bold</div><div class="spacing-value">4px</div></div>
+    </div>
+  </div>
+
+  <!-- ELEVATION & SHADOWS -->
+  <div class="section" id="elevation">
+    <h2 class="section-title">Elevation & Shadows <span class="status-badge status-new">Discovered</span></h2>
+    <p class="section-desc">Multi-layer shadow system found in Select and Profile Menu components. Uses 4 stacked drop shadows for natural depth.</p>
+
+    <div class="shadow-demo">
+      <div class="shadow-box" style="box-shadow: 0px 1px 3px #00000021, 0px 5px 10px #0000000F, 0px 9px 9px #0000000D, 0px 21px 9px #00000005;">
+        Elevation 2<br>Cast Down
       </div>
-      <div class="spacing-item">
-        <div style="width:64px;height:4px;background:#090909;margin:0 auto 12px;border-radius:2px"></div>
-        <div class="spacing-label">Bold</div>
-        <div class="spacing-value">4px</div>
+      <div class="shadow-detail">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:12px">Elevation 2 / Cast Down &mdash; 4 Layers</h4>
+        <div class="shadow-layer"><span class="label">Layer 1</span><span class="val">0px 1px 3px rgba(0,0,0,0.13) &mdash; close, subtle</span></div>
+        <div class="shadow-layer"><span class="label">Layer 2</span><span class="val">0px 5px 10px rgba(0,0,0,0.06) &mdash; medium spread</span></div>
+        <div class="shadow-layer"><span class="label">Layer 3</span><span class="val">0px 9px 9px rgba(0,0,0,0.05) &mdash; ambient fill</span></div>
+        <div class="shadow-layer"><span class="label">Layer 4</span><span class="val">0px 21px 9px rgba(0,0,0,0.02) &mdash; far, atmospheric</span></div>
+        <div class="shadow-layer"><span class="label">Used in</span><span class="val">Select dropdowns, Profile Menu, Action Menu</span></div>
+      </div>
+    </div>
+    <div style="margin-top:16px">
+      <div class="issue-card gap" style="display:inline-block">
+        <h4>Gap: Only 1 Elevation Level Defined</h4>
+        <p>Only "Elevation 2/Cast down" exists. Missing Elevation 1 (cards), Elevation 3 (modals), Elevation 4 (tooltips).</p>
       </div>
     </div>
   </div>
 
+  <!-- LAYOUT TOKENS -->
+  <div class="section" id="layout">
+    <h2 class="section-title">Layout Tokens <span class="status-badge status-gap">Minimal</span></h2>
+    <p class="section-desc">Only one layout-level token discovered. Breakpoints and grid tokens are absent.</p>
+
+    <div class="spacing-grid">
+      <div class="spacing-item" style="width:auto;padding:20px 32px">
+        <div class="spacing-label">Global Logged In / TopBottom Margins</div>
+        <div class="spacing-value" style="font-size:24px;font-weight:600;color:#9a6b5e;margin-top:8px">48px</div>
+        <div class="spacing-token">Global Logged In/TopBottom Margins</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOKEN NAMING ANALYSIS -->
+  <div class="section" id="naming">
+    <h2 class="section-title">Token Naming Analysis <span class="status-badge status-drift">Inconsistent</span></h2>
+    <p class="section-desc">Analysis of naming conventions across token categories. Multiple systems coexist with different casing, separators, and hierarchies.</p>
+
+    <table class="naming-table">
+      <thead><tr><th>Category</th><th>New System</th><th>Old System(s)</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Colors</td><td class="recommended"><code>Color/Container/Brand/Interactive/Enable</code></td><td class="deprecated"><code>/Primary / 000000</code>, <code>color/surface/interactive/Brand</code></td><td>3+ conventions</td></tr>
+        <tr><td>Text</td><td class="recommended"><code>Text/Neutral/Default</code></td><td class="deprecated"><code>Text & Icons/Default</code>, <code>color/on_surface/primary/onBrand</code></td><td>3 conventions</td></tr>
+        <tr><td>Spacing</td><td class="recommended"><code>Space/8</code></td><td class="deprecated"><code>Spacing/8</code>, <code>spacing/08</code></td><td>3 conventions</td></tr>
+        <tr><td>Font Size</td><td class="recommended"><code>Font/Font size/5</code></td><td class="deprecated"><code>font size/05</code></td><td>2 conventions</td></tr>
+        <tr><td>Font Family</td><td class="recommended"><code>Font/Families/Graphik</code></td><td class="deprecated"><code>font family/graphik</code></td><td>2 conventions</td></tr>
+        <tr><td>Font Weight</td><td class="recommended"><code>Font/Weights/Medium</code></td><td class="deprecated"><code>font weight/medium</code></td><td>2 conventions</td></tr>
+        <tr><td>Line Height</td><td class="recommended"><code>Font/Line height/24</code></td><td class="deprecated"><code>line height/24</code></td><td>2 conventions</td></tr>
+        <tr><td>Letter Spacing</td><td class="recommended"><code>Font/Letter spacing/5</code></td><td class="deprecated"><code>letter spacing/05</code></td><td>2 conventions</td></tr>
+        <tr><td>Corner Radius</td><td class="recommended"><code>Corner/Small</code></td><td>-</td><td>Consistent</td></tr>
+        <tr><td>Stroke</td><td class="recommended"><code>Stroke width/Extra light</code></td><td>-</td><td>Consistent</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- COMPONENT COVERAGE -->
+  <div class="section" id="components">
+    <h2 class="section-title">Component Token Coverage</h2>
+    <p class="section-desc">Which naming system each component uses. "New" = semantic system, "Mixed" = both old and new, "Old" = legacy only.</p>
+
+    <div class="component-grid">
+      <div class="component-tag new"><strong>Button</strong><div class="system">New semantic</div></div>
+      <div class="component-tag new"><strong>Text Input</strong><div class="system">New semantic</div></div>
+      <div class="component-tag new"><strong>Accordion</strong><div class="system">New semantic</div></div>
+      <div class="component-tag new"><strong>Select</strong><div class="system">New semantic</div></div>
+      <div class="component-tag new"><strong>Badge</strong><div class="system">New semantic</div></div>
+      <div class="component-tag new"><strong>Action List</strong><div class="system">New semantic</div></div>
+      <div class="component-tag new"><strong>Link</strong><div class="system">New semantic</div></div>
+      <div class="component-tag new"><strong>Checkbox</strong><div class="system">New semantic</div></div>
+      <div class="component-tag new"><strong>Profile Menu</strong><div class="system">New semantic</div></div>
+      <div class="component-tag mixed"><strong>Tabs</strong><div class="system">Mixed old+new</div></div>
+      <div class="component-tag mixed"><strong>Chip</strong><div class="system">Mixed old+new</div></div>
+      <div class="component-tag mixed"><strong>Modal</strong><div class="system">Mixed old+new</div></div>
+      <div class="component-tag mixed"><strong>Navigation</strong><div class="system">Mixed (Text & Icons)</div></div>
+      <div class="component-tag mixed"><strong>Cards</strong><div class="system">Mixed (Text & Icons)</div></div>
+      <div class="component-tag mixed"><strong>Training Center</strong><div class="system">Mixed (Text & Icons)</div></div>
+      <div class="component-tag mixed"><strong>Progress Bar</strong><div class="system">Mixed (AMIO naming)</div></div>
+      <div class="component-tag mixed"><strong>Brand Containers</strong><div class="system">Mixed (Color/Black)</div></div>
+      <div class="component-tag old"><strong>Side Nav</strong><div class="system">Old (Color/White, Text & Icons)</div></div>
+      <div class="component-tag old"><strong>Footer</strong><div class="system">Old (/Primary, Roboto)</div></div>
+      <div class="component-tag old"><strong>Tabs Selectors</strong><div class="system">Old (Tertiary, Roboto)</div></div>
+      <div class="component-tag old"><strong>Live Events</strong><div class="system">Old (YELLOW)</div></div>
+    </div>
+  </div>
+
   <!-- GAPS & ISSUES -->
-  <div class="section">
-    <h2 class="section-title">Gaps & Issues</h2>
-    <p class="section-desc">Critical items to address for system completeness</p>
+  <div class="section" id="issues">
+    <h2 class="section-title">Gaps & Issues <span class="status-badge status-gap">12 Items</span></h2>
+    <p class="section-desc">Critical items identified across the token system</p>
 
     <div class="issues-grid">
       <div class="issue-card gap">
-        <h4>No Elevation / Shadow Tokens</h4>
-        <p>No shadow or elevation variables defined anywhere in the file. Needed for cards, modals, dropdowns, tooltips.</p>
-      </div>
-      <div class="issue-card gap">
-        <h4>Incomplete Radius Scale</h4>
-        <p>Only Small (8), Medium Small (12), and Circle (999). Missing Medium, Large, XL values for containers and cards.</p>
+        <h4>Incomplete Elevation System</h4>
+        <p>Only "Elevation 2/Cast down" exists. Need Elevation 1 (subtle, cards), Elevation 3 (modals/dialogs), and Elevation 4 (tooltips/popovers).</p>
       </div>
       <div class="issue-card naming">
-        <h4>Inconsistent Spacing Names</h4>
-        <p>Three conventions: <code>Space/8</code>, <code>spacing/08</code>, <code>Spacing/12</code>. Standardize on one.</p>
+        <h4>3 Spacing Naming Systems</h4>
+        <p><code>Space/8</code> vs <code>Spacing/8</code> vs <code>spacing/08</code>. Components use different conventions. Need to standardize on one.</p>
       </div>
       <div class="issue-card naming">
-        <h4>Inconsistent Typography Tokens</h4>
-        <p>New components use <code>Font/Font size/5</code>, older ones use <code>font size/05</code>. Case and format differ.</p>
+        <h4>2 Font Token Systems</h4>
+        <p><code>Font/Font size/5</code> vs <code>font size/05</code>. Both actively used. PascalCase and lowercase systems coexist across components.</p>
       </div>
       <div class="issue-card drift">
-        <h4>Two Font Families</h4>
-        <p>New system uses Graphik. Legacy Footer uses Roboto with completely different style naming (Desktop/P1, Desktop/P3).</p>
+        <h4>4 Font Families</h4>
+        <p>Graphik (primary), Petersburg (secondary), F37 Lineca (mobile), Roboto (legacy). Only Roboto needs migration; Petersburg and F37 Lineca appear intentional.</p>
       </div>
       <div class="issue-card drift">
-        <h4>Three Color Systems</h4>
-        <p>New semantic (<code>Color/Container/...</code>), legacy (<code>/Primary / 000000</code>), and old nav (<code>Color/White/100</code>) all coexist.</p>
+        <h4>6+ Color Naming Systems</h4>
+        <p>New semantic, Text & Icons, AMIO/Primary, /Primary, color/surface, Tertiary, and raw YELLOW. Active drift across 20+ components.</p>
       </div>
       <div class="issue-card gap">
         <h4>No Breakpoint Tokens</h4>
-        <p>No responsive breakpoint variables defined. Needed for Medium and Large viewport consistency.</p>
+        <p>No responsive breakpoint variables defined. XL, L, M, S viewport variants exist as separate component instances but have no shared token.</p>
+      </div>
+      <div class="issue-card gap">
+        <h4>No Grid Tokens</h4>
+        <p>No column count, gutter width, or margin tokens. Only one layout token exists (Global TopBottom Margins = 48).</p>
+      </div>
+      <div class="issue-card info">
+        <h4>Inconsistent Status Color Values</h4>
+        <p>Error red appears as both <code>#de3b2d</code> and <code>#dc3426</code> in different components. Success green as both <code>#0b8923</code> and <code>#065a18</code>.</p>
+      </div>
+      <div class="issue-card gap">
+        <h4>Missing Gradient Definitions</h4>
+        <p>"Gradients/Light Marketing Banner" is referenced but has no defined value. Gradient tokens need to be built out.</p>
+      </div>
+      <div class="issue-card naming">
+        <h4>Headline Line Height Inconsistency</h4>
+        <p>Transitional headlines use ratio (1.2) while new semantic system uses px (24px, 30px). Need to standardize on one approach.</p>
+      </div>
+      <div class="issue-card info">
+        <h4>Desktop/P3 Dual Definition</h4>
+        <p>"Desktop/P3" exists as both Graphik 13px (in Cards) and Roboto 13px (in Footer). Same token name, different fonts.</p>
+      </div>
+      <div class="issue-card gap">
+        <h4>No Motion / Animation Tokens</h4>
+        <p>No duration, easing, or transition tokens defined. Needed for consistent interaction patterns.</p>
       </div>
     </div>
   </div>
 
   <!-- LEGACY SYSTEMS -->
-  <div class="section">
-    <h2 class="section-title">Legacy Token Systems</h2>
-    <p class="section-desc">Components using outdated naming conventions that need migration</p>
+  <div class="section" id="legacy">
+    <h2 class="section-title">Legacy Token Systems <span class="status-badge status-drift">6 Systems</span></h2>
+    <p class="section-desc">Distinct naming systems that need migration to the new semantic standard</p>
 
     <div class="legacy-grid">
       <div class="legacy-card">
-        <h4>System 2: Footer</h4>
+        <h4>System 1: Text & Icons</h4>
+        <div class="component">Navigation, Cards, Training Center, Side Nav, Progress Bar</div>
+        <div class="legacy-token"><span class="name">Text & Icons/Default</span><span class="val">#090909</span></div>
+        <div class="legacy-token"><span class="name">Text & Icons/Neutral</span><span class="val">#323131</span></div>
+        <div class="legacy-token"><span class="name">Text & Icons/Subdued</span><span class="val">#818386</span></div>
+        <div class="legacy-token"><span class="name">Text & Icons/Light</span><span class="val">#e5e5e5</span></div>
+        <div class="legacy-token"><span class="name">Text & Icons/White</span><span class="val">#ffffff</span></div>
+      </div>
+
+      <div class="legacy-card">
+        <h4>System 2: /Primary (Footer)</h4>
         <div class="component">4.0 Footer component</div>
         <div class="legacy-token"><span class="name">/Primary / 000000</span><span class="val">#000000</span></div>
         <div class="legacy-token"><span class="name">Primary/FFFFFF</span><span class="val">#ffffff</span></div>
@@ -753,28 +786,59 @@
         <div class="legacy-token"><span class="name">Desktop/P3</span><span class="val">Roboto 13px</span></div>
         <div class="legacy-token"><span class="name">Desktop/Eyebrow</span><span class="val">Roboto 13px LS:3</span></div>
       </div>
+
       <div class="legacy-card">
-        <h4>System 3: Side Nav</h4>
-        <div class="component">Side Nav / Default / XL - M</div>
+        <h4>System 3: AMIO</h4>
+        <div class="component">Progress Bar, Medals, Tags</div>
+        <div class="legacy-token"><span class="name">AMIO/Primary/Black</span><span class="val">#000000</span></div>
+        <div class="legacy-token"><span class="name">AMIO/Primary/Dusty Rose</span><span class="val">#c08676</span></div>
+      </div>
+
+      <div class="legacy-card">
+        <h4>System 4: color/surface</h4>
+        <div class="component">Button (older variant)</div>
+        <div class="legacy-token"><span class="name">color/surface/interactive/Brand/Enable</span><span class="val">#090909</span></div>
+        <div class="legacy-token"><span class="name">color/surface/interactive/Brand/Hover</span><span class="val">#787676</span></div>
+        <div class="legacy-token"><span class="name">color/surface/interactive/Brand/Pressed</span><span class="val">#b3b0ae</span></div>
+        <div class="legacy-token"><span class="name">color/on_surface/primary/onBrand</span><span class="val">#ffffff</span></div>
+        <div class="legacy-token"><span class="name">color/on_surface/Disabled</span><span class="val">#b3b0ae</span></div>
+        <div class="legacy-token"><span class="name">color/surface/interactive/Disabled</span><span class="val">#ece9e5</span></div>
+      </div>
+
+      <div class="legacy-card">
+        <h4>System 5: Tertiary</h4>
+        <div class="component">Tabs Selectors (old)</div>
+        <div class="legacy-token"><span class="name">Tertiary/4B4C4E</span><span class="val">#4B4C4E</span></div>
+        <div class="legacy-token"><span class="name">Mobile/P2</span><span class="val">Roboto 14px</span></div>
+      </div>
+
+      <div class="legacy-card">
+        <h4>System 6: Misc Legacy</h4>
+        <div class="component">Live Events, Flowkit</div>
+        <div class="legacy-token"><span class="name">YELLOW</span><span class="val">#FE9400</span></div>
+        <div class="legacy-token"><span class="name">Flowkit/White</span><span class="val">#FFFFFF</span></div>
         <div class="legacy-token"><span class="name">Color/White/100</span><span class="val">#ffffff</span></div>
-        <div class="legacy-token"><span class="name">Text & Icons/Subdued</span><span class="val">#818386</span></div>
-        <div class="legacy-token"><span class="name">Spacing/12</span><span class="val">12</span></div>
+        <div class="legacy-token"><span class="name">Color/Black/100</span><span class="val">#000000</span></div>
       </div>
     </div>
   </div>
 
-  <!-- RECOMMENDATION -->
-  <div class="section">
+  <!-- RECOMMENDATIONS -->
+  <div class="section" id="recommendations">
     <div class="recommendation">
-      <h3>Recommendation</h3>
+      <h3>Recommendations</h3>
       <ul>
-        <li>Standardize on the new semantic naming: <code>Color/Container/...</code>, <code>Space/...</code>, <code>Corner/...</code></li>
-        <li>Build out missing tokens: elevation/shadows, full radius scale, breakpoints</li>
-        <li>Normalize spacing token names to <code>Space/{value}</code></li>
-        <li>Normalize typography tokens to <code>Font/{category}/{value}</code></li>
-        <li>New work follows new token structure immediately</li>
-        <li>Migrate legacy components (Footer, Side Nav) gradually over coming weeks</li>
-        <li>Source Frank's existing tokens and merge into standardized structure</li>
+        <li><strong>Standardize color naming</strong> on <code>Color/{role}/{category}/{state}</code> pattern. Migrate Text & Icons, AMIO, /Primary, color/surface, and Tertiary systems.</li>
+        <li><strong>Unify spacing tokens</strong> to <code>Space/{value}</code>. Migrate <code>Spacing/</code> and <code>spacing/</code> variants. Add missing Space/0, Space/24, Space/32, etc.</li>
+        <li><strong>Unify font tokens</strong> to PascalCase: <code>Font/Font size/5</code> over <code>font size/05</code>. Standardize on one naming pattern.</li>
+        <li><strong>Build elevation scale:</strong> Define Elevation 1 (cards), Elevation 3 (modals), Elevation 4 (tooltips) based on the existing Elevation 2 pattern.</li>
+        <li><strong>Resolve status color discrepancies:</strong> Pick one value each for error red (#de3b2d vs #dc3426) and success green (#0b8923 vs #065a18).</li>
+        <li><strong>Define breakpoint tokens:</strong> Codify the XL/L/M/S viewport widths that component variants already use.</li>
+        <li><strong>Define gradient tokens:</strong> Fill in the empty "Gradients/Light Marketing Banner" and define others.</li>
+        <li><strong>Add motion tokens:</strong> Duration (fast/normal/slow) and easing curves for consistent animations.</li>
+        <li><strong>Migrate Footer from Roboto to Graphik.</strong> Highest-priority legacy migration.</li>
+        <li><strong>Source Frank's existing tokens</strong> and merge into the standardized structure.</li>
+        <li><strong>New work uses new system immediately.</strong> Legacy migration happens gradually over coming sprints.</li>
       </ul>
     </div>
   </div>
