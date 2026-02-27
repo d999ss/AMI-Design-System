@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMI Design System Token Audit</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f7f6f5;
+    color: #090909;
+    padding: 64px;
+  }
+
+  .page {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .header {
+    margin-bottom: 64px;
+  }
+
+  .header h1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .header .subtitle {
+    font-size: 18px;
+    color: #787676;
+    margin-bottom: 24px;
+  }
+
+  .header .date {
+    font-size: 14px;
+    color: #9a6b5e;
+    font-weight: 500;
+  }
+
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-desc {
+    font-size: 14px;
+    color: #787676;
+    margin-bottom: 24px;
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+
+  .status-good { background: #e8f5e9; color: #0b8923; }
+  .status-gap { background: #fff3e0; color: #e65100; }
+  .status-drift { background: #fce4ec; color: #c62828; }
+
+  /* Color Tokens */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .color-group {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #ece9e5;
+  }
+
+  .color-group h4 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #787676;
+    margin-bottom: 16px;
+  }
+
+  .color-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f7f6f5;
+  }
+
+  .color-row:last-child { border-bottom: none; }
+
+  .color-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.08);
+    flex-shrink: 0;
+  }
+
+  .color-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .color-name {
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .color-value {
+    font-size: 12px;
+    color: #787676;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  /* Typography */
+  .type-table {
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #ece9e5;
+    overflow: hidden;
+  }
+
+  .type-table th {
+    text-align: left;
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #787676;
+    background: #fafafa;
+    border-bottom: 1px solid #ece9e5;
+  }
+
+  .type-table td {
+    padding: 14px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid #f7f6f5;
+  }
+
+  .type-table tr:last-child td { border-bottom: none; }
+
+  .token-name {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    background: #f7f6f5;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* Spacing */
+  .spacing-grid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .spacing-item {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #ece9e5;
+    padding: 20px;
+    text-align: center;
+    width: 120px;
+  }
+
+  .spacing-visual {
+    background: #9a6b5e;
+    margin: 0 auto 12px;
+    border-radius: 4px;
+  }
+
+  .spacing-label {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .spacing-value {
+    font-size: 12px;
+    color: #787676;
+    margin-top: 2px;
+  }
+
+  .spacing-token {
+    font-size: 11px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: #b3b0ae;
+    margin-top: 4px;
+  }
+
+  /* Corner Radius */
+  .radius-grid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .radius-item {
+    background: #fff;
+    border: 2px solid #9a6b5e;
+    padding: 20px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .radius-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .radius-value {
+    font-size: 12px;
+    color: #787676;
+  }
+
+  /* Gaps & Issues */
+  .issues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  .issue-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 4px solid;
+  }
+
+  .issue-card.gap { border-left-color: #e65100; }
+  .issue-card.drift { border-left-color: #c62828; }
+  .issue-card.naming { border-left-color: #f9a825; }
+
+  .issue-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .issue-card p {
+    font-size: 13px;
+    color: #787676;
+    line-height: 1.5;
+  }
+
+  /* Legacy Systems */
+  .legacy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 16px;
+  }
+
+  .legacy-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #ece9e5;
+    padding: 24px;
+  }
+
+  .legacy-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .legacy-card .component {
+    font-size: 12px;
+    color: #9a6b5e;
+    margin-bottom: 12px;
+  }
+
+  .legacy-token {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #f7f6f5;
+    font-size: 13px;
+  }
+
+  .legacy-token:last-child { border-bottom: none; }
+
+  .legacy-token .name { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; }
+  .legacy-token .val { color: #787676; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; }
+
+  .recommendation {
+    background: #fff;
+    border-radius: 12px;
+    border: 2px solid #9a6b5e;
+    padding: 32px;
+  }
+
+  .recommendation h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #9a6b5e;
+    margin-bottom: 16px;
+  }
+
+  .recommendation ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .recommendation li {
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.5;
+    border-bottom: 1px solid #f7f6f5;
+  }
+
+  .recommendation li:last-child { border-bottom: none; }
+
+  .recommendation li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #9a6b5e;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <h1>AMI Design System Token Audit</h1>
+    <div class="subtitle">Figma Master File: AMI-Rebrand--Master-File-</div>
+    <div class="date">Audit Date: February 27, 2026</div>
+  </div>
+
+  <!-- COLOR TOKENS -->
+  <div class="section">
+    <h2 class="section-title">Color Tokens <span class="status-badge status-good">Foundation Present</span></h2>
+    <p class="section-desc">Semantic naming structure: Container / Border / Text &times; Neutral / Brand / Status</p>
+
+    <div class="color-grid">
+      <div class="color-group">
+        <h4>Brand</h4>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#9a6b5e"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Brand/Interactive/Enable</div>
+            <div class="color-value">#9a6b5e</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#7d574d"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Brand/Interactive/Hover</div>
+            <div class="color-value">#7d574d</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#60433b"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Brand/Interactive/Pressed</div>
+            <div class="color-value">#60433b</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#c08676"></div>
+          <div class="color-info">
+            <div class="color-name">Border/Brand/Focus ring/Default</div>
+            <div class="color-value">#c08676</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#dfc2bb"></div>
+          <div class="color-info">
+            <div class="color-name">Border/Brand/Focus ring/Inverted</div>
+            <div class="color-value">#dfc2bb</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="color-group">
+        <h4>Neutral</h4>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#090909"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Neutral/Interactive/Enable</div>
+            <div class="color-value">#090909</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#787676"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Neutral/Interactive/Hover</div>
+            <div class="color-value">#787676</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#b3b0ae"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Neutral/Interactive/Pressed</div>
+            <div class="color-value">#b3b0ae</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#dedad7"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Neutral/Interactive/Mute pressed</div>
+            <div class="color-value">#dedad7</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#ece9e5"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Neutral/Disabled/Default</div>
+            <div class="color-value">#ece9e5</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#f7f6f5"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Neutral/Interactive/Mute enable</div>
+            <div class="color-value">#f7f6f5</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#fafafa"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Neutral/Mute 1</div>
+            <div class="color-value">#fafafa</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#ffffff"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Neutral/Base</div>
+            <div class="color-value">#ffffff</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="color-group">
+        <h4>Text</h4>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#090909"></div>
+          <div class="color-info">
+            <div class="color-name">Text/Neutral/Default</div>
+            <div class="color-value">#090909</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#787676"></div>
+          <div class="color-info">
+            <div class="color-name">Text/Neutral/Support</div>
+            <div class="color-value">#787676</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#787676"></div>
+          <div class="color-info">
+            <div class="color-name">Text/Neutral/Placeholder</div>
+            <div class="color-value">#787676</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#b3b0ae"></div>
+          <div class="color-info">
+            <div class="color-name">Text/Neutral/Disabled/Default</div>
+            <div class="color-value">#b3b0ae</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#ffffff"></div>
+          <div class="color-info">
+            <div class="color-name">Text/Neutral/Inverted</div>
+            <div class="color-value">#ffffff</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#9a6b5e"></div>
+          <div class="color-info">
+            <div class="color-name">Text/Brand/Default</div>
+            <div class="color-value">#9a6b5e</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="color-group">
+        <h4>Status</h4>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#de3b2d"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Status/Interactive/Enable negative</div>
+            <div class="color-value">#de3b2d</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#961307"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Status/Interactive/Hover negative</div>
+            <div class="color-value">#961307</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#6b0900"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Status/Interactive/Pressed negative</div>
+            <div class="color-value">#6b0900</div>
+          </div>
+        </div>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#0b8923"></div>
+          <div class="color-info">
+            <div class="color-name">Container/Status/Positive medium 3</div>
+            <div class="color-value">#0b8923</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="section">
+    <h2 class="section-title">Typography <span class="status-badge status-good">Foundation Present</span></h2>
+    <p class="section-desc">Primary font: Graphik. Legacy components still reference Roboto.</p>
+
+    <table class="type-table">
+      <thead>
+        <tr>
+          <th>Style</th>
+          <th>Font</th>
+          <th>Weight</th>
+          <th>Size</th>
+          <th>Line Height</th>
+          <th>Letter Spacing</th>
+          <th>Token</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Footnote / Regular</strong></td>
+          <td>Graphik</td>
+          <td>Regular (400)</td>
+          <td>12px</td>
+          <td>18px</td>
+          <td>-0.2px</td>
+          <td><span class="token-name">font size/03</span></td>
+        </tr>
+        <tr>
+          <td><strong>Body / Small / Regular</strong></td>
+          <td>Graphik</td>
+          <td>Regular (400)</td>
+          <td>14px</td>
+          <td>20px</td>
+          <td>-0.2px</td>
+          <td><span class="token-name">font size/04</span></td>
+        </tr>
+        <tr>
+          <td><strong>Body / Medium / Regular</strong></td>
+          <td>Graphik</td>
+          <td>Regular (400)</td>
+          <td>16px</td>
+          <td>24px</td>
+          <td>-0.2px</td>
+          <td><span class="token-name">Font/Font size/5</span></td>
+        </tr>
+        <tr>
+          <td><strong>Body / Medium / Medium</strong></td>
+          <td>Graphik</td>
+          <td>Medium (500)</td>
+          <td>16px</td>
+          <td>24px</td>
+          <td>-0.2px</td>
+          <td><span class="token-name">Font/Font size/5</span></td>
+        </tr>
+        <tr>
+          <td><strong>Body / Large / Medium</strong></td>
+          <td>Graphik</td>
+          <td>Medium (500)</td>
+          <td>18px</td>
+          <td>26px</td>
+          <td>-0.2px</td>
+          <td><span class="token-name">font size/06</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SPACING -->
+  <div class="section">
+    <h2 class="section-title">Spacing <span class="status-badge status-naming">Naming Inconsistent</span></h2>
+    <p class="section-desc">Three naming conventions found: <code>Space/</code>, <code>spacing/</code>, and <code>Spacing/</code></p>
+
+    <div class="spacing-grid">
+      <div class="spacing-item">
+        <div class="spacing-visual" style="width:2px;height:2px"></div>
+        <div class="spacing-label">2px</div>
+        <div class="spacing-token">Space/2</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-visual" style="width:4px;height:4px"></div>
+        <div class="spacing-label">4px</div>
+        <div class="spacing-token">Space/4</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-visual" style="width:6px;height:6px"></div>
+        <div class="spacing-label">6px</div>
+        <div class="spacing-token">spacing/06</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-visual" style="width:8px;height:8px"></div>
+        <div class="spacing-label">8px</div>
+        <div class="spacing-token">Space/8</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-visual" style="width:12px;height:12px"></div>
+        <div class="spacing-label">12px</div>
+        <div class="spacing-token">Space/12</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-visual" style="width:16px;height:16px"></div>
+        <div class="spacing-label">16px</div>
+        <div class="spacing-token">Space/16</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CORNER RADIUS -->
+  <div class="section">
+    <h2 class="section-title">Corner Radius <span class="status-badge status-gap">Incomplete Scale</span></h2>
+    <p class="section-desc">Only 3 values defined. Missing Medium, Large, XL.</p>
+
+    <div class="radius-grid">
+      <div class="radius-item" style="border-radius:8px">
+        <div class="radius-label">Small</div>
+        <div class="radius-value">8px</div>
+      </div>
+      <div class="radius-item" style="border-radius:12px">
+        <div class="radius-label">Medium Small</div>
+        <div class="radius-value">12px</div>
+      </div>
+      <div class="radius-item" style="border-radius:60px">
+        <div class="radius-label">Circle</div>
+        <div class="radius-value">999px</div>
+      </div>
+      <div class="radius-item" style="border-radius:16px;border-style:dashed;border-color:#b3b0ae">
+        <div class="radius-label" style="color:#b3b0ae">Medium</div>
+        <div class="radius-value">TBD</div>
+      </div>
+      <div class="radius-item" style="border-radius:20px;border-style:dashed;border-color:#b3b0ae">
+        <div class="radius-label" style="color:#b3b0ae">Large</div>
+        <div class="radius-value">TBD</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STROKE WIDTHS -->
+  <div class="section">
+    <h2 class="section-title">Stroke Widths <span class="status-badge status-good">Defined</span></h2>
+    <div class="spacing-grid">
+      <div class="spacing-item">
+        <div style="width:64px;height:1px;background:#090909;margin:0 auto 12px"></div>
+        <div class="spacing-label">Extra Light</div>
+        <div class="spacing-value">1px</div>
+      </div>
+      <div class="spacing-item">
+        <div style="width:64px;height:4px;background:#090909;margin:0 auto 12px;border-radius:2px"></div>
+        <div class="spacing-label">Bold</div>
+        <div class="spacing-value">4px</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAPS & ISSUES -->
+  <div class="section">
+    <h2 class="section-title">Gaps & Issues</h2>
+    <p class="section-desc">Critical items to address for system completeness</p>
+
+    <div class="issues-grid">
+      <div class="issue-card gap">
+        <h4>No Elevation / Shadow Tokens</h4>
+        <p>No shadow or elevation variables defined anywhere in the file. Needed for cards, modals, dropdowns, tooltips.</p>
+      </div>
+      <div class="issue-card gap">
+        <h4>Incomplete Radius Scale</h4>
+        <p>Only Small (8), Medium Small (12), and Circle (999). Missing Medium, Large, XL values for containers and cards.</p>
+      </div>
+      <div class="issue-card naming">
+        <h4>Inconsistent Spacing Names</h4>
+        <p>Three conventions: <code>Space/8</code>, <code>spacing/08</code>, <code>Spacing/12</code>. Standardize on one.</p>
+      </div>
+      <div class="issue-card naming">
+        <h4>Inconsistent Typography Tokens</h4>
+        <p>New components use <code>Font/Font size/5</code>, older ones use <code>font size/05</code>. Case and format differ.</p>
+      </div>
+      <div class="issue-card drift">
+        <h4>Two Font Families</h4>
+        <p>New system uses Graphik. Legacy Footer uses Roboto with completely different style naming (Desktop/P1, Desktop/P3).</p>
+      </div>
+      <div class="issue-card drift">
+        <h4>Three Color Systems</h4>
+        <p>New semantic (<code>Color/Container/...</code>), legacy (<code>/Primary / 000000</code>), and old nav (<code>Color/White/100</code>) all coexist.</p>
+      </div>
+      <div class="issue-card gap">
+        <h4>No Breakpoint Tokens</h4>
+        <p>No responsive breakpoint variables defined. Needed for Medium and Large viewport consistency.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGACY SYSTEMS -->
+  <div class="section">
+    <h2 class="section-title">Legacy Token Systems</h2>
+    <p class="section-desc">Components using outdated naming conventions that need migration</p>
+
+    <div class="legacy-grid">
+      <div class="legacy-card">
+        <h4>System 2: Footer</h4>
+        <div class="component">4.0 Footer component</div>
+        <div class="legacy-token"><span class="name">/Primary / 000000</span><span class="val">#000000</span></div>
+        <div class="legacy-token"><span class="name">Primary/FFFFFF</span><span class="val">#ffffff</span></div>
+        <div class="legacy-token"><span class="name">UI / Zoom Blue</span><span class="val">#4188FB</span></div>
+        <div class="legacy-token"><span class="name">Desktop/P1</span><span class="val">Roboto 18px</span></div>
+        <div class="legacy-token"><span class="name">Desktop/P3</span><span class="val">Roboto 13px</span></div>
+        <div class="legacy-token"><span class="name">Desktop/Eyebrow</span><span class="val">Roboto 13px LS:3</span></div>
+      </div>
+      <div class="legacy-card">
+        <h4>System 3: Side Nav</h4>
+        <div class="component">Side Nav / Default / XL - M</div>
+        <div class="legacy-token"><span class="name">Color/White/100</span><span class="val">#ffffff</span></div>
+        <div class="legacy-token"><span class="name">Text & Icons/Subdued</span><span class="val">#818386</span></div>
+        <div class="legacy-token"><span class="name">Spacing/12</span><span class="val">12</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATION -->
+  <div class="section">
+    <div class="recommendation">
+      <h3>Recommendation</h3>
+      <ul>
+        <li>Standardize on the new semantic naming: <code>Color/Container/...</code>, <code>Space/...</code>, <code>Corner/...</code></li>
+        <li>Build out missing tokens: elevation/shadows, full radius scale, breakpoints</li>
+        <li>Normalize spacing token names to <code>Space/{value}</code></li>
+        <li>Normalize typography tokens to <code>Font/{category}/{value}</code></li>
+        <li>New work follows new token structure immediately</li>
+        <li>Migrate legacy components (Footer, Side Nav) gradually over coming weeks</li>
+        <li>Source Frank's existing tokens and merge into standardized structure</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
