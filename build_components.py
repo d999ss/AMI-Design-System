@@ -175,9 +175,25 @@ tier1_info = [
     ('Checkbox List', '40006598:90371', '2', 'Form Controls', 'New semantic'),
 ]
 
+slug_map = {
+    'Button': 'button', 'Text Input': 'text-input', 'Select': 'select',
+    'Accordion': 'accordion', 'Chip': 'chip', 'Badge': 'badge',
+    'Link - Standalone': 'link', 'Checkbox': 'checkbox', 'Tabs': 'tabs',
+    'Tooltip': 'tooltip', 'Action Menu': 'action-menu',
+    'Counter Badge': 'counter-badge', 'Button Group': 'button-group',
+    'Toggle': 'toggle', 'Progress Circle': 'progress-circle',
+    'Avatar': 'avatar', 'Snackbar': 'snackbar',
+    'Alert / inpage': 'alert-inpage', 'Action List': 'action-list',
+    'Checkbox List': 'checkbox-list', 'Consumer NavBar': 'consumer-navbar',
+    'Footer': 'footer', 'Profile Menu': 'profile-menu', 'Alert / top': 'alert-top',
+}
+
 for name, nid, variants, cat, system in tier1_info:
     sys_class = 'status-good' if 'New' in system else ('status-gap' if 'Mixed' in system else 'status-drift')
-    lines.append(f'''      <div class="card" style="padding:16px 20px">
+    slug = slug_map.get(name, '')
+    link_open = f'<a href="components/{slug}.html" style="text-decoration:none;color:inherit">' if slug else ''
+    link_close = '</a>' if slug else ''
+    lines.append(f'''      {link_open}<div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
         <div style="display:flex;justify-content:space-between;align-items:center">
           <div>
             <strong style="font-size:14px">{name}</strong>
@@ -186,7 +202,7 @@ for name, nid, variants, cat, system in tier1_info:
           <span class="status-badge {sys_class}" style="margin-left:8px">{system}</span>
         </div>
         <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">{nid}</div>
-      </div>''')
+      </div>{link_close}''')
 
 lines.append('    </div>\n  </div>')
 

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avatar — AMI Design System Audit</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="../index.html">Overview</a>
+      <a href="../tokens.html">Tokens</a>
+      <a href="../components.html" class="active">Components</a>
+      <a href="../screens.html">Screens</a>
+      <a href="../assets.html">Assets</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../patterns.html">Patterns</a>
+      <a href="../remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="breadcrumb">
+    <a href="../components.html">Components</a> &rsaquo; Avatar
+  </div>
+
+  <div class="page-header">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+      <div>
+        <h1>Avatar</h1>
+        <p class="subtitle">User profile image or initials display. Used in navigation, profile sections, and user references.</p>
+      </div>
+      <span class="status-badge status-good">New semantic</span>
+    </div>
+    <div class="meta">
+      <strong>Category:</strong> Data Display &middot;
+      <strong>Variants:</strong> 3 &middot;
+      <strong>Node ID:</strong> <span class="token-name">40019054:169935</span> &middot;
+      <strong>Tier:</strong> <span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:#f1e5e2;color:#9a6b5e">T1</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Visual Reference</h2>
+    
+      <div class="card" style="padding:48px 24px;text-align:center;margin-bottom:24px;background:var(--bg-page)">
+        <div style="font-size:48px;margin-bottom:12px;opacity:0.3">&#9634;</div>
+        <div style="font-size:14px;font-weight:500;color:var(--text-support)">Figma screenshot pending</div>
+        <div style="font-size:11px;color:var(--text-disabled);margin-top:4px">Node ID: 40019054:169935</div>
+      </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Component Specification</h2>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">Anatomy</h3>
+      <div class="card" style="padding:16px 24px">
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container (circle)</li><li>Image/initials</li><li>Status indicator (optional)</li></ol>
+      </div>
+    </div>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">States</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">With Image</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">With Initials</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Fallback</span></div>
+    </div>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">Variants</h3>
+      <table class="data-table">
+        <thead><tr><th>Variant</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Image</strong></td><td>Displays user photo</td></tr>
+          <tr><td><strong>Initials</strong></td><td>Shows user initials on colored background</td></tr>
+          <tr><td><strong>Icon</strong></td><td>Generic user icon as fallback</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">Sizes</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Small (24px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Medium (32px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Large (40px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">XLarge (64px)</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Design Tokens</h2>
+    <p class="section-desc">Token bindings for this component. Token system: <strong>New semantic</strong>.</p>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">Token Usage</h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Background</td><td><span class="token-name">Color/Avatar/Background</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#F1E5E2;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#F1E5E2</td></tr>
+          <tr><td>Text</td><td><span class="token-name">Color/Avatar/Text</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9A6B5E;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#9A6B5E</td></tr>
+          <tr><td>Border</td><td><span class="token-name">Color/Avatar/Border</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#FFFFFF;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#FFFFFF</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Engineering Notes</h2>
+    <div class="card" style="padding:24px">
+      <ul style="margin:0;padding-left:20px;line-height:2;color:var(--text-support)">
+        <li>Figma component node: <span class="token-name">40019054:169935</span></li>
+        <li>Token system: New semantic &mdash; ready for direct token-to-CSS mapping</li>
+        <li>3 total variant configurations in Figma</li>
+        <li>Auto-layout structure to be documented after Figma MCP extraction</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>

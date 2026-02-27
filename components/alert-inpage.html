@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alert - Inpage — AMI Design System Audit</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="../index.html">Overview</a>
+      <a href="../tokens.html">Tokens</a>
+      <a href="../components.html" class="active">Components</a>
+      <a href="../screens.html">Screens</a>
+      <a href="../assets.html">Assets</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../patterns.html">Patterns</a>
+      <a href="../remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="breadcrumb">
+    <a href="../components.html">Components</a> &rsaquo; Alert - Inpage
+  </div>
+
+  <div class="page-header">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+      <div>
+        <h1>Alert - Inpage</h1>
+        <p class="subtitle">Inline alert banner for contextual messages within page content. Supports info, warning, error, and success variants.</p>
+      </div>
+      <span class="status-badge status-gap">Mixed</span>
+    </div>
+    <div class="meta">
+      <strong>Category:</strong> Feedback &middot;
+      <strong>Variants:</strong> 3 &middot;
+      <strong>Node ID:</strong> <span class="token-name">40007190:39217</span> &middot;
+      <strong>Tier:</strong> <span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:#f1e5e2;color:#9a6b5e">T1</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Visual Reference</h2>
+    
+      <div class="card" style="padding:48px 24px;text-align:center;margin-bottom:24px;background:var(--bg-page)">
+        <div style="font-size:48px;margin-bottom:12px;opacity:0.3">&#9634;</div>
+        <div style="font-size:14px;font-weight:500;color:var(--text-support)">Figma screenshot pending</div>
+        <div style="font-size:11px;color:var(--text-disabled);margin-top:4px">Node ID: 40007190:39217</div>
+      </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Component Specification</h2>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">Anatomy</h3>
+      <div class="card" style="padding:16px 24px">
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container</li><li>Icon</li><li>Title (optional)</li><li>Message text</li><li>Close button (optional)</li><li>Action link (optional)</li></ol>
+      </div>
+    </div>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">States</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Default</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Dismissible</span></div>
+    </div>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">Variants</h3>
+      <table class="data-table">
+        <thead><tr><th>Variant</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Info</strong></td><td>Blue informational alert</td></tr>
+          <tr><td><strong>Warning</strong></td><td>Amber warning alert</td></tr>
+          <tr><td><strong>Error</strong></td><td>Red error alert</td></tr>
+          <tr><td><strong>Success</strong></td><td>Green success alert</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Design Tokens</h2>
+    <p class="section-desc">Token bindings for this component. Token system: <strong>Mixed</strong>.</p>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">Token Usage</h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Background (Info)</td><td><span class="token-name">Mixed system</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#E3F2FD;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#E3F2FD</td></tr>
+          <tr><td>Background (Warning)</td><td><span class="token-name">Mixed system</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#FFF8E1;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#FFF8E1</td></tr>
+          <tr><td>Background (Error)</td><td><span class="token-name">Mixed system</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#FFEBEE;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#FFEBEE</td></tr>
+          <tr><td>Background (Success)</td><td><span class="token-name">Mixed system</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#E8F5E9;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#E8F5E9</td></tr>
+          <tr><td>Border Radius</td><td><span class="token-name">Mixed system</span></td><td>4px</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Engineering Notes</h2>
+    <div class="card" style="padding:24px">
+      <ul style="margin:0;padding-left:20px;line-height:2;color:var(--text-support)">
+        <li>Figma component node: <span class="token-name">40007190:39217</span></li>
+        <li>Token system: Mixed &mdash; requires token migration before implementation</li>
+        <li>3 total variant configurations in Figma</li>
+        <li>Auto-layout structure to be documented after Figma MCP extraction</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>

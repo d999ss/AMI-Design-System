@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tooltip — AMI Design System Audit</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="../index.html">Overview</a>
+      <a href="../tokens.html">Tokens</a>
+      <a href="../components.html" class="active">Components</a>
+      <a href="../screens.html">Screens</a>
+      <a href="../assets.html">Assets</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../patterns.html">Patterns</a>
+      <a href="../remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="breadcrumb">
+    <a href="../components.html">Components</a> &rsaquo; Tooltip
+  </div>
+
+  <div class="page-header">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+      <div>
+        <h1>Tooltip</h1>
+        <p class="subtitle">Contextual popup displaying supplementary information on hover or focus. Used for icon explanations and truncated text.</p>
+      </div>
+      <span class="status-badge status-good">New semantic</span>
+    </div>
+    <div class="meta">
+      <strong>Category:</strong> Feedback &middot;
+      <strong>Variants:</strong> 4 &middot;
+      <strong>Node ID:</strong> <span class="token-name">40003841:33483</span> &middot;
+      <strong>Tier:</strong> <span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:#f1e5e2;color:#9a6b5e">T1</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Visual Reference</h2>
+    
+      <div class="card" style="padding:48px 24px;text-align:center;margin-bottom:24px;background:var(--bg-page)">
+        <div style="font-size:48px;margin-bottom:12px;opacity:0.3">&#9634;</div>
+        <div style="font-size:14px;font-weight:500;color:var(--text-support)">Figma screenshot pending</div>
+        <div style="font-size:11px;color:var(--text-disabled);margin-top:4px">Node ID: 40003841:33483</div>
+      </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Component Specification</h2>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">Anatomy</h3>
+      <div class="card" style="padding:16px 24px">
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container</li><li>Content text</li><li>Arrow/pointer</li><li>Trigger element</li></ol>
+      </div>
+    </div>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">States</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hidden</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Visible</span></div>
+    </div>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">Variants</h3>
+      <table class="data-table">
+        <thead><tr><th>Variant</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Top</strong></td><td>Arrow pointing down, tooltip above trigger</td></tr>
+          <tr><td><strong>Bottom</strong></td><td>Arrow pointing up, tooltip below trigger</td></tr>
+          <tr><td><strong>Left</strong></td><td>Arrow pointing right, tooltip left of trigger</td></tr>
+          <tr><td><strong>Right</strong></td><td>Arrow pointing left, tooltip right of trigger</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Design Tokens</h2>
+    <p class="section-desc">Token bindings for this component. Token system: <strong>New semantic</strong>.</p>
+    
+    <div class="subsection">
+      <h3 class="subsection-title">Token Usage</h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Background</td><td><span class="token-name">Color/Tooltip/Background</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text</td><td><span class="token-name">Color/Tooltip/Text</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#FFFFFF;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#FFFFFF</td></tr>
+          <tr><td>Border Radius</td><td><span class="token-name">Radius/Tooltip</span></td><td>4px</td></tr>
+          <tr><td>Padding</td><td><span class="token-name">Spacing/Tooltip</span></td><td>8px 12px</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Engineering Notes</h2>
+    <div class="card" style="padding:24px">
+      <ul style="margin:0;padding-left:20px;line-height:2;color:var(--text-support)">
+        <li>Figma component node: <span class="token-name">40003841:33483</span></li>
+        <li>Token system: New semantic &mdash; ready for direct token-to-CSS mapping</li>
+        <li>4 total variant configurations in Figma</li>
+        <li>Auto-layout structure to be documented after Figma MCP extraction</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>
