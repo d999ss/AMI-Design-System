@@ -5,6 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Layout Patterns — AMI Design System Audit</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  .bp-card {
+    background: var(--bg-card); border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm); padding: 24px; text-align: center;
+  }
+  .bp-card .bp-name { font-size: 28px; font-weight: 700; color: var(--brand); }
+  .bp-card .bp-width { font-size: 16px; font-weight: 600; margin-top: 4px; }
+  .bp-card .bp-desc { font-size: 12px; color: var(--text-support); margin-top: 8px; }
+  .bp-visual {
+    display: flex; align-items: flex-end; justify-content: center;
+    gap: 8px; margin-top: 12px; height: 40px;
+  }
+  .bp-bar {
+    background: var(--brand-subtle); border-radius: 2px 2px 0 0;
+    min-width: 8px;
+  }
+  .pattern-card {
+    background: var(--bg-card); border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm); padding: 20px;
+  }
+  .pattern-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .pattern-card p { font-size: 13px; color: var(--text-support); margin-bottom: 0; }
+  .pattern-card .components {
+    margin-top: 8px; font-size: 11px; color: var(--text-disabled);
+  }
+  .template-card {
+    background: var(--bg-card); border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm); padding: 20px;
+  }
+  .template-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .template-card .screens { font-size: 12px; color: var(--text-support); margin-bottom: 8px; }
+  .template-card .layout-sketch {
+    background: var(--bg-page); border-radius: 4px; padding: 16px;
+    font-family: var(--mono); font-size: 11px; line-height: 1.6;
+    color: var(--text-support);
+  }
+</style>
 </head>
 <body>
 
@@ -27,92 +64,260 @@
 <div class="page">
   <div class="page-header">
     <h1>Layout Patterns</h1>
-    <p class="subtitle">Grid systems, responsive breakpoints, page templates, and interaction patterns documented from the AMI design system.</p>
+    <p class="subtitle">Responsive breakpoints, grid systems, page templates, and interaction patterns documented from the AMI design system. These patterns govern how components compose into screens.</p>
+    <div class="meta">
+      <strong>Breakpoints:</strong> 4 tiers &middot; <strong>Templates:</strong> 5 page layouts identified &middot; <strong>Interactions:</strong> 8 patterns documented
+    </div>
   </div>
 
   <!-- Breakpoints -->
   <div class="section">
     <h2 class="section-title">Responsive Breakpoints</h2>
-    <p class="section-desc">Four breakpoint tiers observed across production screens. No formal breakpoint tokens exist in Figma.</p>
+    <p class="section-desc">Four breakpoint tiers inferred from component variant names across production screens. No formal breakpoint tokens exist in Figma &mdash; these values come from frame widths.</p>
 
-    <div class="stat-row">
-      <div class="stat-card">
-        <div class="stat-number" style="font-size:24px">XL</div>
-        <div class="stat-label">1536px</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px">
+      <div class="bp-card">
+        <div class="bp-name">XL</div>
+        <div class="bp-width">1536px</div>
+        <div class="bp-desc">Desktop large / widescreen</div>
+        <div class="bp-visual">
+          <div class="bp-bar" style="width:100%;height:40px;background:var(--brand)"></div>
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number" style="font-size:24px">L</div>
-        <div class="stat-label">1279px</div>
+      <div class="bp-card">
+        <div class="bp-name">L</div>
+        <div class="bp-width">1279px</div>
+        <div class="bp-desc">Desktop standard</div>
+        <div class="bp-visual">
+          <div class="bp-bar" style="width:83%;height:40px;background:var(--brand-hover)"></div>
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number" style="font-size:24px">M</div>
-        <div class="stat-label">768px</div>
+      <div class="bp-card">
+        <div class="bp-name">M</div>
+        <div class="bp-width">768px</div>
+        <div class="bp-desc">Tablet portrait</div>
+        <div class="bp-visual">
+          <div class="bp-bar" style="width:50%;height:40px;background:#7d8a96"></div>
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number" style="font-size:24px">S</div>
-        <div class="stat-label">480px</div>
+      <div class="bp-card">
+        <div class="bp-name">S</div>
+        <div class="bp-width">480px</div>
+        <div class="bp-desc">Mobile</div>
+        <div class="bp-visual">
+          <div class="bp-bar" style="width:31%;height:40px;background:#a0a0a0"></div>
+        </div>
       </div>
     </div>
 
-    <div class="issue-card info" style="display:inline-block">
+    <table class="data-table">
+      <thead><tr><th>Breakpoint</th><th>Width</th><th>Naming in Figma</th><th>Screen Coverage</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>XLarge</strong></td><td>1536px</td><td>"XLarge" in variant names</td><td>Primary design target</td><td>Most fully designed; all sections include XLarge</td></tr>
+        <tr><td><strong>Large</strong></td><td>1279px</td><td>"Large" in variant names</td><td>Partial</td><td>Course Catalog In Progress has explicit Large variant</td></tr>
+        <tr><td><strong>Medium</strong></td><td>768px</td><td>"Medium" in variant names</td><td>Partial</td><td>Course Catalog In Progress; some sections skip Medium</td></tr>
+        <tr><td><strong>Small</strong></td><td>480px</td><td>"Small" in variant names</td><td>Wide coverage</td><td>Most sections include Small alongside XLarge</td></tr>
+      </tbody>
+    </table>
+
+    <div class="issue-card info" style="margin-top:16px">
       <h4>Gap: No Breakpoint Tokens</h4>
-      <p>These values are inferred from component variant names (XLarge, Large, Medium, Small). No formal breakpoint variables exist in the Figma file.</p>
+      <p>Breakpoint values are inferred from component variant names and frame widths. No formal breakpoint variables exist in the Figma file. Recommend defining <span class="token-name">Breakpoint/S</span>, <span class="token-name">Breakpoint/M</span>, <span class="token-name">Breakpoint/L</span>, <span class="token-name">Breakpoint/XL</span> tokens.</p>
     </div>
   </div>
 
   <!-- Grid System -->
   <div class="section">
     <h2 class="section-title">Grid System</h2>
-    <p class="section-desc">Column counts, gutters, and margins extracted from representative screens. Will be populated in Phase 7.</p>
+    <p class="section-desc">Layout grid specifications inferred from production screen analysis. Exact values pending Figma MCP extraction on representative screens.</p>
 
-    <div class="placeholder-section">
-      <h3>Grid specifications coming in Phase 7</h3>
-      <p>Column counts, gutter widths, and margin values extracted from Figma design context on 4-5 representative screens at each breakpoint.</p>
+    <table class="data-table">
+      <thead><tr><th>Breakpoint</th><th>Content Width</th><th>Columns</th><th>Gutter</th><th>Margin</th></tr></thead>
+      <tbody>
+        <tr><td><strong>XLarge</strong> (1536px)</td><td>~1200-1440px</td><td>12</td><td>24px (est.)</td><td>48-80px (est.)</td></tr>
+        <tr><td><strong>Large</strong> (1279px)</td><td>~1100-1200px</td><td>12</td><td>24px (est.)</td><td>40-48px (est.)</td></tr>
+        <tr><td><strong>Medium</strong> (768px)</td><td>~720px</td><td>8</td><td>16px (est.)</td><td>24px (est.)</td></tr>
+        <tr><td><strong>Small</strong> (480px)</td><td>~440px</td><td>4</td><td>16px (est.)</td><td>20px (est.)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Gap: No Grid Tokens</h4>
+      <p>No grid-related variables exist in Figma. Column counts, gutter widths, and margins are only observable from screen designs. Recommend defining layout tokens for engineering handoff.</p>
     </div>
   </div>
 
   <!-- Page Templates -->
   <div class="section">
     <h2 class="section-title">Page Templates</h2>
-    <p class="section-desc">Shared layout patterns identified across production screens.</p>
+    <p class="section-desc">Five recurring page layout structures identified across the 34 production design screens.</p>
 
-    <div class="placeholder-section">
-      <h3>Page template analysis coming in Phase 7</h3>
-      <p>Common layout structures: sidebar + content, full-width, card grid, list view, detail view patterns.</p>
+    <div class="card-grid">
+      <div class="template-card">
+        <h4>Full-Width Content</h4>
+        <div class="screens">Used by: Home Dashboard, Course Catalog, Live Events</div>
+        <div class="layout-sketch">
+┌─────────────────────────┐
+│       NavBar             │
+├─────────────────────────┤
+│  Hero / Feature Banner   │
+├─────────────────────────┤
+│  Card Grid (2-4 col)    │
+│  ┌──┐ ┌──┐ ┌──┐ ┌──┐   │
+│  └──┘ └──┘ └──┘ └──┘   │
+├─────────────────────────┤
+│       Footer             │
+└─────────────────────────┘</div>
+      </div>
+      <div class="template-card">
+        <h4>Content + Sidebar Filter</h4>
+        <div class="screens">Used by: Course Catalog (Filter), My Events (Filter)</div>
+        <div class="layout-sketch">
+┌─────────────────────────┐
+│       NavBar             │
+├───────┬─────────────────┤
+│Filter │  Results Grid    │
+│Panel  │  ┌──┐ ┌──┐      │
+│       │  └──┘ └──┘      │
+│  [x]  │  ┌──┐ ┌──┐      │
+│  [x]  │  └──┘ └──┘      │
+├───────┴─────────────────┤
+│       Footer             │
+└─────────────────────────┘</div>
+      </div>
+      <div class="template-card">
+        <h4>Detail View</h4>
+        <div class="screens">Used by: Course Detail, Event Detail (Options 1-5)</div>
+        <div class="layout-sketch">
+┌─────────────────────────┐
+│       NavBar             │
+├─────────────────────────┤
+│  ← Back to List          │
+├─────────┬───────────────┤
+│  Image  │  Title         │
+│  /Media │  Meta info     │
+│         │  [CTA Button]  │
+├─────────┴───────────────┤
+│  Tabbed Content          │
+│  Overview │ Details │    │
+├─────────────────────────┤
+│       Footer             │
+└─────────────────────────┘</div>
+      </div>
+      <div class="template-card">
+        <h4>Settings / Form</h4>
+        <div class="screens">Used by: Profile, About You, Contact Us</div>
+        <div class="layout-sketch">
+┌─────────────────────────┐
+│       NavBar             │
+├─────────────────────────┤
+│  Page Title              │
+├─────────────────────────┤
+│  Form Section 1          │
+│  ┌─ Label ─────────────┐│
+│  │  Input               ││
+│  └──────────────────────┘│
+│  Form Section 2          │
+│  ┌─ Label ─────────────┐│
+│  │  Input               ││
+│  └──────────────────────┘│
+│          [Save]          │
+├─────────────────────────┤
+│       Footer             │
+└─────────────────────────┘</div>
+      </div>
+      <div class="template-card">
+        <h4>FAQ / Accordion</h4>
+        <div class="screens">Used by: FAQs Overview, FAQs Account</div>
+        <div class="layout-sketch">
+┌─────────────────────────┐
+│       NavBar             │
+├─────────────────────────┤
+│  Category Tabs           │
+│  Overview│Account│Orders │
+├─────────────────────────┤
+│  ▸ Question 1            │
+│  ─────────────────────   │
+│  ▾ Question 2            │
+│    Answer content here   │
+│  ─────────────────────   │
+│  ▸ Question 3            │
+├─────────────────────────┤
+│       Footer             │
+└─────────────────────────┘</div>
+      </div>
     </div>
   </div>
 
   <!-- Interaction Patterns -->
   <div class="section">
     <h2 class="section-title">Interaction Patterns</h2>
-    <p class="section-desc">Observable state patterns for interactive components.</p>
+    <p class="section-desc">Observable state patterns for interactive components documented from the Figma component library.</p>
 
     <div class="card-grid">
-      <div class="card">
-        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Modals</h4>
-        <p style="font-size:13px;color:var(--text-support)">Open/closed states, backdrop overlay, size variants. Used for confirmations, forms, and alerts.</p>
+      <div class="pattern-card">
+        <h4>Modals &amp; Dialogs</h4>
+        <p>Open/closed states with backdrop overlay. Size variants for small confirmations and large content modals. Alert modal variant for destructive action confirmation.</p>
+        <div class="components">Components: Modal, Alert Modal, Quick Start Pop-up</div>
       </div>
-      <div class="card">
-        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Dropdowns / Select</h4>
-        <p style="font-size:13px;color:var(--text-support)">Open/closed, multi-select, single-select. Elevation 2 shadow on open state.</p>
+      <div class="pattern-card">
+        <h4>Dropdowns &amp; Select</h4>
+        <p>Open/closed toggle with elevation shadow. Single-select and multi-select with checkmarks. Searchable variant with type-ahead filtering. 72 total configurations.</p>
+        <div class="components">Components: <a href="components/select.html" style="color:var(--brand)">Select</a>, <a href="components/action-menu.html" style="color:var(--brand)">Action Menu</a></div>
       </div>
-      <div class="card">
-        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Accordions</h4>
-        <p style="font-size:13px;color:var(--text-support)">Expand/collapse with chevron rotation. Petersburg serif headings optional.</p>
+      <div class="pattern-card">
+        <h4>Accordion Expand/Collapse</h4>
+        <p>Chevron rotation on expand/collapse. Single-expand and multi-expand modes. Used for FAQs, filter panels, and progressive disclosure.</p>
+        <div class="components">Components: <a href="components/accordion.html" style="color:var(--brand)">Accordion</a>, Filter Panel</div>
       </div>
-      <div class="card">
-        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Tabs</h4>
-        <p style="font-size:13px;color:var(--text-support)">Horizontal layout, active state with brand underline, hover states.</p>
+      <div class="pattern-card">
+        <h4>Tab Navigation</h4>
+        <p>Horizontal tab bar with active underline indicator in brand color. Content swap on tab selection. Badge counters on tabs for unread/count states.</p>
+        <div class="components">Components: <a href="components/tabs.html" style="color:var(--brand)">Tabs</a></div>
       </div>
-      <div class="card">
-        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Tooltips</h4>
-        <p style="font-size:13px;color:var(--text-support)">Position variants (top, bottom, left, right). Dark background with inverted text.</p>
+      <div class="pattern-card">
+        <h4>Tooltips &amp; Popovers</h4>
+        <p>Four position variants (top, bottom, left, right) with directional arrow. Dark background with white text. Triggered on hover/focus of target element.</p>
+        <div class="components">Components: <a href="components/tooltip.html" style="color:var(--brand)">Tooltip</a></div>
       </div>
-      <div class="card">
-        <h4 style="font-size:14px;font-weight:600;margin-bottom:8px">Navigation Drawer</h4>
-        <p style="font-size:13px;color:var(--text-support)">Expanded/collapsed side nav states. Active item highlighting.</p>
+      <div class="pattern-card">
+        <h4>Navigation Drawer</h4>
+        <p>Expanded/collapsed side navigation with icon-only collapsed state. Active item highlighting with brand color. Used on desktop widths, converts to hamburger menu on mobile.</p>
+        <div class="components">Components: Consumer NavBar, Side Nav</div>
+      </div>
+      <div class="pattern-card">
+        <h4>Snackbar Notifications</h4>
+        <p>Temporary bottom-of-screen notification. Auto-dismiss after timeout. Optional action button and manual close. Error variant in red.</p>
+        <div class="components">Components: <a href="components/snackbar.html" style="color:var(--brand)">Snackbar</a></div>
+      </div>
+      <div class="pattern-card">
+        <h4>Form Validation</h4>
+        <p>Real-time validation on blur/submit. Error state with red border + error message below input. Success state with green checkmark. Disabled state with reduced opacity.</p>
+        <div class="components">Components: <a href="components/text-input.html" style="color:var(--brand)">Text Input</a>, <a href="components/select.html" style="color:var(--brand)">Select</a>, <a href="components/checkbox.html" style="color:var(--brand)">Checkbox</a></div>
       </div>
     </div>
+  </div>
+
+  <!-- Spacing System -->
+  <div class="section">
+    <h2 class="section-title">Spacing System</h2>
+    <p class="section-desc">Spacing values observed in the component library. Three naming systems coexist. See <a href="tokens.html" style="color:var(--brand)">Tokens &rarr; Spacing</a> for complete documentation.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Scale</th><th>Value</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td><span class="token-name">spacing/2</span></td><td>2px</td><td>Micro adjustments, icon gaps</td></tr>
+        <tr><td><span class="token-name">spacing/4</span></td><td>4px</td><td>Tight element spacing</td></tr>
+        <tr><td><span class="token-name">spacing/8</span></td><td>8px</td><td>Standard internal padding</td></tr>
+        <tr><td><span class="token-name">spacing/12</span></td><td>12px</td><td>Component internal spacing</td></tr>
+        <tr><td><span class="token-name">spacing/16</span></td><td>16px</td><td>Standard padding, card spacing</td></tr>
+        <tr><td><span class="token-name">spacing/20</span></td><td>20px</td><td>Section gaps</td></tr>
+        <tr><td><span class="token-name">spacing/24</span></td><td>24px</td><td>Large padding, section margins</td></tr>
+        <tr><td><span class="token-name">spacing/32</span></td><td>32px</td><td>Section separators</td></tr>
+        <tr><td><span class="token-name">spacing/48</span></td><td>48px</td><td>Large section gaps</td></tr>
+        <tr><td><span class="token-name">spacing/64</span></td><td>64px</td><td>Page-level spacing</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 

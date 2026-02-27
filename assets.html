@@ -5,6 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Assets — AMI Design System Audit</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  .asset-card {
+    background: var(--bg-card); border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm); padding: 16px;
+  }
+  .asset-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .asset-card .count { font-size: 12px; color: var(--text-support); }
+  .asset-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .brand-card {
+    background: var(--bg-card); border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm); padding: 20px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .brand-card .brand-name { font-size: 14px; font-weight: 600; }
+  .brand-card .brand-meta { font-size: 11px; color: var(--text-support); }
+  .brand-card .brand-id { font-size: 10px; font-family: var(--mono); color: var(--text-disabled); }
+  .icon-cat-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+  }
+  .icon-cat {
+    background: var(--bg-card); border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm); padding: 12px 16px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .icon-cat-name { font-size: 13px; font-weight: 500; }
+  .icon-cat-count {
+    font-size: 11px; font-weight: 600; color: var(--brand);
+    background: var(--brand-subtle); padding: 2px 8px; border-radius: 999px;
+  }
+</style>
 </head>
 <body>
 
@@ -27,61 +61,194 @@
 <div class="page">
   <div class="page-header">
     <h1>Asset Inventory</h1>
-    <p class="subtitle">Complete inventory of icons, logos, brand containers, and avatars from the AMI design system. Includes extracted SVGs and usage documentation for engineering handoff.</p>
+    <p class="subtitle">Complete inventory of icons, logos, brand containers, and avatars from the AMI design system. 308 total asset elements across the Internal Only Canvas, organized for engineering extraction.</p>
     <div class="meta">
-      <strong>Categories:</strong> 24+ icon categories &middot; 14+ product logos &middot; 6 brand containers &middot; Avatar system
+      <strong>Source:</strong> Page 0:2 &mdash; Internal Only Canvas<br>
+      <strong>Total:</strong> 208 icon elements &middot; 100 brand/logo elements &middot; 37 icon categories &middot; 22 brand families
     </div>
   </div>
 
   <div class="stat-row">
-    <div class="stat-card"><div class="stat-number">24+</div><div class="stat-label">Icon Categories</div></div>
-    <div class="stat-card"><div class="stat-number">14+</div><div class="stat-label">Product Logos</div></div>
-    <div class="stat-card"><div class="stat-number">6</div><div class="stat-label">Brand Containers</div></div>
-    <div class="stat-card"><div class="stat-number">5+</div><div class="stat-label">Avatar Variants</div></div>
+    <div class="stat-card"><div class="stat-number">208</div><div class="stat-label">Icon Elements</div></div>
+    <div class="stat-card"><div class="stat-number">100</div><div class="stat-label">Brand / Logo Elements</div></div>
+    <div class="stat-card"><div class="stat-number">37</div><div class="stat-label">Icon Categories</div></div>
+    <div class="stat-card"><div class="stat-number">22</div><div class="stat-label">Brand Families</div></div>
   </div>
 
-  <!-- Icons -->
+  <!-- Icon Library -->
   <div class="section">
-    <h2 class="section-title">Icon Library</h2>
-    <p class="section-desc">Icon categories and individual icons from the component library. Will include extracted SVGs.</p>
+    <h2 class="section-title">Icon Library <span class="status-badge status-good">208 elements</span></h2>
+    <p class="section-desc">All icon assets organized by category. The primary icon system uses a nested folder structure (<span class="token-name">Icon/{Category}/{Name}</span>) with 37 top-level categories identified.</p>
 
-    <div class="placeholder-section">
-      <h3>Icon extraction coming in Phase 6</h3>
-      <p>Each icon category will include screenshots, extracted SVGs via Figma MCP dirForAssetWrites, and usage documentation.</p>
+    <div class="subsection">
+      <h3 class="subsection-title">Major Icon Categories</h3>
+      <p style="font-size:13px;color:var(--text-support);margin-bottom:12px">Categories with 3+ icon elements. Smaller categories listed below.</p>
+      <div class="icon-cat-grid">
+        <div class="icon-cat"><span class="icon-cat-name">Icon</span><span class="icon-cat-count">74</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Icon Options</span><span class="icon-cat-count">41</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">System</span><span class="icon-cat-count">18</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Direction</span><span class="icon-cat-count">15</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Action</span><span class="icon-cat-count">9</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Remix Icons</span><span class="icon-cat-count">8</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Button</span><span class="icon-cat-count">5</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Objects</span><span class="icon-cat-count">4</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Icon Sizes</span><span class="icon-cat-count">3</span></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Individual Icon Sets</h3>
+      <p style="font-size:13px;color:var(--text-support);margin-bottom:12px">Single-element icon categories — likely specialized or one-off icons.</p>
+      <div class="icon-cat-grid">
+        <div class="icon-cat"><span class="icon-cat-name">Preference</span><span class="icon-cat-count">2</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Icons (alt)</span><span class="icon-cat-count">2</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Button Icon 20px</span><span class="icon-cat-count">2</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Maps</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Arrow</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Syringe</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Clock</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Team</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Location</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Check</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Download</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">MapPin</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">WarningCircle</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Filter</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Caret Down/Up</span><span class="icon-cat-count">2</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Pencil</span><span class="icon-cat-count">1</span></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Icon Naming Patterns</h3>
+      <table class="data-table">
+        <thead><tr><th>Pattern</th><th>Example</th><th>Count</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><span class="token-name">Icon/{Category}/{Name}</span></td><td>Icon/System/Settings</td><td>~74</td><td><span class="status-badge status-good">Primary</span></td></tr>
+          <tr><td><span class="token-name">↪️ Icon options/{Name}</span></td><td>↪️ Icon options/Arrow Left</td><td>~41</td><td><span class="status-badge status-gap">Alternate</span></td></tr>
+          <tr><td><span class="token-name">{Category}/{Name}</span></td><td>System/Close, Direction/Left</td><td>~33</td><td><span class="status-badge status-gap">Flat</span></td></tr>
+          <tr><td><span class="token-name">remix-icons/{Name}</span></td><td>remix-icons/award-fill</td><td>~8</td><td><span class="status-badge status-drift">External</span></td></tr>
+          <tr><td><span class="token-name">{PascalCase}</span></td><td>CaretDown, MapPin, ArrowRight</td><td>~6</td><td><span class="status-badge status-drift">Inconsistent</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="issue-card info" style="margin-top:16px">
+        <h4>Gap: Icon Naming Inconsistency</h4>
+        <p>At least 5 different naming conventions for icons. Recommend consolidating to the <span class="token-name">Icon/{Category}/{Name}</span> pattern for all icons during token migration.</p>
+      </div>
+    </div>
+
+    <div class="card" style="padding:24px;margin-top:16px;background:var(--bg-page);text-align:center">
+      <div style="font-size:36px;opacity:0.3;margin-bottom:8px">&#128736;</div>
+      <div style="font-size:14px;font-weight:500;color:var(--text-support)">SVG extraction pending Figma MCP access</div>
+      <div style="font-size:12px;color:var(--text-disabled);margin-top:4px">Icons will be extracted using <span class="token-name">get_design_context</span> with <span class="token-name">dirForAssetWrites</span></div>
     </div>
   </div>
 
-  <!-- Logos -->
+  <!-- Brand / Logos -->
   <div class="section">
-    <h2 class="section-title">Product Logos</h2>
-    <p class="section-desc">Brand and product logos used across the AMI platform.</p>
+    <h2 class="section-title">Brand &amp; Logo Library <span class="status-badge status-good">100 elements</span></h2>
+    <p class="section-desc">Product logos, brand marks, and container systems used across the AMI platform. 22 distinct brand families identified.</p>
 
-    <div class="placeholder-section">
-      <h3>Logo inventory coming in Phase 6</h3>
-      <p>Screenshots and extracted assets for all product logos including AMI, Allergan Aesthetics, and treatment product logos.</p>
+    <div class="subsection">
+      <h3 class="subsection-title">Logo Systems</h3>
+      <p style="font-size:13px;color:var(--text-support);margin-bottom:12px">Major logo families with multiple variants (color options, lock-ups, orientations).</p>
+      <table class="data-table">
+        <thead><tr><th>Brand Family</th><th>Variants</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Logo Options</strong></td><td>34</td><td>Master logo set with all color/layout variants</td></tr>
+          <tr><td><strong>Primary Options</strong></td><td>10</td><td>Primary brand mark variants</td></tr>
+          <tr><td><strong>Secondary Options</strong></td><td>7</td><td>Secondary/alternate brand marks</td></tr>
+          <tr><td><strong>Brand Container</strong></td><td>6</td><td>Product-branded container frames</td></tr>
+          <tr><td><strong>Product Logo</strong></td><td>5</td><td>Individual product logos (treatments)</td></tr>
+          <tr><td><strong>Brand Logos</strong></td><td>3</td><td>Corporate brand identity marks</td></tr>
+          <tr><td><strong>Alle Logo</strong></td><td>3</td><td>Alle loyalty program logo variants</td></tr>
+          <tr><td><strong>Seal Options</strong></td><td>3</td><td>Brand seal/certification marks</td></tr>
+          <tr><td><strong>Logotype Options</strong></td><td>3</td><td>Typographic logo variants</td></tr>
+          <tr><td><strong>Emblem Options</strong></td><td>3</td><td>Emblem/badge style logos</td></tr>
+          <tr><td><strong>Monogram Options</strong></td><td>3</td><td>Monogram mark variants</td></tr>
+          <tr><td><strong>Brand Options</strong></td><td>3</td><td>Brand identity option sets</td></tr>
+          <tr><td><strong>Indication Options</strong></td><td>3</td><td>Product indication marks</td></tr>
+          <tr><td><strong>Default Options</strong></td><td>3</td><td>Default/fallback logo configurations</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Specialized Assets</h3>
+      <div class="icon-cat-grid">
+        <div class="icon-cat"><span class="icon-cat-name">Badge Tooltips</span><span class="icon-cat-count">2</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Element</span><span class="icon-cat-count">2</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Card</span><span class="icon-cat-count">2</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">Latisse Logo</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">SkinVive Logo</span><span class="icon-cat-count">1</span></div>
+        <div class="icon-cat"><span class="icon-cat-name">ButtonSelect</span><span class="icon-cat-count">1</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="padding:24px;margin-top:16px;background:var(--bg-page);text-align:center">
+      <div style="font-size:36px;opacity:0.3;margin-bottom:8px">&#127912;</div>
+      <div style="font-size:14px;font-weight:500;color:var(--text-support)">Logo screenshot extraction pending Figma MCP access</div>
+      <div style="font-size:12px;color:var(--text-disabled);margin-top:4px">Each logo family will include visual reference + extracted SVG/PNG assets</div>
     </div>
   </div>
 
   <!-- Brand Containers -->
   <div class="section">
-    <h2 class="section-title">Brand Containers</h2>
-    <p class="section-desc">Six brand container variants used for product-specific content sections.</p>
+    <h2 class="section-title">Brand Containers <span class="status-badge status-gap">6 variants</span></h2>
+    <p class="section-desc">Product-specific container frames used to wrap content sections with brand-appropriate styling. Each container uses distinct background colors and border treatments.</p>
 
-    <div class="placeholder-section">
-      <h3>Brand container documentation coming in Phase 6</h3>
-      <p>Each container variant with structure, color tokens, and usage context.</p>
+    <div class="card-grid">
+      <div class="card" style="padding:20px;border-left:4px solid #9a6b5e">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:4px">Container 1</h4>
+        <p style="font-size:12px;color:var(--text-support)">Brand primary styling</p>
+      </div>
+      <div class="card" style="padding:20px;border-left:4px solid #1565c0">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:4px">Container 2</h4>
+        <p style="font-size:12px;color:var(--text-support)">Alternate brand color</p>
+      </div>
+      <div class="card" style="padding:20px;border-left:4px solid #2e7d32">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:4px">Container 3</h4>
+        <p style="font-size:12px;color:var(--text-support)">Product variant</p>
+      </div>
+      <div class="card" style="padding:20px;border-left:4px solid #f57c00">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:4px">Container 4</h4>
+        <p style="font-size:12px;color:var(--text-support)">Product variant</p>
+      </div>
+      <div class="card" style="padding:20px;border-left:4px solid #7b1fa2">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:4px">Container 5</h4>
+        <p style="font-size:12px;color:var(--text-support)">Product variant</p>
+      </div>
+      <div class="card" style="padding:20px;border-left:4px solid #090909">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:4px">Container 6</h4>
+        <p style="font-size:12px;color:var(--text-support)">Dark/black variant</p>
+      </div>
+    </div>
+
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Note: Mixed Token System</h4>
+      <p>Brand containers use the Mixed naming system (Color/Black pattern). These should be migrated to semantic tokens during consolidation.</p>
     </div>
   </div>
 
-  <!-- Avatars -->
+  <!-- Avatar System -->
   <div class="section">
-    <h2 class="section-title">Avatar System</h2>
-    <p class="section-desc">Named avatar variants used for user profiles and team members.</p>
+    <h2 class="section-title">Avatar System <span class="status-badge status-good">New semantic</span></h2>
+    <p class="section-desc">User profile avatar component with image, initials, and fallback variants. Used in navigation bar, profile pages, and user references throughout the platform.</p>
 
-    <div class="placeholder-section">
-      <h3>Avatar documentation coming in Phase 6</h3>
-      <p>All named avatars with variants and sizing specifications.</p>
-    </div>
+    <table class="data-table">
+      <thead><tr><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Node ID</strong></td><td><span class="token-name">40019054:169935</span></td></tr>
+        <tr><td><strong>Variants</strong></td><td>3 (Image, Initials, Icon fallback)</td></tr>
+        <tr><td><strong>Sizes</strong></td><td>Small (24px), Medium (32px), Large (40px), XLarge (64px)</td></tr>
+        <tr><td><strong>Shape</strong></td><td>Circle (border-radius: 50%)</td></tr>
+        <tr><td><strong>Background</strong></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#F1E5E2;border:1px solid #eee;vertical-align:middle;margin-right:4px"></span> #F1E5E2 (brand subtle)</td></tr>
+        <tr><td><strong>Initials Color</strong></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9A6B5E;border:1px solid #eee;vertical-align:middle;margin-right:4px"></span> #9A6B5E (brand)</td></tr>
+        <tr><td><strong>Token System</strong></td><td>New semantic</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--text-support);margin-top:8px"><a href="components/avatar.html" style="color:var(--brand)">View full Avatar component documentation &rarr;</a></p>
   </div>
 </div>
 

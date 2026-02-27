@@ -156,14 +156,39 @@
     </div>
   </div>
 
-  <!-- Migration Matrix Placeholder -->
+  <!-- Migration Matrix -->
   <div class="section">
     <h2 class="section-title">Migration Matrix</h2>
-    <p class="section-desc">Which components need which token migrations. Will be fully populated after component documentation phases.</p>
+    <p class="section-desc">Component-level token system status. "New semantic" components are ready for direct token-to-CSS mapping. "Mixed" components require migration before implementation.</p>
 
-    <div class="placeholder-section">
-      <h3>Full migration matrix coming in Phase 8</h3>
-      <p>Component-by-component mapping of current token systems to target semantic system, with specific token replacements and priority ordering.</p>
+    <table class="data-table">
+      <thead><tr><th>Component</th><th>Current System</th><th>Migration</th><th>Effort</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr><td><a href="components/button.html" style="color:var(--brand)"><strong>Button</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/text-input.html" style="color:var(--brand)"><strong>Text Input</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/select.html" style="color:var(--brand)"><strong>Select</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/accordion.html" style="color:var(--brand)"><strong>Accordion</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/badge.html" style="color:var(--brand)"><strong>Badge</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/link.html" style="color:var(--brand)"><strong>Link</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/checkbox.html" style="color:var(--brand)"><strong>Checkbox</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/avatar.html" style="color:var(--brand)"><strong>Avatar</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/chip.html" style="color:var(--brand)"><strong>Chip</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap to semantic tokens</td><td>Medium</td><td>P1</td></tr>
+        <tr><td><a href="components/tabs.html" style="color:var(--brand)"><strong>Tabs</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap Text &amp; Icons tokens</td><td>Medium</td><td>P1</td></tr>
+        <tr><td><a href="components/toggle.html" style="color:var(--brand)"><strong>Toggle</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap to semantic tokens</td><td>Low</td><td>P2</td></tr>
+        <tr><td><a href="components/snackbar.html" style="color:var(--brand)"><strong>Snackbar</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap to semantic tokens</td><td>Low</td><td>P2</td></tr>
+        <tr><td><a href="components/progress-circle.html" style="color:var(--brand)"><strong>Progress Circle</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap AMIO tokens</td><td>Medium</td><td>P2</td></tr>
+        <tr><td><a href="components/alert-inpage.html" style="color:var(--brand)"><strong>Alert (inpage)</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap to semantic tokens</td><td>Low</td><td>P2</td></tr>
+        <tr><td><strong>Consumer NavBar</strong></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap Text &amp; Icons tokens</td><td>High</td><td>P1</td></tr>
+        <tr><td><strong>Footer</strong></td><td><span class="status-badge status-drift">Legacy</span></td><td>Migrate /Primary + Roboto</td><td>Medium</td><td>P1</td></tr>
+        <tr><td><strong>Side Nav</strong></td><td><span class="status-badge status-drift">Legacy</span></td><td>Migrate Text &amp; Icons</td><td>Medium</td><td>P3</td></tr>
+        <tr><td><strong>Tabs Selectors</strong></td><td><span class="status-badge status-drift">Legacy</span></td><td>Migrate Tertiary tokens</td><td>Low</td><td>P3</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:16px;display:flex;gap:24px;font-size:13px;color:var(--text-support)">
+      <div><span class="status-badge status-good">New semantic</span> 8 components &mdash; ready</div>
+      <div><span class="status-badge status-gap">Mixed</span> 7 components &mdash; partial migration</div>
+      <div><span class="status-badge status-drift">Legacy</span> 3 components &mdash; full migration</div>
     </div>
   </div>
 </div>
