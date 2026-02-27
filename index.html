@@ -148,7 +148,7 @@
   <div class="header">
     <h1>AMI Design System Token Audit</h1>
     <div class="subtitle">Figma Master File: AMI-Rebrand--Master-File- | Comprehensive Token Extraction</div>
-    <div class="date">Audit Date: February 27, 2026 | Source: Figma MCP Variable Extraction across 25+ components</div>
+    <div class="date">Audit Date: February 27, 2026 | Source: Figma MCP Variable Extraction across 40+ components &amp; 10+ production screens (UI Designs + Prototype page)</div>
   </div>
 
   <!-- TABLE OF CONTENTS -->
@@ -166,6 +166,7 @@
       <a href="#strokes">Stroke Widths</a>
       <a href="#elevation">Elevation & Shadows</a>
       <a href="#layout">Layout Tokens</a>
+      <a href="#screens">Production Screen Audit</a>
       <a href="#naming">Token Naming Analysis</a>
       <a href="#components">Component Coverage</a>
       <a href="#issues">Gaps & Issues</a>
@@ -180,12 +181,14 @@
     <p class="section-desc">Token extraction from 25+ Figma components reveals a design system in active transition. A strong new semantic foundation exists but coexists with 5+ legacy naming systems that need migration.</p>
 
     <div class="stat-row">
-      <div class="stat-card"><div class="stat-number">90+</div><div class="stat-label">Unique Color Tokens</div></div>
-      <div class="stat-card"><div class="stat-number">25+</div><div class="stat-label">Typography Styles</div></div>
+      <div class="stat-card"><div class="stat-number">110+</div><div class="stat-label">Unique Color Tokens</div></div>
+      <div class="stat-card"><div class="stat-number">35+</div><div class="stat-label">Typography Styles</div></div>
       <div class="stat-card"><div class="stat-number">16</div><div class="stat-label">Spacing Values</div></div>
       <div class="stat-card"><div class="stat-number">5</div><div class="stat-label">Corner Radius Values</div></div>
       <div class="stat-card"><div class="stat-number">4</div><div class="stat-label">Font Families</div></div>
+      <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Font Weights</div></div>
       <div class="stat-card"><div class="stat-number">6+</div><div class="stat-label">Legacy Systems</div></div>
+      <div class="stat-card"><div class="stat-number">10+</div><div class="stat-label">Production Screens Audited</div></div>
     </div>
   </div>
 
@@ -196,9 +199,12 @@
 
     <div class="color-grid">
       <div class="color-group">
-        <h4>Brand - Dusty Rose</h4>
+        <h4>Brand - Dusty Rose (Full Scale)</h4>
         <div class="color-row"><div class="color-swatch" style="background:#c08676"></div><div class="color-info"><div class="color-name">Color/Dusty Rose/100</div><div class="color-value">#c08676</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#dfbdab"></div><div class="color-info"><div class="color-name">Color/Dusty Rose/80</div><div class="color-value">#dfbdab</div></div></div>
         <div class="color-row"><div class="color-swatch" style="background:#e7cdc0"></div><div class="color-info"><div class="color-name">Color/Dusty Rose/60</div><div class="color-value">#e7cdc0</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#efded5"></div><div class="color-info"><div class="color-name">Color/Dusty Rose/40</div><div class="color-value">#efded5</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#f7eeea"></div><div class="color-info"><div class="color-name">Color/Dusty Rose/20</div><div class="color-value">#f7eeea</div></div></div>
         <div class="color-row"><div class="color-swatch" style="background:#CA9A8E"></div><div class="color-info"><div class="color-name">Secondary/CA9A8E</div><div class="color-value">#CA9A8E</div></div></div>
       </div>
 
@@ -228,6 +234,16 @@
         <div class="color-row"><div class="color-swatch" style="background:#ff0000"></div><div class="color-info"><div class="color-name">Color/Utility/Red</div><div class="color-value">#ff0000</div></div></div>
         <div class="color-row"><div class="color-swatch" style="background:#74cc4f"></div><div class="color-info"><div class="color-name">Color/Utility/Green</div><div class="color-value">#74cc4f</div></div></div>
         <div class="color-row"><div class="color-swatch" style="background:#ffc32a"></div><div class="color-info"><div class="color-name">Color/Utility/Yellow</div><div class="color-value">#ffc32a</div></div></div>
+      </div>
+
+      <div class="color-group">
+        <h4>Production Screen Colors</h4>
+        <div class="color-row"><div class="color-swatch" style="background:#09121F"></div><div class="color-info"><div class="color-name">.Icons</div><div class="color-value">#09121F (dark blue-black)</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#c08676"></div><div class="color-info"><div class="color-name">Text & Icons/Text Link</div><div class="color-value">#c08676</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#FAF6F5"></div><div class="color-info"><div class="color-name">Primary/FAF6F5</div><div class="color-value">#FAF6F5 (legacy)</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#E0E0E0"></div><div class="color-info"><div class="color-name">UI / Grey</div><div class="color-value">#E0E0E0 (legacy)</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#333333"></div><div class="color-info"><div class="color-name">Gray 1</div><div class="color-value">#333333 (legacy)</div></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#FE9400"></div><div class="color-info"><div class="color-name">YELLOW (Live Events)</div><div class="color-value">#FE9400 (legacy)</div></div></div>
       </div>
     </div>
   </div>
@@ -418,8 +434,14 @@
 
     <div class="font-card">
       <h4>Graphik</h4>
-      <div class="meta">Primary typeface - Used across all new semantic components</div>
+      <div class="meta">Primary typeface - 3 weights: Regular (400), Medium (500), Semibold (600). Used across all screens and components.</div>
       <div class="font-usage">
+        <span class="font-tag primary">Home Dashboard</span>
+        <span class="font-tag primary">Course Catalog</span>
+        <span class="font-tag primary">Live Events</span>
+        <span class="font-tag primary">Profile</span>
+        <span class="font-tag primary">FAQ</span>
+        <span class="font-tag primary">Event Detail</span>
         <span class="font-tag primary">Button</span>
         <span class="font-tag primary">Text Input</span>
         <span class="font-tag primary">Chip</span>
@@ -474,8 +496,12 @@
       <table class="type-table">
         <thead><tr><th>Style</th><th>Font</th><th>Weight</th><th>Size</th><th>Line Height</th><th>Letter Spacing</th><th>Token</th></tr></thead>
         <tbody>
+          <tr><td><strong>Display / Large</strong></td><td>Graphik</td><td>Medium (500)</td><td>52px</td><td>1.2</td><td>-0.5px</td><td><span class="token-name">Display/Large (Medium)</span></td></tr>
+          <tr><td><strong>Display / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>40px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Display/Medium (Medium)</span></td></tr>
           <tr><td><strong>Display / Small</strong></td><td>Graphik</td><td>Medium (500)</td><td>32px</td><td>1.2</td><td>-0.5px</td><td><span class="token-name">Display/Small (Medium)</span></td></tr>
+          <tr><td><strong>Display / Small</strong></td><td>Graphik</td><td>Regular (400)</td><td>32px</td><td>1.2</td><td>-0.5px</td><td><span class="token-name">Display/Small</span></td></tr>
           <tr><td><strong>Headline / Regular</strong></td><td>Graphik</td><td>Medium (500)</td><td>28px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Headline/Regular (Medium)</span></td></tr>
+          <tr><td><strong>Headline / Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>28px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Headline/Regular</span></td></tr>
           <tr><td><strong>Headline / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>24px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Headline/Medium (Medium)</span></td></tr>
           <tr><td><strong>Headline / Medium</strong></td><td>Graphik</td><td>Regular (400)</td><td>24px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Headline/Medium</span></td></tr>
           <tr><td><strong>Headline / Small</strong></td><td>Graphik</td><td>Medium (500)</td><td>22px</td><td>1.2</td><td>-1px</td><td><span class="token-name">Headline/Small (Medium)</span></td></tr>
@@ -493,13 +519,17 @@
       <table class="type-table">
         <thead><tr><th>Style</th><th>Font</th><th>Weight</th><th>Size</th><th>Line Height</th><th>Letter Spacing</th><th>Token</th></tr></thead>
         <tbody>
+          <tr><td><strong>Eyebrow / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>12px</td><td>18px</td><td>-0.2px</td><td><span class="token-name">Eyebrow/Medium</span></td></tr>
           <tr><td><strong>Body / Large / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>18px</td><td>26px</td><td>-0.2px</td><td><span class="token-name">font size/06</span></td></tr>
+          <tr><td><strong>Body / Regular / SemiBold</strong></td><td>Graphik</td><td>Semibold (600)</td><td>16px</td><td>24px</td><td>0</td><td><span class="token-name">Body/Regular (SemiBold)</span></td></tr>
           <tr><td><strong>Body / Medium / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>16px</td><td>24px</td><td>-0.2px</td><td><span class="token-name">Font/Font size/5</span></td></tr>
           <tr><td><strong>Body / Medium / Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>16px</td><td>24px</td><td>-0.2px</td><td><span class="token-name">Font/Font size/5</span></td></tr>
           <tr><td><strong>Body / Medium / Reg underline</strong></td><td>Graphik</td><td>Regular (400)</td><td>16px</td><td>24px</td><td>-0.2px</td><td><span class="token-name">Body/Medium/Reg underline</span></td></tr>
           <tr><td><strong>Body / Medium / Med underline</strong></td><td>Graphik</td><td>Medium (500)</td><td>16px</td><td>24px</td><td>-0.2px</td><td><span class="token-name">Body/Medium/Med underline</span></td></tr>
+          <tr><td><strong>Body / Small / Semibold</strong></td><td>Graphik</td><td>Semibold (600)</td><td>13px</td><td>20px</td><td>0</td><td><span class="token-name">Body/Small (Semibold)</span></td></tr>
           <tr><td><strong>Body / Small / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>14px</td><td>20px</td><td>-0.2px</td><td><span class="token-name">font size/04</span></td></tr>
           <tr><td><strong>Body / Small / Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>14px</td><td>20px</td><td>-0.2px</td><td><span class="token-name">font size/04</span></td></tr>
+          <tr><td><strong>Body / XS / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>12px</td><td>20px</td><td>0</td><td><span class="token-name">Body/XS (Medium)</span></td></tr>
           <tr><td><strong>Footnote / Medium</strong></td><td>Graphik</td><td>Medium (500)</td><td>12px</td><td>18px</td><td>-0.2px</td><td><span class="token-name">font size/03</span></td></tr>
           <tr><td><strong>Footnote / Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>12px</td><td>18px</td><td>-0.2px</td><td><span class="token-name">font size/03</span></td></tr>
           <tr><td><strong>Button / Regular</strong></td><td>Graphik</td><td>Regular (400)</td><td>16px</td><td>1.5</td><td>0</td><td><span class="token-name">Button/Regular</span></td></tr>
@@ -647,6 +677,54 @@
         <div class="spacing-label">Global Logged In / TopBottom Margins</div>
         <div class="spacing-value" style="font-size:24px;font-weight:600;color:#9a6b5e;margin-top:8px">48px</div>
         <div class="spacing-token">Global Logged In/TopBottom Margins</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTION SCREENS -->
+  <div class="section" id="screens">
+    <h2 class="section-title">Production Screen Audit <span class="status-badge status-new">UI Designs + Prototype Page</span></h2>
+    <p class="section-desc">Token usage extracted from actual production screen designs on the "UI Designs + Prototype - 02.18.26" page. These are the screens Chris is actively building.</p>
+
+    <div class="component-grid">
+      <div class="component-tag mixed"><strong>Home Dashboard - Returning</strong><div class="system">XLarge + Small variants</div></div>
+      <div class="component-tag mixed"><strong>Home Dashboard - New Auth</strong><div class="system">XLarge + Small variants</div></div>
+      <div class="component-tag mixed"><strong>Home Dashboard - No Ship-to</strong><div class="system">XLarge + Small variants</div></div>
+      <div class="component-tag mixed"><strong>Course Catalog - In Progress</strong><div class="system">XLarge, Large, Medium, Small</div></div>
+      <div class="component-tag mixed"><strong>Course Catalog - Filter</strong><div class="system">XLarge + Small</div></div>
+      <div class="component-tag mixed"><strong>Course Catalog - Required</strong><div class="system">XLarge + Small</div></div>
+      <div class="component-tag mixed"><strong>Course Catalog - Recommended</strong><div class="system">XLarge + Small</div></div>
+      <div class="component-tag mixed"><strong>Course Catalog - Interactive</strong><div class="system">XLarge + Small</div></div>
+      <div class="component-tag mixed"><strong>Course Catalog - Full</strong><div class="system">XLarge + Small</div></div>
+      <div class="component-tag mixed"><strong>Live Events - Overview</strong><div class="system">XLarge</div></div>
+      <div class="component-tag mixed"><strong>Live Events - My Events</strong><div class="system">XLarge + Small + Filter</div></div>
+      <div class="component-tag mixed"><strong>Live Events - All Events</strong><div class="system">XLarge + Small</div></div>
+      <div class="component-tag mixed"><strong>Event Detail (3 Options)</strong><div class="system">XLarge + Small each</div></div>
+      <div class="component-tag mixed"><strong>Profile</strong><div class="system">XLarge + Small</div></div>
+      <div class="component-tag mixed"><strong>Messages</strong><div class="system">XLarge + Small</div></div>
+      <div class="component-tag mixed"><strong>FAQ</strong><div class="system">Multiple variants</div></div>
+      <div class="component-tag mixed"><strong>About You</strong><div class="system">Settings screen</div></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Key Findings from Production Screens</h3>
+      <div class="issues-grid">
+        <div class="issue-card info">
+          <h4>All screens use "Text & Icons" system</h4>
+          <p>Every production screen uses the transitional <code>Text & Icons/Default</code>, <code>Text & Icons/Subdued</code> naming - not the new semantic <code>Text/Neutral/Default</code> system from components.</p>
+        </div>
+        <div class="issue-card info">
+          <h4>Display scale larger than component library</h4>
+          <p>Production screens use Display/Large (52px) and Display/Medium (40px) which weren't found in the component library - only in the actual screen designs.</p>
+        </div>
+        <div class="issue-card info">
+          <h4>Semibold (600) weight in active use</h4>
+          <p>Body/Regular (SemiBold) and Body/Small (Semibold) at weight 600 are used across Dashboard, Events, and Event Detail screens. Component library only defines Regular (400) and Medium (500).</p>
+        </div>
+        <div class="issue-card drift">
+          <h4>Legacy colors persist in screens</h4>
+          <p><code>.Icons (#09121F)</code>, <code>Gray 1 (#333333)</code>, <code>UI / Grey (#E0E0E0)</code>, <code>Primary/FAF6F5</code>, and <code>/Primary / 000000</code> all appear in active production screens.</p>
+        </div>
       </div>
     </div>
   </div>
