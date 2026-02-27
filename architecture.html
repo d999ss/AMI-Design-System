@@ -5,6 +5,114 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Architecture — AMI Design System Audit</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  /* Architecture-specific styles */
+  .bar-chart { margin-top: 8px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-subtle); }
+  .bar-row:last-child { border-bottom: none; }
+  .bar-label { font-size: 13px; font-weight: 500; min-width: 120px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 24px; background: var(--bg-page); border-radius: 4px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; border-radius: 4px; background: var(--brand); display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; transition: width 0.4s ease; }
+  .bar-value { font-size: 11px; font-weight: 600; color: #fff; white-space: nowrap; }
+  .bar-value-outside { font-size: 11px; font-weight: 600; color: var(--text-support); margin-left: 8px; white-space: nowrap; }
+
+  .inventory-group { margin-bottom: 32px; }
+  .inventory-group-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--brand);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--brand-subtle);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .inventory-group-title .count {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-support);
+    background: var(--bg-page);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  .stat-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .stat-card-mini {
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-default);
+    padding: 16px;
+    text-align: center;
+    transition: box-shadow 0.15s ease;
+  }
+  .stat-card-mini:hover { box-shadow: var(--shadow-hover); }
+  .stat-card-mini .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--brand);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .stat-card-mini .lbl {
+    font-size: 11px;
+    color: var(--text-support);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  .page-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+    padding: 28px;
+    transition: box-shadow 0.15s ease;
+  }
+  .page-card:hover { box-shadow: var(--shadow-hover); }
+  .page-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .page-card-id {
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--text-support);
+    margin-bottom: 12px;
+  }
+  .page-card-desc {
+    font-size: 13px;
+    color: var(--text-support);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .page-card-stats {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .page-card-stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .page-card-stat .val {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--brand);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .page-card-stat .lbl {
+    font-size: 11px;
+    color: var(--text-support);
+    margin-top: 2px;
+  }
+</style>
 </head>
 <body>
 
@@ -27,67 +135,349 @@
 <div class="page">
   <div class="page-header">
     <h1>File Architecture</h1>
-    <p class="subtitle">Structural analysis of the AMI Figma master file including page organization, component library spatial layout, section inventory, and naming convention documentation.</p>
+    <p class="subtitle">Structural analysis of the AMI Figma master file including page organization, component library spatial layout, production section inventory, and naming convention documentation.</p>
     <div class="meta">
-      <strong>Figma Key:</strong> qJsso3svT3WigDmllZmxUW &middot; <strong>Pages:</strong> 2 audited
+      <strong>Figma Key:</strong> qJsso3svT3WigDmllZmxUW &middot; <strong>Pages:</strong> 2 audited &middot; <strong>Total Top-Level Elements:</strong> 891
     </div>
   </div>
 
-  <!-- Page Structure -->
-  <div class="section">
+  <!-- ============================================
+       1. Figma Page Structure
+       ============================================ -->
+  <div class="section" id="page-structure">
     <h2 class="section-title">Figma Page Structure</h2>
-    <p class="section-desc">The master file contains two primary pages used for this audit.</p>
+    <p class="section-desc">The master file contains two primary pages. Together they hold 891 top-level elements spanning the component library and all production screen designs.</p>
 
     <div class="card-grid">
-      <div class="card">
-        <h4 style="font-size:16px;font-weight:600;margin-bottom:8px">Page 0:2 — Internal Only Canvas</h4>
-        <p style="font-size:13px;color:var(--text-support);margin-bottom:12px">The component library page containing all reusable UI components.</p>
-        <div style="font-size:12px;color:var(--text-support)">
-          <strong style="color:var(--text-default)">253+</strong> top-level component frames<br>
-          <strong style="color:var(--text-default)">570+</strong> total variants<br>
-          <strong style="color:var(--text-default)">6+</strong> naming systems in use
+      <div class="page-card">
+        <div class="page-card-title">Internal Only Canvas</div>
+        <div class="page-card-id">Page 0:2</div>
+        <div class="page-card-desc">The component library page containing all reusable UI components, symbols, and design tokens. This is the single source of truth for the AMI design system.</div>
+        <div class="page-card-stats">
+          <div class="page-card-stat">
+            <span class="val">774</span>
+            <span class="lbl">Top-Level Elements</span>
+          </div>
+          <div class="page-card-stat">
+            <span class="val">522</span>
+            <span class="lbl">Frames</span>
+          </div>
+          <div class="page-card-stat">
+            <span class="val">252</span>
+            <span class="lbl">Symbols</span>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <h4 style="font-size:16px;font-weight:600;margin-bottom:8px">Page 40009095:5940 — UI Designs + Prototype</h4>
-        <p style="font-size:13px;color:var(--text-support);margin-bottom:12px">Production screen designs for the AMI 2.0 platform, dated 02.18.26.</p>
-        <div style="font-size:12px;color:var(--text-support)">
-          <strong style="color:var(--text-default)">60</strong> sections<br>
-          <strong style="color:var(--text-default)">91+</strong> screens<br>
-          <strong style="color:var(--text-default)">381</strong> total frames
+      <div class="page-card">
+        <div class="page-card-title">UI Designs + Prototype - 02.18.26</div>
+        <div class="page-card-id">Page 40009095:5940</div>
+        <div class="page-card-desc">Production screen designs for the AMI 2.0 platform. Contains all functional areas including dashboards, catalogs, events, training history, user screens, and support pages.</div>
+        <div class="page-card-stats">
+          <div class="page-card-stat">
+            <span class="val">117</span>
+            <span class="lbl">Top-Level Elements</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Component Library Organization -->
-  <div class="section">
+  <!-- ============================================
+       2. Component Library Organization
+       ============================================ -->
+  <div class="section" id="component-library">
     <h2 class="section-title">Component Library Organization</h2>
-    <p class="section-desc">Spatial organization and grouping of components on the Internal Only Canvas. Will be populated from metadata extraction in Phase 1.</p>
+    <p class="section-desc">Breakdown of the 774 top-level elements on the Internal Only Canvas by functional category. Icons and Brand/Logos represent the largest groups, followed by Navigation and Form Controls.</p>
 
-    <div class="placeholder-section">
-      <h3>Component grouping analysis coming in Phase 1</h3>
-      <p>Categories: Form Controls, Navigation, Data Display, Feedback, Layout, Media. Each with spatial position and relationship mapping.</p>
+    <div class="stat-card-grid">
+      <div class="stat-card-mini">
+        <div class="num">83</div>
+        <div class="lbl">Form Controls</div>
+      </div>
+      <div class="stat-card-mini">
+        <div class="num">99</div>
+        <div class="lbl">Navigation</div>
+      </div>
+      <div class="stat-card-mini">
+        <div class="num">79</div>
+        <div class="lbl">Data Display</div>
+      </div>
+      <div class="stat-card-mini">
+        <div class="num">47</div>
+        <div class="lbl">Feedback</div>
+      </div>
+      <div class="stat-card-mini">
+        <div class="num">52</div>
+        <div class="lbl">Layout</div>
+      </div>
+      <div class="stat-card-mini">
+        <div class="num">9</div>
+        <div class="lbl">Media</div>
+      </div>
+      <div class="stat-card-mini">
+        <div class="num">208</div>
+        <div class="lbl">Icons</div>
+      </div>
+      <div class="stat-card-mini">
+        <div class="num">100</div>
+        <div class="lbl">Brand / Logos</div>
+      </div>
+      <div class="stat-card-mini">
+        <div class="num">97</div>
+        <div class="lbl">Other</div>
+      </div>
     </div>
-  </div>
-
-  <!-- Production Page Section Inventory -->
-  <div class="section">
-    <h2 class="section-title">Production Page Section Inventory</h2>
-    <p class="section-desc">All 60 sections from the UI Designs + Prototype page.</p>
-
-    <div class="placeholder-section">
-      <h3>Section inventory coming in Phase 1</h3>
-      <p>Full list of all sections with frame counts, breakpoint availability, and component usage per section.</p>
-    </div>
-  </div>
-
-  <!-- Naming Conventions -->
-  <div class="section">
-    <h2 class="section-title">Naming Convention Documentation</h2>
-    <p class="section-desc">Analysis of naming patterns used across the Figma file. See also the <a href="tokens.html#naming" style="color:var(--brand)">Token Naming Analysis</a> for token-specific naming.</p>
 
     <div class="card" style="padding:24px">
+      <h4 style="font-size:14px;font-weight:600;margin-bottom:16px">Category Distribution</h4>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <span class="bar-label">Icons</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:100%;background:var(--brand)"><span class="bar-value">208</span></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Brand / Logos</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:48.1%;background:var(--brand-hover)"><span class="bar-value">100</span></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Navigation</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:47.6%;background:#7d8a96"><span class="bar-value">99</span></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Other</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:46.6%;background:#a0a0a0"><span class="bar-value">97</span></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Form Controls</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:39.9%;background:var(--brand)"><span class="bar-value">83</span></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Data Display</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:38%;background:var(--brand-hover)"><span class="bar-value">79</span></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Layout</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:25%;background:#7d8a96"><span class="bar-value">52</span></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Feedback</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:22.6%;background:var(--brand)"><span class="bar-value">47</span></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Media</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:4.3%;background:var(--brand-hover)"></div>
+          </div>
+          <span class="bar-value-outside">9</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       3. Production Page Section Inventory
+       ============================================ -->
+  <div class="section" id="section-inventory">
+    <h2 class="section-title">Production Page Section Inventory</h2>
+    <p class="section-desc">All 117 sections from the UI Designs + Prototype page, organized by functional area. Each entry includes the section name and its Figma node ID.</p>
+
+    <!-- Home Dashboard -->
+    <div class="inventory-group">
+      <div class="inventory-group-title">Home Dashboard <span class="count">7 sections</span></div>
+      <table class="data-table">
+        <thead><tr><th>Section Name</th><th>Node ID</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>Home Dashboard - Returning Customer (Ship-to)</td><td><span class="token-name">40016207:100920</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Home Dashboard - New Customer (Authenticated) Option 2</td><td><span class="token-name">40019943:61950</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Home Dashboard - New Customer (No Ship-to)</td><td><span class="token-name">40019943:68971</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Home Dashboard Components</td><td><span class="token-name">40016866:158864</span></td><td><span class="status-badge status-new" style="margin-left:0">Components</span></td></tr>
+          <tr><td>Home Dashboard Wireframe</td><td><span class="token-name">40016866:158866</span></td><td><span class="status-badge status-gap" style="margin-left:0">Wireframe</span></td></tr>
+          <tr><td>Home Dashboard - Quick Start Pop-up</td><td><span class="token-name">40019991:67572</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Dashboard Explorations + References</td><td><span class="token-name">40016866:158871</span></td><td><span class="status-badge status-drift" style="margin-left:0">Reference</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Course Catalog -->
+    <div class="inventory-group">
+      <div class="inventory-group-title">Course Catalog <span class="count">14 sections</span></div>
+      <table class="data-table">
+        <thead><tr><th>Section Name</th><th>Node ID</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>Course Catalog - In Progress - Option 1</td><td><span class="token-name">40016953:109879</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Course Catalog - Required Training - Option 1</td><td><span class="token-name">40017458:61815</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Course Catalog - Recommended - Option 1</td><td><span class="token-name">40017458:74556</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Course Catalog - Interactive - Option 1</td><td><span class="token-name">40017458:76226</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Course Catalog - Full Catalog - Option 2</td><td><span class="token-name">40017458:77831</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Course Catalog - Option 2</td><td><span class="token-name">40017177:142387</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Course Catalog - Option 3</td><td><span class="token-name">40018560:110029</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Course Catalog - Option 4</td><td><span class="token-name">40018560:115746</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Course Catalog Wireframe</td><td><span class="token-name">40016953:107246</span></td><td><span class="status-badge status-gap" style="margin-left:0">Wireframe</span></td></tr>
+          <tr><td>Course Catalog Components</td><td><span class="token-name">40017167:13101</span></td><td><span class="status-badge status-new" style="margin-left:0">Components</span></td></tr>
+          <tr><td>Course Catalog Explorations + References</td><td><span class="token-name">40017060:94533</span></td><td><span class="status-badge status-drift" style="margin-left:0">Reference</span></td></tr>
+          <tr><td>Course Catalog - New Customer (No Ship-to)</td><td><span class="token-name">40021555:188327</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Course Detail</td><td><span class="token-name">40017338:409906</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Live Events -->
+    <div class="inventory-group">
+      <div class="inventory-group-title">Live Events <span class="count">8 sections</span></div>
+      <table class="data-table">
+        <thead><tr><th>Section Name</th><th>Node ID</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>Live Events - Events Overview</td><td><span class="token-name">40017167:10224</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Live Events - My Events</td><td><span class="token-name">40017750:412767</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Live Events - My Events Filter</td><td><span class="token-name">40017750:415196</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Live Events - All Events</td><td><span class="token-name">40017804:30978</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Live Events Wireframe</td><td><span class="token-name">40017167:10596</span></td><td><span class="status-badge status-gap" style="margin-left:0">Wireframe</span></td></tr>
+          <tr><td>Live Events Components</td><td><span class="token-name">40016953:111915</span></td><td><span class="status-badge status-new" style="margin-left:0">Components</span></td></tr>
+          <tr><td>Live Events Explorations + References</td><td><span class="token-name">40018784:41612</span></td><td><span class="status-badge status-drift" style="margin-left:0">Reference</span></td></tr>
+          <tr><td>Live Events - New Customer (No Ship-to)</td><td><span class="token-name">40021558:95866</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Event Detail -->
+    <div class="inventory-group">
+      <div class="inventory-group-title">Event Detail <span class="count">5 sections</span></div>
+      <table class="data-table">
+        <thead><tr><th>Section Name</th><th>Node ID</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>Event Detail Option 1</td><td><span class="token-name">40017925:165128</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Event Detail Option 2</td><td><span class="token-name">40017925:190650</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Event Detail Option 3</td><td><span class="token-name">40018278:137011</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Event Detail Option 4</td><td><span class="token-name">40021281:91980</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Event Detail Option 5</td><td><span class="token-name">40021286:129362</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Training History -->
+    <div class="inventory-group">
+      <div class="inventory-group-title">Training History <span class="count">5 sections</span></div>
+      <table class="data-table">
+        <thead><tr><th>Section Name</th><th>Node ID</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>Training History - Wireframes</td><td><span class="token-name">40018655:113470</span></td><td><span class="status-badge status-gap" style="margin-left:0">Wireframe</span></td></tr>
+          <tr><td>Training History - Certificates</td><td><span class="token-name">40018655:117497</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Training History - Training History</td><td><span class="token-name">40018787:106869</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Training History Components</td><td><span class="token-name">40018655:117493</span></td><td><span class="status-badge status-new" style="margin-left:0">Components</span></td></tr>
+          <tr><td>Training History Explorations + References</td><td><span class="token-name">40018784:41613</span></td><td><span class="status-badge status-drift" style="margin-left:0">Reference</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- User Screens -->
+    <div class="inventory-group">
+      <div class="inventory-group-title">User Screens (Profile, Messages, Favorites) <span class="count">6 sections</span></div>
+      <table class="data-table">
+        <thead><tr><th>Section Name</th><th>Node ID</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>Profile</td><td><span class="token-name">40019212:160223</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Messages</td><td><span class="token-name">40019212:170019</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Favorites</td><td><span class="token-name">40019212:170953</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Profile + Messages + Favorites - Wireframes</td><td><span class="token-name">40019212:159425</span></td><td><span class="status-badge status-gap" style="margin-left:0">Wireframe</span></td></tr>
+          <tr><td>Profile + Messages + Favorites Components</td><td><span class="token-name">40019212:161012</span></td><td><span class="status-badge status-new" style="margin-left:0">Components</span></td></tr>
+          <tr><td>Profile + Messages + Favorites Explorations + References</td><td><span class="token-name">40019212:161013</span></td><td><span class="status-badge status-drift" style="margin-left:0">Reference</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FAQs -->
+    <div class="inventory-group">
+      <div class="inventory-group-title">FAQs <span class="count">5 sections</span></div>
+      <table class="data-table">
+        <thead><tr><th>Section Name</th><th>Node ID</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>FAQs - Overview</td><td><span class="token-name">40019886:63393</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>FAQs - Account</td><td><span class="token-name">40020303:152716</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>FAQs Components</td><td><span class="token-name">40019886:62481</span></td><td><span class="status-badge status-new" style="margin-left:0">Components</span></td></tr>
+          <tr><td>FAQs Wireframes</td><td><span class="token-name">40019886:63388</span></td><td><span class="status-badge status-gap" style="margin-left:0">Wireframe</span></td></tr>
+          <tr><td>FAQs Explorations + References</td><td><span class="token-name">40019886:62485</span></td><td><span class="status-badge status-drift" style="margin-left:0">Reference</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="inventory-group">
+      <div class="inventory-group-title">Contact Us <span class="count">4 sections</span></div>
+      <table class="data-table">
+        <thead><tr><th>Section Name</th><th>Node ID</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>Contact Us</td><td><span class="token-name">40020186:88705</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Contact Us Components</td><td><span class="token-name">40020186:88371</span></td><td><span class="status-badge status-new" style="margin-left:0">Components</span></td></tr>
+          <tr><td>Contact Us Wireframes</td><td><span class="token-name">40020186:88372</span></td><td><span class="status-badge status-gap" style="margin-left:0">Wireframe</span></td></tr>
+          <tr><td>Contact Us Explorations + References</td><td><span class="token-name">40020186:88364</span></td><td><span class="status-badge status-drift" style="margin-left:0">Reference</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Search -->
+    <div class="inventory-group">
+      <div class="inventory-group-title">Search <span class="count">4 sections</span></div>
+      <table class="data-table">
+        <thead><tr><th>Section Name</th><th>Node ID</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>Search</td><td><span class="token-name">40020493:69472</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+          <tr><td>Search Components</td><td><span class="token-name">40020493:69254</span></td><td><span class="status-badge status-new" style="margin-left:0">Components</span></td></tr>
+          <tr><td>Search Wireframes</td><td><span class="token-name">40020493:69255</span></td><td><span class="status-badge status-gap" style="margin-left:0">Wireframe</span></td></tr>
+          <tr><td>Search Explorations + References</td><td><span class="token-name">40020493:69247</span></td><td><span class="status-badge status-drift" style="margin-left:0">Reference</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Other -->
+    <div class="inventory-group">
+      <div class="inventory-group-title">Other <span class="count">1 section</span></div>
+      <table class="data-table">
+        <thead><tr><th>Section Name</th><th>Node ID</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>First Steps Guide Detail</td><td><span class="token-name">40019996:80971</span></td><td><span class="status-badge status-good" style="margin-left:0">Design</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Inventory Summary -->
+    <div class="card" style="padding:24px;margin-top:16px">
+      <h4 style="font-size:14px;font-weight:600;margin-bottom:12px">Section Type Summary</h4>
+      <table class="data-table" style="margin:0">
+        <thead><tr><th>Type</th><th>Count</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="status-badge status-good" style="margin-left:0">Design</span></td><td>34</td><td>Final or near-final screen designs for production</td></tr>
+          <tr><td><span class="status-badge status-new" style="margin-left:0">Components</span></td><td>9</td><td>Section-specific component definitions and variants</td></tr>
+          <tr><td><span class="status-badge status-gap" style="margin-left:0">Wireframe</span></td><td>8</td><td>Structural wireframes preceding high-fidelity designs</td></tr>
+          <tr><td><span class="status-badge status-drift" style="margin-left:0">Reference</span></td><td>8</td><td>Exploration work, mood boards, and external references</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============================================
+       4. Naming Convention Documentation
+       ============================================ -->
+  <div class="section" id="naming-conventions">
+    <h2 class="section-title">Naming Convention Documentation</h2>
+    <p class="section-desc">Analysis of naming patterns used across the Figma file. The component library uses six distinct color naming systems, creating inconsistency that should be resolved during token migration. See also the <a href="tokens.html#naming" style="color:var(--brand)">Token Naming Analysis</a> for token-specific naming.</p>
+
+    <div class="card" style="padding:24px;margin-bottom:24px">
       <h4 style="font-size:14px;font-weight:600;margin-bottom:12px">6 Color Naming Systems Identified</h4>
       <table class="data-table" style="margin-top:8px">
         <thead><tr><th>System</th><th>Pattern</th><th>Components Using</th><th>Status</th></tr></thead>
@@ -98,6 +488,84 @@
           <tr><td>color/surface</td><td><span class="token-name">color/surface/interactive/{role}</span></td><td>Button (old variant)</td><td><span class="status-badge status-drift" style="margin-left:0">Deprecated</span></td></tr>
           <tr><td>AMIO</td><td><span class="token-name">AMIO/Primary/{name}</span></td><td>Progress Bar, Medals</td><td><span class="status-badge status-gap" style="margin-left:0">Migrate</span></td></tr>
           <tr><td>Tertiary</td><td><span class="token-name">Tertiary/{hex}</span></td><td>Tabs Selectors</td><td><span class="status-badge status-drift" style="margin-left:0">Legacy</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="padding:24px;margin-bottom:24px">
+      <h4 style="font-size:14px;font-weight:600;margin-bottom:12px">Naming System Impact Analysis</h4>
+      <table class="data-table" style="margin-top:8px">
+        <thead><tr><th>System</th><th>Scope</th><th>Migration Effort</th><th>Risk</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>New Semantic</td>
+            <td>Primary components (Button, Input, Badge, Checkbox, Radio, Toggle, Select)</td>
+            <td><span class="status-badge status-good" style="margin-left:0">None</span></td>
+            <td>Target system &mdash; no migration needed</td>
+          </tr>
+          <tr>
+            <td>Text & Icons</td>
+            <td>Navigation chrome, Card text, SideNav items</td>
+            <td><span class="status-badge status-gap" style="margin-left:0">Medium</span></td>
+            <td>Used across high-frequency components; requires careful token remapping</td>
+          </tr>
+          <tr>
+            <td>AMIO</td>
+            <td>Gamification components (Progress Bar, Medals, Achievements)</td>
+            <td><span class="status-badge status-gap" style="margin-left:0">Medium</span></td>
+            <td>Isolated to specific feature area; lower blast radius</td>
+          </tr>
+          <tr>
+            <td>/Primary</td>
+            <td>Footer component only</td>
+            <td><span class="status-badge status-good" style="margin-left:0">Low</span></td>
+            <td>Single component; straightforward remap</td>
+          </tr>
+          <tr>
+            <td>color/surface</td>
+            <td>Deprecated Button variant</td>
+            <td><span class="status-badge status-good" style="margin-left:0">Low</span></td>
+            <td>Already deprecated; remove during cleanup</td>
+          </tr>
+          <tr>
+            <td>Tertiary</td>
+            <td>Tabs Selectors component</td>
+            <td><span class="status-badge status-good" style="margin-left:0">Low</span></td>
+            <td>Single component; straightforward remap</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:14px;font-weight:600;margin-bottom:12px">Recommended Migration Path</h4>
+      <table class="data-table" style="margin-top:8px">
+        <thead><tr><th>Priority</th><th>Action</th><th>From</th><th>To</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="status-badge status-drift" style="margin-left:0">P1</span></td>
+            <td>Remove deprecated tokens</td>
+            <td><span class="token-name">color/surface/interactive/*</span></td>
+            <td><span class="token-name">Color/{role}/{category}/{state}</span></td>
+          </tr>
+          <tr>
+            <td><span class="status-badge status-drift" style="margin-left:0">P1</span></td>
+            <td>Migrate legacy hex references</td>
+            <td><span class="token-name">/Primary / {hex}</span>, <span class="token-name">Tertiary/{hex}</span></td>
+            <td><span class="token-name">Color/{role}/{category}/{state}</span></td>
+          </tr>
+          <tr>
+            <td><span class="status-badge status-gap" style="margin-left:0">P2</span></td>
+            <td>Remap text/icon tokens</td>
+            <td><span class="token-name">Text & Icons/{color}</span></td>
+            <td><span class="token-name">Color/Text/{category}/{state}</span></td>
+          </tr>
+          <tr>
+            <td><span class="status-badge status-gap" style="margin-left:0">P2</span></td>
+            <td>Consolidate AMIO tokens</td>
+            <td><span class="token-name">AMIO/Primary/{name}</span></td>
+            <td><span class="token-name">Color/Brand/{category}/{state}</span></td>
+          </tr>
         </tbody>
       </table>
     </div>

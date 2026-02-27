@@ -5,6 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Production Screens — AMI Design System Audit</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  .screen-section { margin-bottom: 40px; }
+  .screen-section-header {
+    font-size: 16px; font-weight: 600; color: var(--brand);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--brand-subtle);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .screen-section-header .count {
+    font-size: 12px; font-weight: 500; color: var(--text-support);
+    background: var(--bg-page); padding: 2px 8px; border-radius: 999px;
+  }
+  .screen-card {
+    background: var(--bg-card); border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm); padding: 16px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .screen-card-name { font-size: 14px; font-weight: 600; }
+  .screen-card-meta { font-size: 11px; color: var(--text-support); margin-top: 2px; }
+  .screen-card-id { font-size: 10px; font-family: var(--mono); color: var(--text-disabled); margin-top: 4px; }
+  .screen-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px; margin-bottom: 16px;
+  }
+  .type-summary {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px;
+  }
+  .type-card {
+    background: var(--bg-card); border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm); padding: 16px; text-align: center;
+  }
+  .type-card .num { font-size: 28px; font-weight: 700; color: var(--brand); }
+  .type-card .lbl { font-size: 12px; color: var(--text-support); margin-top: 4px; }
+  @media (max-width: 768px) {
+    .type-summary { grid-template-columns: repeat(2, 1fr); }
+    .screen-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
@@ -27,84 +65,524 @@
 <div class="page">
   <div class="page-header">
     <h1>Production Screens</h1>
-    <p class="subtitle">Gallery of 91+ production screens from the UI Designs + Prototype page, organized by section. Each screen includes responsive breakpoint variants and component usage documentation.</p>
+    <p class="subtitle">Complete inventory of all production screens from the UI Designs + Prototype page. Organized by functional area with section-level detail including design status and Figma node IDs.</p>
     <div class="meta">
       <strong>Source:</strong> Page 40009095:5940 &mdash; UI Designs + Prototype - 02.18.26<br>
-      <strong>Total:</strong> 60 sections &middot; 91+ screens &middot; 381 frames &middot; <strong>Breakpoints:</strong> XLarge (1536), Large (1279), Medium (768), Small (480)
+      <strong>Total:</strong> 59 sections &middot; 34 design screens &middot; 9 component sections &middot; 8 wireframes &middot; 8 reference sections<br>
+      <strong>Breakpoints:</strong> XLarge (1536), Large (1279), Medium (768), Small (480)
     </div>
   </div>
 
   <div class="stat-row">
-    <div class="stat-card"><div class="stat-number">60</div><div class="stat-label">Screen Sections</div></div>
-    <div class="stat-card"><div class="stat-number">91+</div><div class="stat-label">Total Screens</div></div>
-    <div class="stat-card"><div class="stat-number">381</div><div class="stat-label">Total Frames</div></div>
+    <div class="stat-card"><div class="stat-number">59</div><div class="stat-label">Total Sections</div></div>
+    <div class="stat-card"><div class="stat-number">34</div><div class="stat-label">Design Screens</div></div>
+    <div class="stat-card"><div class="stat-number">10</div><div class="stat-label">Functional Areas</div></div>
     <div class="stat-card"><div class="stat-number">4</div><div class="stat-label">Breakpoints</div></div>
   </div>
 
-  <!-- Screen Sections -->
+  <!-- Section Type Summary -->
   <div class="section">
-    <h2 class="section-title">Screen Sections</h2>
-    <p class="section-desc">Production screens organized by functional area. Screenshots will be captured via Figma MCP in Phase 5.</p>
+    <h2 class="section-title">Section Type Summary</h2>
+    <p class="section-desc">Each functional area contains a mix of design screens, component definitions, wireframes, and exploration/reference sections.</p>
+    <div class="type-summary">
+      <div class="type-card"><div class="num">34</div><div class="lbl"><span class="status-badge status-good">Design</span></div></div>
+      <div class="type-card"><div class="num">9</div><div class="lbl"><span class="status-badge status-new">Components</span></div></div>
+      <div class="type-card"><div class="num">8</div><div class="lbl"><span class="status-badge status-gap">Wireframe</span></div></div>
+      <div class="type-card"><div class="num">8</div><div class="lbl"><span class="status-badge status-drift">Reference</span></div></div>
+    </div>
+  </div>
 
-    <div class="subsection">
-      <h3 class="subsection-title">Home Dashboard</h3>
-      <div class="component-grid">
-        <div class="component-tag mixed"><strong>Returning User</strong><div class="system">XLarge + Small</div></div>
-        <div class="component-tag mixed"><strong>New Authenticated</strong><div class="system">XLarge + Small</div></div>
-        <div class="component-tag mixed"><strong>No Ship-to Address</strong><div class="system">XLarge + Small</div></div>
+  <!-- Screen Inventory -->
+  <div class="section">
+    <h2 class="section-title">Screen Inventory by Functional Area</h2>
+    <p class="section-desc">All sections from the production Figma page, organized by functional area. Screenshots will be captured via Figma MCP in Phase 5.</p>
+
+    <!-- Home Dashboard -->
+    <div class="screen-section">
+      <div class="screen-section-header">Home Dashboard <span class="count">7 sections</span></div>
+      <div class="screen-grid">
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Returning Customer (Ship-to)</div>
+            <div class="screen-card-meta">Home Dashboard &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40016207:100920</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">New Customer (Authenticated) Option 2</div>
+            <div class="screen-card-meta">Home Dashboard &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40019943:61950</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">New Customer (No Ship-to)</div>
+            <div class="screen-card-meta">Home Dashboard &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40019943:68971</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Quick Start Pop-up</div>
+            <div class="screen-card-meta">Home Dashboard &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40019991:67572</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Home Dashboard Components</div>
+            <div class="screen-card-meta">Component definitions &middot; <span class="status-badge status-new">Components</span></div>
+            <div class="screen-card-id">40016866:158864</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Home Dashboard Wireframe</div>
+            <div class="screen-card-meta">Structural layout &middot; <span class="status-badge status-gap">Wireframe</span></div>
+            <div class="screen-card-id">40016866:158866</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Explorations + References</div>
+            <div class="screen-card-meta">Research &middot; <span class="status-badge status-drift">Reference</span></div>
+            <div class="screen-card-id">40016866:158871</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="subsection">
-      <h3 class="subsection-title">Course Catalog</h3>
-      <div class="component-grid">
-        <div class="component-tag mixed"><strong>In Progress</strong><div class="system">XL, L, M, S</div></div>
-        <div class="component-tag mixed"><strong>Filter View</strong><div class="system">XLarge + Small</div></div>
-        <div class="component-tag mixed"><strong>Required Courses</strong><div class="system">XLarge + Small</div></div>
-        <div class="component-tag mixed"><strong>Recommended</strong><div class="system">XLarge + Small</div></div>
-        <div class="component-tag mixed"><strong>Interactive</strong><div class="system">XLarge + Small</div></div>
-        <div class="component-tag mixed"><strong>Full Catalog</strong><div class="system">XLarge + Small</div></div>
+    <!-- Course Catalog -->
+    <div class="screen-section">
+      <div class="screen-section-header">Course Catalog <span class="count">14 sections</span></div>
+      <div class="screen-grid">
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">In Progress - Option 1</div>
+            <div class="screen-card-meta">Course Catalog &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40016953:109879</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Required Training - Option 1</div>
+            <div class="screen-card-meta">Course Catalog &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017458:61815</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Recommended - Option 1</div>
+            <div class="screen-card-meta">Course Catalog &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017458:74556</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Interactive - Option 1</div>
+            <div class="screen-card-meta">Course Catalog &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017458:76226</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Full Catalog - Option 2</div>
+            <div class="screen-card-meta">Course Catalog &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017458:77831</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Option 2</div>
+            <div class="screen-card-meta">Course Catalog &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017177:142387</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Option 3</div>
+            <div class="screen-card-meta">Course Catalog &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40018560:110029</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Option 4</div>
+            <div class="screen-card-meta">Course Catalog &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40018560:115746</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">New Customer (No Ship-to)</div>
+            <div class="screen-card-meta">Course Catalog &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40021555:188327</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Course Detail</div>
+            <div class="screen-card-meta">Course Catalog &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017338:409906</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Course Catalog Components</div>
+            <div class="screen-card-meta">Component definitions &middot; <span class="status-badge status-new">Components</span></div>
+            <div class="screen-card-id">40017167:13101</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Course Catalog Wireframe</div>
+            <div class="screen-card-meta">Structural layout &middot; <span class="status-badge status-gap">Wireframe</span></div>
+            <div class="screen-card-id">40016953:107246</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Explorations + References</div>
+            <div class="screen-card-meta">Research &middot; <span class="status-badge status-drift">Reference</span></div>
+            <div class="screen-card-id">40017060:94533</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="subsection">
-      <h3 class="subsection-title">Live Events</h3>
-      <div class="component-grid">
-        <div class="component-tag mixed"><strong>Overview</strong><div class="system">XLarge</div></div>
-        <div class="component-tag mixed"><strong>My Events</strong><div class="system">XLarge + Small + Filter</div></div>
-        <div class="component-tag mixed"><strong>All Events</strong><div class="system">XLarge + Small</div></div>
+    <!-- Live Events -->
+    <div class="screen-section">
+      <div class="screen-section-header">Live Events <span class="count">8 sections</span></div>
+      <div class="screen-grid">
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Events Overview</div>
+            <div class="screen-card-meta">Live Events &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017167:10224</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">My Events</div>
+            <div class="screen-card-meta">Live Events &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017750:412767</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">My Events Filter</div>
+            <div class="screen-card-meta">Live Events &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017750:415196</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">All Events</div>
+            <div class="screen-card-meta">Live Events &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017804:30978</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">New Customer (No Ship-to)</div>
+            <div class="screen-card-meta">Live Events &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40021558:95866</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Live Events Components</div>
+            <div class="screen-card-meta">Component definitions &middot; <span class="status-badge status-new">Components</span></div>
+            <div class="screen-card-id">40016953:111915</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Live Events Wireframe</div>
+            <div class="screen-card-meta">Structural layout &middot; <span class="status-badge status-gap">Wireframe</span></div>
+            <div class="screen-card-id">40017167:10596</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Explorations + References</div>
+            <div class="screen-card-meta">Research &middot; <span class="status-badge status-drift">Reference</span></div>
+            <div class="screen-card-id">40018784:41612</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="subsection">
-      <h3 class="subsection-title">Event Detail</h3>
-      <div class="component-grid">
-        <div class="component-tag mixed"><strong>Option 1</strong><div class="system">XLarge + Small</div></div>
-        <div class="component-tag mixed"><strong>Option 2</strong><div class="system">XLarge + Small</div></div>
-        <div class="component-tag mixed"><strong>Option 3</strong><div class="system">XLarge + Small</div></div>
+    <!-- Event Detail -->
+    <div class="screen-section">
+      <div class="screen-section-header">Event Detail <span class="count">5 sections</span></div>
+      <div class="screen-grid">
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Event Detail Option 1</div>
+            <div class="screen-card-meta">Event Detail &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017925:165128</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Event Detail Option 2</div>
+            <div class="screen-card-meta">Event Detail &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40017925:190650</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Event Detail Option 3</div>
+            <div class="screen-card-meta">Event Detail &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40018278:137011</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Event Detail Option 4</div>
+            <div class="screen-card-meta">Event Detail &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40021281:91980</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Event Detail Option 5</div>
+            <div class="screen-card-meta">Event Detail &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40021286:129362</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="subsection">
-      <h3 class="subsection-title">User Screens</h3>
-      <div class="component-grid">
-        <div class="component-tag mixed"><strong>Profile</strong><div class="system">XLarge + Small</div></div>
-        <div class="component-tag mixed"><strong>Messages</strong><div class="system">XLarge + Small</div></div>
-        <div class="component-tag mixed"><strong>FAQ</strong><div class="system">Multiple variants</div></div>
-        <div class="component-tag mixed"><strong>About You</strong><div class="system">Settings</div></div>
-        <div class="component-tag mixed"><strong>Contact Us</strong><div class="system">TBD</div></div>
+    <!-- Training History -->
+    <div class="screen-section">
+      <div class="screen-section-header">Training History <span class="count">5 sections</span></div>
+      <div class="screen-grid">
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Training History</div>
+            <div class="screen-card-meta">Training History &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40018787:106869</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Certificates</div>
+            <div class="screen-card-meta">Training History &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40018655:117497</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Training History Components</div>
+            <div class="screen-card-meta">Component definitions &middot; <span class="status-badge status-new">Components</span></div>
+            <div class="screen-card-id">40018655:117493</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Wireframes</div>
+            <div class="screen-card-meta">Structural layout &middot; <span class="status-badge status-gap">Wireframe</span></div>
+            <div class="screen-card-id">40018655:113470</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Explorations + References</div>
+            <div class="screen-card-meta">Research &middot; <span class="status-badge status-drift">Reference</span></div>
+            <div class="screen-card-id">40018784:41613</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Screens -->
+    <div class="screen-section">
+      <div class="screen-section-header">Profile, Messages, Favorites <span class="count">6 sections</span></div>
+      <div class="screen-grid">
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Profile</div>
+            <div class="screen-card-meta">User Screens &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40019212:160223</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Messages</div>
+            <div class="screen-card-meta">User Screens &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40019212:170019</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Favorites</div>
+            <div class="screen-card-meta">User Screens &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40019212:170953</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Components</div>
+            <div class="screen-card-meta">Component definitions &middot; <span class="status-badge status-new">Components</span></div>
+            <div class="screen-card-id">40019212:161012</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Wireframes</div>
+            <div class="screen-card-meta">Structural layout &middot; <span class="status-badge status-gap">Wireframe</span></div>
+            <div class="screen-card-id">40019212:159425</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Explorations + References</div>
+            <div class="screen-card-meta">Research &middot; <span class="status-badge status-drift">Reference</span></div>
+            <div class="screen-card-id">40019212:161013</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQs -->
+    <div class="screen-section">
+      <div class="screen-section-header">FAQs <span class="count">5 sections</span></div>
+      <div class="screen-grid">
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">FAQs - Overview</div>
+            <div class="screen-card-meta">FAQs &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40019886:63393</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">FAQs - Account</div>
+            <div class="screen-card-meta">FAQs &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40020303:152716</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">FAQs Components</div>
+            <div class="screen-card-meta">Component definitions &middot; <span class="status-badge status-new">Components</span></div>
+            <div class="screen-card-id">40019886:62481</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Wireframes</div>
+            <div class="screen-card-meta">Structural layout &middot; <span class="status-badge status-gap">Wireframe</span></div>
+            <div class="screen-card-id">40019886:63388</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Explorations + References</div>
+            <div class="screen-card-meta">Research &middot; <span class="status-badge status-drift">Reference</span></div>
+            <div class="screen-card-id">40019886:62485</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="screen-section">
+      <div class="screen-section-header">Contact Us <span class="count">4 sections</span></div>
+      <div class="screen-grid">
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Contact Us</div>
+            <div class="screen-card-meta">Contact Us &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40020186:88705</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Components</div>
+            <div class="screen-card-meta">Component definitions &middot; <span class="status-badge status-new">Components</span></div>
+            <div class="screen-card-id">40020186:88371</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Wireframes</div>
+            <div class="screen-card-meta">Structural layout &middot; <span class="status-badge status-gap">Wireframe</span></div>
+            <div class="screen-card-id">40020186:88372</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Explorations + References</div>
+            <div class="screen-card-meta">Research &middot; <span class="status-badge status-drift">Reference</span></div>
+            <div class="screen-card-id">40020186:88364</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="screen-section">
+      <div class="screen-section-header">Search <span class="count">4 sections</span></div>
+      <div class="screen-grid">
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Search</div>
+            <div class="screen-card-meta">Search &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40020493:69472</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Components</div>
+            <div class="screen-card-meta">Component definitions &middot; <span class="status-badge status-new">Components</span></div>
+            <div class="screen-card-id">40020493:69254</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Wireframes</div>
+            <div class="screen-card-meta">Structural layout &middot; <span class="status-badge status-gap">Wireframe</span></div>
+            <div class="screen-card-id">40020493:69255</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">Explorations + References</div>
+            <div class="screen-card-meta">Research &middot; <span class="status-badge status-drift">Reference</span></div>
+            <div class="screen-card-id">40020493:69247</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other -->
+    <div class="screen-section">
+      <div class="screen-section-header">Other <span class="count">1 section</span></div>
+      <div class="screen-grid">
+        <div class="screen-card">
+          <div>
+            <div class="screen-card-name">First Steps Guide Detail</div>
+            <div class="screen-card-meta">Onboarding &middot; <span class="status-badge status-good">Design</span></div>
+            <div class="screen-card-id">40019996:80971</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Screen Gallery Placeholder -->
+  <!-- Screenshot Gallery Placeholder -->
   <div class="section">
     <h2 class="section-title">Screen Gallery</h2>
-    <p class="section-desc">Visual gallery with screenshots of every section. Coming in Phase 5.</p>
+    <p class="section-desc">Visual gallery with Figma screenshots of every design section at all available breakpoints. Coming in Phase 5.</p>
 
     <div class="placeholder-section">
       <h3>Screen screenshots coming in Phase 5</h3>
-      <p>Each screen section will include Figma screenshots at all available breakpoints, with annotated component maps and responsive comparison views.</p>
+      <p>Each design section will include screenshots captured via Figma MCP at all available breakpoints (XLarge, Large, Medium, Small), with annotated component maps and responsive comparison views.</p>
+      <p style="margin-top:8px"><strong>Priority screens for BTS handoff:</strong> Home Dashboard (Returning, New Auth, No Ship-to), Course Catalog (In Progress, Filter, Required, Recommended, Interactive, Full), Live Events (Overview, My Events, All Events), Event Detail (Options 1-5), Profile, Messages, FAQ, Contact Us</p>
     </div>
   </div>
 </div>
