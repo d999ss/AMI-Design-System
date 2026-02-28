@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Catalog — AMI Design System Audit</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="../index.html">Overview</a>
+      <a href="../tokens.html">Tokens</a>
+      <a href="../components.html">Components</a>
+      <a href="../screens.html" class="active">Screens</a>
+      <a href="../assets.html">Assets</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../patterns.html">Patterns</a>
+      <a href="../remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="max-width:960px">
+  <div style="margin-bottom:8px">
+    <a href="../screens.html" style="color:var(--brand);text-decoration:none;font-size:13px">&larr; All Screens</a>
+  </div>
+
+  <div class="section-header" style="flex-wrap:wrap;gap:8px">
+    <h1 style="margin:0">Course Catalog</h1>
+    <span class="status-badge status-new">Courses</span>
+  </div>
+  <p style="color:var(--text-secondary);margin-top:4px;font-size:13px">
+    Functional Area: Courses &middot; Variants: 3 sections &middot; Breakpoints: 4
+  </p>
+
+  <div class="card" style="padding:20px;margin:16px 0">
+    <p style="margin:0;line-height:1.6">Browseable catalog of available training courses. Features tabbed navigation (In Progress, Required, Recommended, All), filterable card grid, and search functionality. Course cards show progress, brand association, and completion status.</p>
+  </div>
+
+  <div class="section">
+    <div class="subsection">
+      <h3 class="subsection-title">Figma Sections</h3>
+      <table class="data-table">
+        <thead><tr><th>Section Name</th><th>Figma Node ID</th></tr></thead>
+        <tbody>
+          <tr><td>Course Catalog – In Progress</td><td><code>40016866:158864</code></td></tr>
+          <tr><td>Course Catalog – Filter</td><td><code>40016866:158866</code></td></tr>
+          <tr><td>Course Catalog – Required</td><td><code>40016866:158871</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Responsive Breakpoints</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">XLarge (1440px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Large (1280px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Medium (768px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Small (375px)</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Component Usage Map <span class="status-badge status-good" style="font-size:10px">Cross-referenced</span></h3>
+      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:12px">Components used on this screen, linked to their detail documentation pages.</p>
+      <table class="data-table">
+        <thead><tr><th>Component</th><th>Usage on This Screen</th></tr></thead>
+        <tbody>
+          <tr><td><a href="../components/navbar.html" style="color:var(--brand)">Consumer NavBar</a></td><td>Top navigation</td></tr>
+          <tr><td><a href="../components/tabs.html" style="color:var(--brand)">Tabs</a></td><td>Category tabs (In Progress, Required, Recommended, All)</td></tr>
+          <tr><td><a href="../components/card.html" style="color:var(--brand)">Card (Product)</a></td><td>Course cards with image, title, progress, brand</td></tr>
+          <tr><td><a href="../components/chip.html" style="color:var(--brand)">Chip</a></td><td>Filter chips (Brand, Type, Status)</td></tr>
+          <tr><td><a href="../components/search.html" style="color:var(--brand)">Search</a></td><td>Course search/filter input</td></tr>
+          <tr><td><a href="../components/progress-bar.html" style="color:var(--brand)">Progress Bar</a></td><td>Course completion on cards</td></tr>
+          <tr><td><a href="../components/progress-circle.html" style="color:var(--brand)">Progress Circle</a></td><td>Circular progress indicator</td></tr>
+          <tr><td><a href="../components/badge.html" style="color:var(--brand)">Badge</a></td><td>Status badges (Required, New, Complete)</td></tr>
+          <tr><td><a href="../components/button.html" style="color:var(--brand)">Button</a></td><td>Load more, filter actions</td></tr>
+          <tr><td><a href="../components/isi.html" style="color:var(--brand)">ISI</a></td><td>Safety information</td></tr>
+          <tr><td><a href="../components/footer.html" style="color:var(--brand)">Footer</a></td><td>Page footer</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Layout Pattern</h3>
+      <div class="card" style="padding:16px 24px">
+        <p style="margin:0;line-height:1.8">Sidebar filter panel (280px) + main content area. Filter panel collapses to bottom sheet on mobile. Cards in 3-column grid (XL), 2-column (M), 1-column (S).</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Key Interactions</h3>
+      <div class="card" style="padding:16px 24px">
+        <ul style="margin:0;padding-left:20px;line-height:2"><li>Tab switching</li><li>Filter chip selection/deselection</li><li>Search input</li><li>Card hover</li><li>Filter panel open/close (mobile)</li></ul>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:24px">
+      <h3 class="subsection-title">Engineering Notes</h3>
+      <div class="card" style="padding:16px 24px">
+        <ul style="margin:0;padding-left:20px;line-height:2">
+          <li>Functional area: <strong>Courses</strong></li>
+          <li>Total components used: <strong>11</strong></li>
+          <li>Figma sections: <strong>3</strong></li>
+          <li>Responsive breakpoints: XLarge (1440px), Large (1280px), Medium (768px), Small (375px)</li>
+          <li>Primary Figma node: <code>40016866:158864</code></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>
