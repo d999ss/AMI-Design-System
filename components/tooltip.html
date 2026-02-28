@@ -33,9 +33,9 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
       <div>
         <h1>Tooltip</h1>
-        <p class="subtitle">Contextual popup displaying supplementary information on hover or focus. Used for icon explanations and truncated text.</p>
+        <p class="subtitle">Contextual popup with dark background (#272625 — not pure black) and Elevation 2 shadow. Uses smallest corner radius in the system (corner/extra_small: 4px).</p>
       </div>
-      <span class="status-badge status-good">New semantic</span>
+      <span class="status-badge status-good">New semantic (lowercase)</span>
     </div>
     <div class="meta">
       <strong>Category:</strong> Feedback &middot;
@@ -61,7 +61,7 @@
     <div class="subsection">
       <h3 class="subsection-title">Anatomy</h3>
       <div class="card" style="padding:16px 24px">
-        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container</li><li>Content text</li><li>Arrow/pointer</li><li>Trigger element</li></ol>
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container (corner/extra_small: 4px)</li><li>Content text (Inverted: #ffffff)</li><li>Arrow/pointer</li><li>Trigger element</li></ol>
       </div>
     </div>
     
@@ -71,14 +71,11 @@
     </div>
     
     <div class="subsection">
-      <h3 class="subsection-title">Variants</h3>
+      <h3 class="subsection-title">Figma Variant Properties</h3>
       <table class="data-table">
-        <thead><tr><th>Variant</th><th>Description</th></tr></thead>
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
         <tbody>
-          <tr><td><strong>Top</strong></td><td>Arrow pointing down, tooltip above trigger</td></tr>
-          <tr><td><strong>Bottom</strong></td><td>Arrow pointing up, tooltip below trigger</td></tr>
-          <tr><td><strong>Left</strong></td><td>Arrow pointing right, tooltip left of trigger</td></tr>
-          <tr><td><strong>Right</strong></td><td>Arrow pointing left, tooltip right of trigger</td></tr>
+          <tr><td><strong>Position</strong></td><td>Top / Bottom / Left / Right</td></tr>
         </tbody>
       </table>
     </div>
@@ -87,20 +84,25 @@
 
   <div class="section">
     <h2 class="section-title">Design Tokens</h2>
-    <p class="section-desc">Token bindings for this component. Token system: <strong>New semantic</strong>.</p>
+    <p class="section-desc">Token bindings extracted from Figma via <code>get_variable_defs</code>. Token naming system: <strong>New semantic (lowercase)</strong>.</p>
     
     <div class="subsection">
-      <h3 class="subsection-title">Token Usage</h3>
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
       <table class="data-table">
-        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
         <tbody>
-          <tr><td>Background</td><td><span class="token-name">Color/Tooltip/Background</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
-          <tr><td>Text</td><td><span class="token-name">Color/Tooltip/Text</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#FFFFFF;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#FFFFFF</td></tr>
-          <tr><td>Border Radius</td><td><span class="token-name">Radius/Tooltip</span></td><td>4px</td></tr>
-          <tr><td>Padding</td><td><span class="token-name">Spacing/Tooltip</span></td><td>8px 12px</td></tr>
+          <tr><td>Background</td><td><span class="token-name">Color/Container/Neutral/Strong 1</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#272625;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#272625</td></tr>
+          <tr><td>Text</td><td><span class="token-name">Text/Neutral/Inverted</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Icon</td><td><span class="token-name">Color/Icon/Neutral/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Trigger Border</td><td><span class="token-name">Color/Border/Brand/Medium 3</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9a6b5e;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#9a6b5e</td></tr>
+          <tr><td>Shadow</td><td><span class="token-name">Elevation 2/Cast down</span></td><td>4-layer drop shadow</td></tr>
+          <tr><td>Corner Radius</td><td><span class="token-name">corner/extra_small</span></td><td>4px</td></tr>
+          <tr><td>Spacing</td><td><span class="token-name">spacing/02, spacing/08</span></td><td>2px, 8px</td></tr>
+          <tr><td>Font</td><td><span class="token-name">font family/graphik</span></td><td>Graphik 14px</td></tr>
         </tbody>
       </table>
     </div>
+    
   </div>
 
   <div class="section">
@@ -108,9 +110,9 @@
     <div class="card" style="padding:24px">
       <ul style="margin:0;padding-left:20px;line-height:2;color:var(--text-support)">
         <li>Figma component node: <span class="token-name">40003841:33483</span></li>
-        <li>Token system: New semantic &mdash; ready for direct token-to-CSS mapping</li>
+        <li>Token system: <strong>New semantic (lowercase)</strong></li>
         <li>4 total variant configurations in Figma</li>
-        <li>Auto-layout structure to be documented after Figma MCP extraction</li>
+        <li>Tokens verified via Figma MCP extraction — ready for CSS mapping</li>
       </ul>
     </div>
   </div>

@@ -33,9 +33,9 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
       <div>
         <h1>Link - Standalone</h1>
-        <p class="subtitle">Standalone navigation link with consistent hover/focus styling. Used throughout the application for page navigation and external references.</p>
+        <p class="subtitle">Standalone navigation link with comprehensive interactive state tokens. Has dedicated underline font variants (Body/Medium/Reg underline). Three complete color tracks: Brand, Neutral, and Inverted for dark backgrounds.</p>
       </div>
-      <span class="status-badge status-good">New semantic</span>
+      <span class="status-badge status-good">New semantic (lowercase)</span>
     </div>
     <div class="meta">
       <strong>Category:</strong> Navigation &middot;
@@ -61,51 +61,58 @@
     <div class="subsection">
       <h3 class="subsection-title">Anatomy</h3>
       <div class="card" style="padding:16px 24px">
-        <ol style="margin:0;padding-left:20px;line-height:2"><li>Link text</li><li>Underline</li><li>Leading icon (optional)</li><li>Trailing icon (optional)</li></ol>
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Link text (with underline variant)</li><li>Leading icon (optional)</li><li>Trailing icon (optional)</li></ol>
       </div>
     </div>
     
     <div class="subsection">
       <h3 class="subsection-title">States</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Default</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Active</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Visited</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Focused</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Disabled</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Enable</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Pressed</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Focused</span></div>
     </div>
     
     <div class="subsection">
-      <h3 class="subsection-title">Variants</h3>
+      <h3 class="subsection-title">Figma Variant Properties</h3>
       <table class="data-table">
-        <thead><tr><th>Variant</th><th>Description</th></tr></thead>
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
         <tbody>
-          <tr><td><strong>Default</strong></td><td>Standard text link</td></tr>
-          <tr><td><strong>With Icon</strong></td><td>Link with leading or trailing icon</td></tr>
-          <tr><td><strong>External</strong></td><td>Opens in new tab, with external indicator</td></tr>
-          <tr><td><strong>Inline</strong></td><td>Used within body text</td></tr>
+          <tr><td><strong>Color</strong></td><td>Brand / Neutral / Inverted</td></tr>
+          <tr><td><strong>Size</strong></td><td>Footnote (12px) / Body Small (14px) / Body Medium (16px)</td></tr>
+          <tr><td><strong>Weight</strong></td><td>Regular / Medium</td></tr>
+          <tr><td><strong>Underline</strong></td><td>Yes / No</td></tr>
+          <tr><td><strong>State</strong></td><td>Enable / Hover / Pressed</td></tr>
+          <tr><td><strong>Icon</strong></td><td>None / Leading / Trailing</td></tr>
         </tbody>
       </table>
     </div>
     
     <div class="subsection">
       <h3 class="subsection-title">Sizes</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Small (12px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Medium (14px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Large (16px)</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Footnote (12px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Body Small (14px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Body Medium (16px)</span></div>
     </div>
   </div>
 
   <div class="section">
     <h2 class="section-title">Design Tokens</h2>
-    <p class="section-desc">Token bindings for this component. Token system: <strong>New semantic</strong>.</p>
+    <p class="section-desc">Token bindings extracted from Figma via <code>get_variable_defs</code>. Token naming system: <strong>New semantic (lowercase)</strong>.</p>
     
     <div class="subsection">
-      <h3 class="subsection-title">Token Usage</h3>
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
       <table class="data-table">
-        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
         <tbody>
-          <tr><td>Text (Default)</td><td><span class="token-name">Color/Link/Text/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9A6B5E;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#9A6B5E</td></tr>
-          <tr><td>Text (Hover)</td><td><span class="token-name">Color/Link/Text/Hover</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#876054;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#876054</td></tr>
-          <tr><td>Text (Visited)</td><td><span class="token-name">Color/Link/Text/Visited</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#6D4C41;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#6D4C41</td></tr>
-          <tr><td>Underline</td><td><span class="token-name">Color/Link/Underline/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9A6B5E;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#9A6B5E</td></tr>
-          <tr><td>Font Weight</td><td><span class="token-name">Font/Link/Weight</span></td><td>500 (Medium)</td></tr>
+          <tr><td>Text (Brand Enable)</td><td><span class="token-name">Text/Brand/Interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9a6b5e;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#9a6b5e</td></tr>
+          <tr><td>Text (Brand Hover)</td><td><span class="token-name">Text/Brand/Interactive/Hover</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#60433b;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#60433b</td></tr>
+          <tr><td>Text (Brand Pressed)</td><td><span class="token-name">Text/Brand/Interactive/Pressed</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#30211e;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#30211e</td></tr>
+          <tr><td>Text (Neutral Enable)</td><td><span class="token-name">Text/Neutral/Interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text (Neutral Hover)</td><td><span class="token-name">Text/Neutral/Interactive/Hover</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
+          <tr><td>Text (Inverted Enable)</td><td><span class="token-name">Color/Text/Neutral/Interactive/Inverted enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Text (Inverted Hover)</td><td><span class="token-name">Color/Text/Neutral/Interactive/Inverted hover</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ece9e5;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ece9e5</td></tr>
+          <tr><td>Focus Ring</td><td><span class="token-name">Color/Border/Brand/Focus ring/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#c08676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#c08676</td></tr>
+          <tr><td>Font</td><td><span class="token-name">font family/graphik</span></td><td>Graphik</td></tr>
         </tbody>
       </table>
     </div>
+    
   </div>
 
   <div class="section">
@@ -113,9 +120,9 @@
     <div class="card" style="padding:24px">
       <ul style="margin:0;padding-left:20px;line-height:2;color:var(--text-support)">
         <li>Figma component node: <span class="token-name">40008110:15068</span></li>
-        <li>Token system: New semantic &mdash; ready for direct token-to-CSS mapping</li>
+        <li>Token system: <strong>New semantic (lowercase)</strong></li>
         <li>96 total variant configurations in Figma</li>
-        <li>Auto-layout structure to be documented after Figma MCP extraction</li>
+        <li>Tokens verified via Figma MCP extraction — ready for CSS mapping</li>
       </ul>
     </div>
   </div>

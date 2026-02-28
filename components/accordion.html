@@ -33,9 +33,9 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
       <div>
         <h1>Accordion</h1>
-        <p class="subtitle">Expandable/collapsible content sections. Used for FAQs, settings panels, and progressive disclosure patterns.</p>
+        <p class="subtitle">Expandable/collapsible sections using BOTH naming conventions — lowercase (spacing/08) AND PascalCase (Font/Families/Petersburg). Notably uses Petersburg serif font for headlines, making it unique among form components.</p>
       </div>
-      <span class="status-badge status-good">New semantic</span>
+      <span class="status-badge status-gap">New semantic (mixed case)</span>
     </div>
     <div class="meta">
       <strong>Category:</strong> Form Controls &middot;
@@ -61,23 +61,23 @@
     <div class="subsection">
       <h3 class="subsection-title">Anatomy</h3>
       <div class="card" style="padding:16px 24px">
-        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container</li><li>Header</li><li>Title text</li><li>Expand/collapse icon</li><li>Content area</li><li>Divider</li></ol>
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container</li><li>Header (auto-layout)</li><li>Title (Headline/Small/Secondary — Petersburg 24px)</li><li>Expand/collapse chevron</li><li>Content area (Body/Medium/Regular — Graphik 16px)</li><li>Divider (Subtle 2 border)</li></ol>
       </div>
     </div>
     
     <div class="subsection">
       <h3 class="subsection-title">States</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Collapsed</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Expanded</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Focused</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Disabled</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Collapsed</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Expanded</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Active</span></div>
     </div>
     
     <div class="subsection">
-      <h3 class="subsection-title">Variants</h3>
+      <h3 class="subsection-title">Figma Variant Properties</h3>
       <table class="data-table">
-        <thead><tr><th>Variant</th><th>Description</th></tr></thead>
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
         <tbody>
-          <tr><td><strong>Default</strong></td><td>Standard accordion with dividers</td></tr>
-          <tr><td><strong>Bordered</strong></td><td>Outlined container style</td></tr>
-          <tr><td><strong>Flush</strong></td><td>No borders, minimal styling</td></tr>
+          <tr><td><strong>State</strong></td><td>Collapsed / Expanded</td></tr>
+          <tr><td><strong>Style</strong></td><td>Default / Bordered</td></tr>
+          <tr><td><strong>Header Style</strong></td><td>Primary (Graphik) / Secondary (Petersburg)</td></tr>
         </tbody>
       </table>
     </div>
@@ -86,20 +86,33 @@
 
   <div class="section">
     <h2 class="section-title">Design Tokens</h2>
-    <p class="section-desc">Token bindings for this component. Token system: <strong>New semantic</strong>.</p>
+    <p class="section-desc">Token bindings extracted from Figma via <code>get_variable_defs</code>. Token naming system: <strong>New semantic (mixed case)</strong>.</p>
     
     <div class="subsection">
-      <h3 class="subsection-title">Token Usage</h3>
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
       <table class="data-table">
-        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
         <tbody>
-          <tr><td>Background</td><td><span class="token-name">Color/Accordion/Background/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#FFFFFF;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#FFFFFF</td></tr>
-          <tr><td>Border</td><td><span class="token-name">Color/Accordion/Border/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ECE9E5;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#ECE9E5</td></tr>
-          <tr><td>Title Text</td><td><span class="token-name">Color/Accordion/Title/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
-          <tr><td>Icon</td><td><span class="token-name">Color/Accordion/Icon/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
-          <tr><td>Content Text</td><td><span class="token-name">Color/Accordion/Content/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#3D3D3C;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#3D3D3C</td></tr>
+          <tr><td>Background</td><td><span class="token-name">Color/Container/Neutral/Base</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Divider</td><td><span class="token-name">Color/Border/Neutral/Subtle 2</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#dedad7;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#dedad7</td></tr>
+          <tr><td>Active Border</td><td><span class="token-name">Color/Border/Brand/Medium 2</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#c08676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#c08676</td></tr>
+          <tr><td>Focus Ring</td><td><span class="token-name">Color/Border/Brand/Focus ring/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#c08676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#c08676</td></tr>
+          <tr><td>Icon (Default)</td><td><span class="token-name">Color/Icon/Neutral/Interactive/Enable support</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
+          <tr><td>Icon (Active)</td><td><span class="token-name">Color/Icon/Neutral/Interactive/Active support</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Title (Default)</td><td><span class="token-name">Text/Neutral/Interactive/Enable support</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
+          <tr><td>Title (Active)</td><td><span class="token-name">Text/Neutral/Interactive/Active support</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Headline Font</td><td><span class="token-name">Font/Families/Petersburg</span></td><td>Petersburg (serif)</td></tr>
+          <tr><td>Body Font</td><td><span class="token-name">font family/graphik</span></td><td>Graphik (sans)</td></tr>
+          <tr><td>Headline Size</td><td><span class="token-name">Font/Font size/8</span></td><td>24px</td></tr>
+          <tr><td>Body Size</td><td><span class="token-name">font size/05</span></td><td>16px</td></tr>
+          <tr><td>Spacing</td><td><span class="token-name">spacing/04 through spacing/24</span></td><td>4-24px scale</td></tr>
         </tbody>
       </table>
+    </div>
+    
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p>Mixes PascalCase (Font/Families/Petersburg, Font/Font size/8) and lowercase (font size/05, spacing/08) token naming.</p>
     </div>
   </div>
 
@@ -108,9 +121,9 @@
     <div class="card" style="padding:24px">
       <ul style="margin:0;padding-left:20px;line-height:2;color:var(--text-support)">
         <li>Figma component node: <span class="token-name">40006598:90126</span></li>
-        <li>Token system: New semantic &mdash; ready for direct token-to-CSS mapping</li>
+        <li>Token system: <strong>New semantic (mixed case)</strong></li>
         <li>15 total variant configurations in Figma</li>
-        <li>Auto-layout structure to be documented after Figma MCP extraction</li>
+        <li>Tokens verified via Figma MCP extraction — ready for CSS mapping</li>
       </ul>
     </div>
   </div>

@@ -33,9 +33,9 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
       <div>
         <h1>Text Input</h1>
-        <p class="subtitle">Standard text field for user input. Includes label, placeholder, helper text, and error state configurations with consistent spacing and typography.</p>
+        <p class="subtitle">Standard text field for user input. Uses PascalCase token naming (Font/Font size/5, Space/8) — the target convention for the system. Includes label, placeholder, helper text, and error state configurations.</p>
       </div>
-      <span class="status-badge status-good">New semantic</span>
+      <span class="status-badge status-good">New semantic (PascalCase)</span>
     </div>
     <div class="meta">
       <strong>Category:</strong> Form Controls &middot;
@@ -61,55 +61,69 @@
     <div class="subsection">
       <h3 class="subsection-title">Anatomy</h3>
       <div class="card" style="padding:16px 24px">
-        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container</li><li>Label</li><li>Input field</li><li>Placeholder text</li><li>Helper text</li><li>Error message</li><li>Leading icon (optional)</li><li>Trailing icon (optional)</li></ol>
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container (Corner/Small: 8px)</li><li>Label (Body/Medium/Medium)</li><li>Input field (Stroke width/Extra light: 1px border)</li><li>Placeholder text (#787676)</li><li>Helper text (Body/Small/Regular)</li><li>Error message (dc3426)</li><li>Icon slots</li></ol>
       </div>
     </div>
     
     <div class="subsection">
       <h3 class="subsection-title">States</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Default</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Focused</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Filled</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Error</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Disabled</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Default</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover (black border)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Focused (brand focus ring)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Filled</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Error (red border + message)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Disabled (muted bg)</span></div>
     </div>
     
     <div class="subsection">
-      <h3 class="subsection-title">Variants</h3>
+      <h3 class="subsection-title">Figma Variant Properties</h3>
       <table class="data-table">
-        <thead><tr><th>Variant</th><th>Description</th></tr></thead>
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
         <tbody>
-          <tr><td><strong>Default</strong></td><td>Standard text input with label</td></tr>
-          <tr><td><strong>With Helper</strong></td><td>Includes helper text below input</td></tr>
-          <tr><td><strong>With Error</strong></td><td>Error state with red border and message</td></tr>
-          <tr><td><strong>With Icons</strong></td><td>Leading and/or trailing icon support</td></tr>
+          <tr><td><strong>State</strong></td><td>Default / Hover / Focus / Error / Disabled</td></tr>
+          <tr><td><strong>Label</strong></td><td>Yes / No</td></tr>
+          <tr><td><strong>Helper Text</strong></td><td>Yes / No</td></tr>
+          <tr><td><strong>Leading Icon</strong></td><td>Yes / No</td></tr>
+          <tr><td><strong>Trailing Icon</strong></td><td>Yes / No</td></tr>
         </tbody>
       </table>
     </div>
     
     <div class="subsection">
       <h3 class="subsection-title">Sizes</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Medium (40px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Large (48px)</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Medium (Body/Small)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Large (Body/Medium)</span></div>
     </div>
   </div>
 
   <div class="section">
     <h2 class="section-title">Design Tokens</h2>
-    <p class="section-desc">Token bindings for this component. Token system: <strong>New semantic</strong>.</p>
+    <p class="section-desc">Token bindings extracted from Figma via <code>get_variable_defs</code>. Token naming system: <strong>New semantic (PascalCase)</strong>.</p>
     
     <div class="subsection">
-      <h3 class="subsection-title">Token Usage</h3>
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
       <table class="data-table">
-        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
         <tbody>
-          <tr><td>Border (Default)</td><td><span class="token-name">Color/Input/Border/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#B3B0AE;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#B3B0AE</td></tr>
-          <tr><td>Border (Focus)</td><td><span class="token-name">Color/Input/Border/Focus</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9A6B5E;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#9A6B5E</td></tr>
-          <tr><td>Border (Error)</td><td><span class="token-name">Color/Input/Border/Error</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#D32F2F;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#D32F2F</td></tr>
-          <tr><td>Background</td><td><span class="token-name">Color/Input/Background/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#FFFFFF;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#FFFFFF</td></tr>
-          <tr><td>Label Text</td><td><span class="token-name">Color/Input/Label/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
-          <tr><td>Placeholder</td><td><span class="token-name">Color/Input/Placeholder/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
-          <tr><td>Helper Text</td><td><span class="token-name">Color/Input/Helper/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
-          <tr><td>Error Text</td><td><span class="token-name">Color/Input/Error/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#D32F2F;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#D32F2F</td></tr>
-          <tr><td>Border Radius</td><td><span class="token-name">Radius/Input</span></td><td>4px</td></tr>
-          <tr><td>Font Family</td><td><span class="token-name">Font/Input</span></td><td>Inter</td></tr>
+          <tr><td>Background</td><td><span class="token-name">Color/Container/Neutral/Base</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Background (Filled)</td><td><span class="token-name">Color/Container/Neutral/Mute 1</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#fafafa;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#fafafa</td></tr>
+          <tr><td>Border (Default)</td><td><span class="token-name">Color/Border/Neutral/Text field/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#b3b0ae;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#b3b0ae</td></tr>
+          <tr><td>Border (Hover)</td><td><span class="token-name">Color/Border/Neutral/Text field/Hover</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Border (Error)</td><td><span class="token-name">Color/Border/Status/Error medium 3</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#dc3426;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#dc3426</td></tr>
+          <tr><td>Border (Disabled)</td><td><span class="token-name">Color/Border/Neutral/Disabled/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#b3b0ae;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#b3b0ae</td></tr>
+          <tr><td>Focus Ring</td><td><span class="token-name">Color/Border/Brand/Focus ring/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#c08676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#c08676</td></tr>
+          <tr><td>Label Text</td><td><span class="token-name">Text/Neutral/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Placeholder</td><td><span class="token-name">Text/Neutral/Placeholder</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
+          <tr><td>Helper Text</td><td><span class="token-name">Text/Neutral/Support</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
+          <tr><td>Error Text</td><td><span class="token-name">Text/Status/Error medium 3</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#dc3426;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#dc3426</td></tr>
+          <tr><td>Disabled Text</td><td><span class="token-name">Text/Neutral/Disabled/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#b3b0ae;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#b3b0ae</td></tr>
+          <tr><td>Corner Radius</td><td><span class="token-name">Corner/Small</span></td><td>8px</td></tr>
+          <tr><td>Corner (Grouped)</td><td><span class="token-name">Corner/Medium small</span></td><td>12px</td></tr>
+          <tr><td>Border Width</td><td><span class="token-name">Stroke width/Extra light</span></td><td>1px</td></tr>
+          <tr><td>Focus Border</td><td><span class="token-name">Stroke width/Bold</span></td><td>4px</td></tr>
+          <tr><td>Font</td><td><span class="token-name">Font/Families/Graphik</span></td><td>Graphik</td></tr>
+          <tr><td>Padding</td><td><span class="token-name">Space/4, Space/8, Space/12, Space/16</span></td><td>4-16px scale</td></tr>
         </tbody>
       </table>
+    </div>
+    
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p>Error color is #dc3426 here vs #de3b2d in Button/Select — inconsistency to resolve.</p>
     </div>
   </div>
 
@@ -118,9 +132,9 @@
     <div class="card" style="padding:24px">
       <ul style="margin:0;padding-left:20px;line-height:2;color:var(--text-support)">
         <li>Figma component node: <span class="token-name">40006598:70760</span></li>
-        <li>Token system: New semantic &mdash; ready for direct token-to-CSS mapping</li>
+        <li>Token system: <strong>New semantic (PascalCase)</strong></li>
         <li>36 total variant configurations in Figma</li>
-        <li>Auto-layout structure to be documented after Figma MCP extraction</li>
+        <li>Tokens verified via Figma MCP extraction — ready for CSS mapping</li>
       </ul>
     </div>
   </div>

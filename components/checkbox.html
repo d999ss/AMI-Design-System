@@ -33,9 +33,9 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
       <div>
         <h1>Checkbox</h1>
-        <p class="subtitle">Binary selection control for forms. Supports individual checkboxes and checkbox lists with labels and descriptions.</p>
+        <p class="subtitle">Binary selection control with minimal token bindings — only icon colors and focus ring. Uses PascalCase naming (Space/8). Error indicator uses #dc3426 matching Text Input.</p>
       </div>
-      <span class="status-badge status-good">New semantic</span>
+      <span class="status-badge status-good">New semantic (PascalCase)</span>
     </div>
     <div class="meta">
       <strong>Category:</strong> Form Controls &middot;
@@ -61,49 +61,52 @@
     <div class="subsection">
       <h3 class="subsection-title">Anatomy</h3>
       <div class="card" style="padding:16px 24px">
-        <ol style="margin:0;padding-left:20px;line-height:2"><li>Checkbox box</li><li>Checkmark icon</li><li>Label text</li><li>Description (optional)</li></ol>
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Checkbox box</li><li>Checkmark icon (Color/Icon/Neutral/Black)</li><li>Label text</li><li>Description (optional)</li></ol>
       </div>
     </div>
     
     <div class="subsection">
       <h3 class="subsection-title">States</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Unchecked</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Checked</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Indeterminate</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Focused</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Disabled</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Unchecked</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Checked</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Indeterminate</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Focused</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Disabled</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Error</span></div>
     </div>
     
     <div class="subsection">
-      <h3 class="subsection-title">Variants</h3>
+      <h3 class="subsection-title">Figma Variant Properties</h3>
       <table class="data-table">
-        <thead><tr><th>Variant</th><th>Description</th></tr></thead>
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
         <tbody>
-          <tr><td><strong>Default</strong></td><td>Standard checkbox with label</td></tr>
-          <tr><td><strong>With Description</strong></td><td>Checkbox with helper description text</td></tr>
-          <tr><td><strong>Indeterminate</strong></td><td>Partial selection state for parent checkboxes</td></tr>
+          <tr><td><strong>Checked</strong></td><td>Yes / No / Indeterminate</td></tr>
+          <tr><td><strong>State</strong></td><td>Default / Hover / Focus / Disabled / Error</td></tr>
+          <tr><td><strong>Label</strong></td><td>Yes / No</td></tr>
         </tbody>
       </table>
     </div>
     
-    <div class="subsection">
-      <h3 class="subsection-title">Sizes</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Medium (20px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Large (24px)</span></div>
-    </div>
   </div>
 
   <div class="section">
     <h2 class="section-title">Design Tokens</h2>
-    <p class="section-desc">Token bindings for this component. Token system: <strong>New semantic</strong>.</p>
+    <p class="section-desc">Token bindings extracted from Figma via <code>get_variable_defs</code>. Token naming system: <strong>New semantic (PascalCase)</strong>.</p>
     
     <div class="subsection">
-      <h3 class="subsection-title">Token Usage</h3>
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
       <table class="data-table">
-        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
         <tbody>
-          <tr><td>Border (Unchecked)</td><td><span class="token-name">Color/Checkbox/Border/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#B3B0AE;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#B3B0AE</td></tr>
-          <tr><td>Background (Checked)</td><td><span class="token-name">Color/Checkbox/Background/Checked</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9A6B5E;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#9A6B5E</td></tr>
-          <tr><td>Checkmark</td><td><span class="token-name">Color/Checkbox/Icon/Checked</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#FFFFFF;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#FFFFFF</td></tr>
-          <tr><td>Label</td><td><span class="token-name">Color/Checkbox/Label/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
-          <tr><td>Border Radius</td><td><span class="token-name">Radius/Checkbox</span></td><td>4px</td></tr>
+          <tr><td>Checkmark</td><td><span class="token-name">Color/Icon/Neutral/Black</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Icon (alt)</td><td><span class="token-name">Icon/Neutral/Black</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Icon Default</td><td><span class="token-name">Color/Icon/Neutral/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Icon Disabled</td><td><span class="token-name">Color/Icon/Neutral/Disabled/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#b3b0ae;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#b3b0ae</td></tr>
+          <tr><td>Icon Error</td><td><span class="token-name">Color/Icon/Status/Error medium 3</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#dc3426;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#dc3426</td></tr>
+          <tr><td>Focus Ring</td><td><span class="token-name">Color/Border/Brand/Focus ring/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#c08676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#c08676</td></tr>
+          <tr><td>Spacing</td><td><span class="token-name">Space/8</span></td><td>8px</td></tr>
         </tbody>
       </table>
+    </div>
+    
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p>Uses same error red (#dc3426) as Text Input, different from Button/Select (#de3b2d).</p>
     </div>
   </div>
 
@@ -112,9 +115,9 @@
     <div class="card" style="padding:24px">
       <ul style="margin:0;padding-left:20px;line-height:2;color:var(--text-support)">
         <li>Figma component node: <span class="token-name">40006598:81360</span></li>
-        <li>Token system: New semantic &mdash; ready for direct token-to-CSS mapping</li>
+        <li>Token system: <strong>New semantic (PascalCase)</strong></li>
         <li>12 total variant configurations in Figma</li>
-        <li>Auto-layout structure to be documented after Figma MCP extraction</li>
+        <li>Tokens verified via Figma MCP extraction — ready for CSS mapping</li>
       </ul>
     </div>
   </div>

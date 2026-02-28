@@ -81,22 +81,25 @@
 
   <!-- Full Gap Inventory -->
   <div class="section">
-    <h2 class="section-title">Gap Inventory <span class="status-badge status-gap">12 Items</span></h2>
-    <p class="section-desc">All identified gaps categorized by severity.</p>
+    <h2 class="section-title">Gap Inventory <span class="status-badge status-gap">15 Items — Verified via Figma MCP</span></h2>
+    <p class="section-desc">All identified gaps categorized by severity. Updated with findings from <code>get_variable_defs</code> extraction across all 18 Tier 1 components.</p>
 
     <div class="issues-grid">
-      <div class="issue-card gap"><h4>Incomplete Elevation System</h4><p>Only "Elevation 2/Cast down" exists. Need Elevation 1 (subtle, cards), Elevation 3 (modals/dialogs), and Elevation 4 (tooltips/popovers).</p></div>
-      <div class="issue-card naming"><h4>3 Spacing Naming Systems</h4><p><code>Space/8</code> vs <code>Spacing/8</code> vs <code>spacing/08</code>. Components use different conventions.</p></div>
-      <div class="issue-card naming"><h4>2 Font Token Systems</h4><p><code>Font/Font size/5</code> vs <code>font size/05</code>. PascalCase and lowercase coexist.</p></div>
-      <div class="issue-card drift"><h4>4 Font Families Active</h4><p>Graphik (primary), Petersburg (secondary), F37 Lineca (mobile), Roboto (legacy). Roboto needs migration.</p></div>
-      <div class="issue-card drift"><h4>6+ Color Naming Systems</h4><p>New semantic, Text & Icons, AMIO/Primary, /Primary, color/surface, Tertiary across 20+ components.</p></div>
-      <div class="issue-card gap"><h4>No Breakpoint Tokens</h4><p>XL, L, M, S variants exist but no shared breakpoint variables.</p></div>
-      <div class="issue-card gap"><h4>No Grid Tokens</h4><p>No column count, gutter width, or margin tokens. Only one layout token.</p></div>
-      <div class="issue-card info"><h4>Status Color Inconsistencies</h4><p>Error: <code>#de3b2d</code> vs <code>#dc3426</code>. Success: <code>#0b8923</code> vs <code>#065a18</code>.</p></div>
+      <div class="issue-card drift"><h4>4 Different Error Red Values</h4><p>Button/Select: <code>#de3b2d</code>, Text Input/Checkbox: <code>#dc3426</code>, Badge text: <code>#961307</code>, Alert inpage: <code>#ff0000</code>. Four different "error red" values across Tier 1 components.</p></div>
+      <div class="issue-card naming"><h4>3 Spacing Naming Systems (Confirmed)</h4><p>System 1: <code>spacing/08</code> (lowercase, Button/Select/Tabs/Chip/Tooltip/Link/Badge). System 2: <code>Space/8</code> (PascalCase, Text Input/Checkbox/Action Menu). System 3: <code>Spacing/8</code> (capitalized, Alert inpage).</p></div>
+      <div class="issue-card naming"><h4>2 Font Token Systems (Confirmed)</h4><p>System 1: <code>font size/05</code> (lowercase, 7 components). System 2: <code>Font/Font size/5</code> (PascalCase, 3 components). Accordion uses BOTH systems simultaneously.</p></div>
+      <div class="issue-card naming"><h4>3 Corner Radius Naming Patterns</h4><p><code>Corner/Small: 8</code> (PascalCase), <code>corner/extra_small: 4</code> (lowercase with underscore), <code>Corner/Extra small: 4</code> (PascalCase with space). Same value, three naming conventions.</p></div>
+      <div class="issue-card drift"><h4>Toggle: Zero Token Bindings</h4><p>Toggle component returned 0 variables from <code>get_variable_defs</code>. All visual properties are hardcoded — must be fully tokenized before implementation.</p></div>
+      <div class="issue-card drift"><h4>Snackbar: Legacy /Primary + Roboto</h4><p>Only 2 token bindings total: <code>/Primary / 000000</code> and <code>Desktop/P2</code> (Roboto 16px). Last component using Roboto font.</p></div>
+      <div class="issue-card drift"><h4>Alert: Legacy Text &amp; Icons System</h4><p>Uses <code>Text &amp; Icons/Default</code>, <code>Color/Utility/Red</code> (#ff0000 raw), and a third spacing convention. Three legacy systems in one component.</p></div>
+      <div class="issue-card drift"><h4>Button: Old + New Tokens Coexist</h4><p>Button contains both <code>Color/Container/Brand/Interactive/Enable</code> (new) AND <code>color/surface/interactive/Brand/Enable</code> (old) pointing to the same values.</p></div>
+      <div class="issue-card gap"><h4>Incomplete Elevation System</h4><p>Only "Elevation 2/Cast down" exists (used by Select, Tooltip, Action Menu). Need Elevation 1 (cards), Elevation 3 (modals), Elevation 4 (tooltips).</p></div>
+      <div class="issue-card drift"><h4>4 Font Families Active</h4><p>Graphik (primary, all components), Petersburg (Accordion headlines), F37 Lineca (mobile), Roboto (Snackbar only — migrate).</p></div>
+      <div class="issue-card gap"><h4>No Breakpoint Tokens</h4><p>XL (1536), L (1279), M (768), S (480) inferred from variant names but no formal variables.</p></div>
+      <div class="issue-card gap"><h4>No Grid Tokens</h4><p>No column count, gutter width, or margin tokens. Only observable from screen designs.</p></div>
       <div class="issue-card gap"><h4>Missing Gradient Definitions</h4><p>"Gradients/Light Marketing Banner" referenced but undefined.</p></div>
-      <div class="issue-card naming"><h4>Line Height Inconsistency</h4><p>Ratio (1.2) vs px (24px, 30px) across headline styles.</p></div>
-      <div class="issue-card info"><h4>Desktop/P3 Dual Definition</h4><p>Same name for Graphik 13px (Cards) and Roboto 13px (Footer).</p></div>
-      <div class="issue-card gap"><h4>No Motion / Animation Tokens</h4><p>No duration, easing, or transition tokens.</p></div>
+      <div class="issue-card naming"><h4>Line Height Inconsistency</h4><p>Ratio (1.5 in Snackbar/Roboto) vs px values (18/20/24/26/30px in semantic system).</p></div>
+      <div class="issue-card gap"><h4>No Motion / Animation Tokens</h4><p>No duration, easing, or transition tokens defined anywhere in the system.</p></div>
     </div>
   </div>
 

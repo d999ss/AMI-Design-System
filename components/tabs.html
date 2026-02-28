@@ -33,9 +33,9 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
       <div>
         <h1>Tabs</h1>
-        <p class="subtitle">Horizontal tab navigation for switching between content views. Used in course catalog, live events, and profile sections.</p>
+        <p class="subtitle">Horizontal tab navigation with brand-colored active indicator. Uses semantic interactive tokens for text/icon states. Includes headline font size (20px) for larger tab variants.</p>
       </div>
-      <span class="status-badge status-gap">Mixed</span>
+      <span class="status-badge status-good">New semantic (lowercase)</span>
     </div>
     <div class="meta">
       <strong>Category:</strong> Navigation &middot;
@@ -61,46 +61,60 @@
     <div class="subsection">
       <h3 class="subsection-title">Anatomy</h3>
       <div class="card" style="padding:16px 24px">
-        <ol style="margin:0;padding-left:20px;line-height:2"><li>Tab bar container</li><li>Tab item</li><li>Tab label</li><li>Active indicator (underline)</li><li>Badge (optional)</li><li>Icon (optional)</li></ol>
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Tab bar container (transparent bg)</li><li>Tab item (auto-layout)</li><li>Tab label (Body/Medium or Headline/Extra small)</li><li>Active indicator (Brand/Medium 3 underline)</li><li>Badge (optional)</li><li>Icon (optional)</li><li>Bottom divider (Subtle 2)</li></ol>
       </div>
     </div>
     
     <div class="subsection">
       <h3 class="subsection-title">States</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Default</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Active</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Focused</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Disabled</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Enable (support color)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Active (default color)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Focused</span></div>
     </div>
     
     <div class="subsection">
-      <h3 class="subsection-title">Variants</h3>
+      <h3 class="subsection-title">Figma Variant Properties</h3>
       <table class="data-table">
-        <thead><tr><th>Variant</th><th>Description</th></tr></thead>
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
         <tbody>
-          <tr><td><strong>Default</strong></td><td>Standard text tabs</td></tr>
-          <tr><td><strong>With Icons</strong></td><td>Tabs with leading icons</td></tr>
-          <tr><td><strong>With Badge</strong></td><td>Tabs with count badges</td></tr>
-          <tr><td><strong>Scrollable</strong></td><td>Horizontally scrollable tab set</td></tr>
+          <tr><td><strong>State</strong></td><td>Default / Active / Hover</td></tr>
+          <tr><td><strong>Size</strong></td><td>Small (16px) / Large (20px)</td></tr>
+          <tr><td><strong>Icon</strong></td><td>None / Leading</td></tr>
+          <tr><td><strong>Badge</strong></td><td>None / Count</td></tr>
         </tbody>
       </table>
     </div>
     
+    <div class="subsection">
+      <h3 class="subsection-title">Sizes</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Standard (font size 16px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Large (font size 20px)</span></div>
+    </div>
   </div>
 
   <div class="section">
     <h2 class="section-title">Design Tokens</h2>
-    <p class="section-desc">Token bindings for this component. Token system: <strong>Mixed</strong>.</p>
+    <p class="section-desc">Token bindings extracted from Figma via <code>get_variable_defs</code>. Token naming system: <strong>New semantic (lowercase)</strong>.</p>
     
     <div class="subsection">
-      <h3 class="subsection-title">Token Usage</h3>
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
       <table class="data-table">
-        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
         <tbody>
-          <tr><td>Text (Default)</td><td><span class="token-name">Mixed system</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
-          <tr><td>Text (Active)</td><td><span class="token-name">Mixed system</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9A6B5E;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#9A6B5E</td></tr>
-          <tr><td>Indicator</td><td><span class="token-name">Mixed system</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9A6B5E;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#9A6B5E</td></tr>
-          <tr><td>Background</td><td><span class="token-name">Mixed system</span></td><td>transparent</td></tr>
-          <tr><td>Border Bottom</td><td><span class="token-name">Mixed system</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ECE9E5;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#ECE9E5</td></tr>
+          <tr><td>Background</td><td><span class="token-name">Color/Container/Transparent/Clear</span></td><td>transparent</td></tr>
+          <tr><td>Divider</td><td><span class="token-name">Color/Border/Neutral/Subtle 2</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#dedad7;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#dedad7</td></tr>
+          <tr><td>Active Indicator</td><td><span class="token-name">Color/Border/Brand/Medium 3</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9a6b5e;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#9a6b5e</td></tr>
+          <tr><td>Icon (Default)</td><td><span class="token-name">Color/Icon/Neutral/Interactive/Enable support</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
+          <tr><td>Icon (Active)</td><td><span class="token-name">Color/Icon/Neutral/Interactive/Active support</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text (Default)</td><td><span class="token-name">Text/Neutral/Interactive/Enable support</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
+          <tr><td>Text (Active)</td><td><span class="token-name">Text/Neutral/Interactive/Active support</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Font</td><td><span class="token-name">font family/graphik</span></td><td>Graphik</td></tr>
+          <tr><td>Font Size</td><td><span class="token-name">font size/05 / font size/07</span></td><td>16px / 20px</td></tr>
+          <tr><td>Spacing</td><td><span class="token-name">spacing/04 through spacing/24</span></td><td>4-24px</td></tr>
         </tbody>
       </table>
+    </div>
+    
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p>Initially categorized as "Mixed" but actually uses full new semantic system.</p>
     </div>
   </div>
 
@@ -109,9 +123,9 @@
     <div class="card" style="padding:24px">
       <ul style="margin:0;padding-left:20px;line-height:2;color:var(--text-support)">
         <li>Figma component node: <span class="token-name">40008120:29000</span></li>
-        <li>Token system: Mixed &mdash; requires token migration before implementation</li>
+        <li>Token system: <strong>New semantic (lowercase)</strong></li>
         <li>32 total variant configurations in Figma</li>
-        <li>Auto-layout structure to be documented after Figma MCP extraction</li>
+        <li>Tokens verified via Figma MCP extraction — ready for CSS mapping</li>
       </ul>
     </div>
   </div>

@@ -33,9 +33,9 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
       <div>
         <h1>Button</h1>
-        <p class="subtitle">Primary interactive element for triggering actions. The most variant-rich component in the system with 308+ configurations spanning sizes, styles, states, and icon positions.</p>
+        <p class="subtitle">Primary interactive element for triggering actions. The most variant-rich component in the system with 308+ configurations. Uses 3 sizes, 4+ color schemes (Neutral, Brand, Mute, Destructive), 5 states, solid/ghost/outline styles. Both new semantic and legacy color/surface tokens coexist on this component.</p>
       </div>
-      <span class="status-badge status-good">New semantic</span>
+      <span class="status-badge status-gap">New semantic + legacy coexist</span>
     </div>
     <div class="meta">
       <strong>Category:</strong> Form Controls &middot;
@@ -61,55 +61,72 @@
     <div class="subsection">
       <h3 class="subsection-title">Anatomy</h3>
       <div class="card" style="padding:16px 24px">
-        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container</li><li>Label text</li><li>Leading icon (optional)</li><li>Trailing icon (optional)</li></ol>
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container (auto-layout)</li><li>Label text (Graphik)</li><li>Leading icon (optional)</li><li>Trailing icon (optional)</li><li>Loading spinner (optional)</li></ol>
       </div>
     </div>
     
     <div class="subsection">
       <h3 class="subsection-title">States</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Default</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Active/Pressed</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Focused</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Disabled</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Enable</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Pressed</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Disabled</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Loading</span></div>
     </div>
     
     <div class="subsection">
-      <h3 class="subsection-title">Variants</h3>
+      <h3 class="subsection-title">Figma Variant Properties</h3>
       <table class="data-table">
-        <thead><tr><th>Variant</th><th>Description</th></tr></thead>
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
         <tbody>
-          <tr><td><strong>Primary</strong></td><td>Filled background, high emphasis</td></tr>
-          <tr><td><strong>Secondary</strong></td><td>Outlined, medium emphasis</td></tr>
-          <tr><td><strong>Tertiary</strong></td><td>Text-only, low emphasis</td></tr>
-          <tr><td><strong>Destructive</strong></td><td>Red variant for dangerous actions</td></tr>
+          <tr><td><strong>Size</strong></td><td>Small (48px), Medium, Large</td></tr>
+          <tr><td><strong>Color</strong></td><td>Action (Neutral), Brand, Mute, Destructive (Error)</td></tr>
+          <tr><td><strong>Solid</strong></td><td>Yes (filled) / No (ghost)</td></tr>
+          <tr><td><strong>Outline</strong></td><td>Yes (bordered) / No</td></tr>
+          <tr><td><strong>isDisabled</strong></td><td>Yes / No</td></tr>
+          <tr><td><strong>isLoading</strong></td><td>Yes / No</td></tr>
+          <tr><td><strong>State</strong></td><td>Enable / Hover / Pressed / Disabled / Loading</td></tr>
         </tbody>
       </table>
     </div>
     
     <div class="subsection">
       <h3 class="subsection-title">Sizes</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Small (32px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Medium (40px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Large (48px)</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Small (height: 48px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Medium</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Large</span></div>
     </div>
   </div>
 
   <div class="section">
     <h2 class="section-title">Design Tokens</h2>
-    <p class="section-desc">Token bindings for this component. Token system: <strong>New semantic</strong>.</p>
+    <p class="section-desc">Token bindings extracted from Figma via <code>get_variable_defs</code>. Token naming system: <strong>New semantic + legacy coexist</strong>.</p>
     
     <div class="subsection">
-      <h3 class="subsection-title">Token Usage</h3>
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
       <table class="data-table">
-        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
         <tbody>
-          <tr><td>Background (Primary)</td><td><span class="token-name">Color/Button/Primary/Background/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9A6B5E;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#9A6B5E</td></tr>
-          <tr><td>Background (Hover)</td><td><span class="token-name">Color/Button/Primary/Background/Hover</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#876054;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#876054</td></tr>
-          <tr><td>Text (Primary)</td><td><span class="token-name">Color/Button/Primary/Text/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#FFFFFF;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#FFFFFF</td></tr>
-          <tr><td>Border (Secondary)</td><td><span class="token-name">Color/Button/Secondary/Border/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9A6B5E;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#9A6B5E</td></tr>
-          <tr><td>Background (Disabled)</td><td><span class="token-name">Color/Button/Primary/Background/Disabled</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ECE9E5;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#ECE9E5</td></tr>
-          <tr><td>Border Radius</td><td><span class="token-name">Radius/Button</span></td><td>4px</td></tr>
-          <tr><td>Padding Horizontal</td><td><span class="token-name">Spacing/Button/Horizontal</span></td><td>16px</td></tr>
-          <tr><td>Padding Vertical</td><td><span class="token-name">Spacing/Button/Vertical</span></td><td>8px</td></tr>
-          <tr><td>Font Family</td><td><span class="token-name">Font/Button</span></td><td>Inter</td></tr>
-          <tr><td>Font Weight</td><td><span class="token-name">Font/Button/Weight</span></td><td>600 (Semi Bold)</td></tr>
+          <tr><td>Container (Neutral)</td><td><span class="token-name">Color/Container/Neutral/Interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Container (Neutral Hover)</td><td><span class="token-name">Color/Container/Neutral/Interactive/Hover</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
+          <tr><td>Container (Brand)</td><td><span class="token-name">Color/Container/Brand/Interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9a6b5e;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#9a6b5e</td></tr>
+          <tr><td>Container (Brand Hover)</td><td><span class="token-name">Color/Container/Brand/Interactive/Hover</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#7d574d;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#7d574d</td></tr>
+          <tr><td>Container (Mute)</td><td><span class="token-name">Color/Container/Neutral/Interactive/Mute enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#f7f6f5;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#f7f6f5</td></tr>
+          <tr><td>Container (Destructive)</td><td><span class="token-name">Color/Container/Status/Interactive/Enable negative</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#de3b2d;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#de3b2d</td></tr>
+          <tr><td>Container (Disabled)</td><td><span class="token-name">Color/Container/Neutral/Disabled/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ece9e5;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ece9e5</td></tr>
+          <tr><td>Text (Inverted)</td><td><span class="token-name">Text/Neutral/Inverted</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Text (Default)</td><td><span class="token-name">Text/Neutral/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text (Brand)</td><td><span class="token-name">Color/Text/Brand/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9a6b5e;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#9a6b5e</td></tr>
+          <tr><td>Text (Disabled)</td><td><span class="token-name">Text/Neutral/Disabled/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#b3b0ae;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#b3b0ae</td></tr>
+          <tr><td>Border (Neutral)</td><td><span class="token-name">Color/Border/Neutral/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Border (Brand)</td><td><span class="token-name">Color/Border/Brand/Medium 3</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9a6b5e;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#9a6b5e</td></tr>
+          <tr><td>Focus Ring</td><td><span class="token-name">Color/Border/Brand/Focus ring/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#c08676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#c08676</td></tr>
+          <tr><td>Corner Radius</td><td><span class="token-name">Corner/Small</span></td><td>8px</td></tr>
+          <tr><td>Font</td><td><span class="token-name">font family/graphik</span></td><td>Graphik</td></tr>
+          <tr><td>Font Size (S)</td><td><span class="token-name">font size/04</span></td><td>14px</td></tr>
+          <tr><td>Font Size (M)</td><td><span class="token-name">font size/05</span></td><td>16px</td></tr>
+          <tr><td>Font Size (L)</td><td><span class="token-name">font size/06</span></td><td>18px</td></tr>
         </tbody>
       </table>
+    </div>
+    
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p>IMPORTANT: Button also contains legacy <code>color/surface/interactive/</code> tokens that map to the same values. These should be removed during migration.</p>
     </div>
   </div>
 
@@ -118,9 +135,9 @@
     <div class="card" style="padding:24px">
       <ul style="margin:0;padding-left:20px;line-height:2;color:var(--text-support)">
         <li>Figma component node: <span class="token-name">40006598:72259</span></li>
-        <li>Token system: New semantic &mdash; ready for direct token-to-CSS mapping</li>
+        <li>Token system: <strong>New semantic + legacy coexist</strong></li>
         <li>308+ total variant configurations in Figma</li>
-        <li>Auto-layout structure to be documented after Figma MCP extraction</li>
+        <li>Tokens verified via Figma MCP extraction — ready for CSS mapping</li>
       </ul>
     </div>
   </div>

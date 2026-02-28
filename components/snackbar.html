@@ -33,9 +33,9 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
       <div>
         <h1>Snackbar</h1>
-        <p class="subtitle">Temporary notification bar appearing at the bottom of the screen for action confirmations and brief messages.</p>
+        <p class="subtitle">Temporary notification bar using legacy /Primary color system and Roboto font — the only component still on Roboto in the core set. Requires full migration to semantic tokens and Graphik font.</p>
       </div>
-      <span class="status-badge status-gap">Mixed</span>
+      <span class="status-badge status-drift">Legacy (/Primary + Roboto)</span>
     </div>
     <div class="meta">
       <strong>Category:</strong> Feedback &middot;
@@ -61,7 +61,7 @@
     <div class="subsection">
       <h3 class="subsection-title">Anatomy</h3>
       <div class="card" style="padding:16px 24px">
-        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container</li><li>Message text</li><li>Action button (optional)</li><li>Close icon (optional)</li></ol>
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container (black)</li><li>Message text (Roboto 16px)</li><li>Action button (optional)</li><li>Close icon (optional)</li></ol>
       </div>
     </div>
     
@@ -71,13 +71,11 @@
     </div>
     
     <div class="subsection">
-      <h3 class="subsection-title">Variants</h3>
+      <h3 class="subsection-title">Figma Variant Properties</h3>
       <table class="data-table">
-        <thead><tr><th>Variant</th><th>Description</th></tr></thead>
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
         <tbody>
-          <tr><td><strong>Default</strong></td><td>Standard snackbar message</td></tr>
-          <tr><td><strong>With Action</strong></td><td>Includes action button</td></tr>
-          <tr><td><strong>Error</strong></td><td>Red variant for error messages</td></tr>
+          <tr><td><strong>Style</strong></td><td>Default / With Action / Error</td></tr>
         </tbody>
       </table>
     </div>
@@ -86,18 +84,22 @@
 
   <div class="section">
     <h2 class="section-title">Design Tokens</h2>
-    <p class="section-desc">Token bindings for this component. Token system: <strong>Mixed</strong>.</p>
+    <p class="section-desc">Token bindings extracted from Figma via <code>get_variable_defs</code>. Token naming system: <strong>Legacy (/Primary + Roboto)</strong>.</p>
     
     <div class="subsection">
-      <h3 class="subsection-title">Token Usage</h3>
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
       <table class="data-table">
-        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
         <tbody>
-          <tr><td>Background</td><td><span class="token-name">Mixed system</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#3D3D3C;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#3D3D3C</td></tr>
-          <tr><td>Text</td><td><span class="token-name">Mixed system</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#FFFFFF;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#FFFFFF</td></tr>
-          <tr><td>Action Text</td><td><span class="token-name">Mixed system</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#F1E5E2;border:1px solid #eee;vertical-align:middle;margin-right:6px"></span>#F1E5E2</td></tr>
+          <tr><td>Background</td><td><span class="token-name">/Primary / 000000</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#000000;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#000000</td></tr>
+          <tr><td>Font</td><td><span class="token-name">Desktop/P2</span></td><td>Roboto 16px Regular</td></tr>
         </tbody>
       </table>
+    </div>
+    
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p>LEGACY SYSTEM: Uses /Primary color naming and Roboto font. Only 2 token bindings total. Must migrate to semantic tokens and Graphik font.</p>
     </div>
   </div>
 
@@ -106,9 +108,9 @@
     <div class="card" style="padding:24px">
       <ul style="margin:0;padding-left:20px;line-height:2;color:var(--text-support)">
         <li>Figma component node: <span class="token-name">40017359:55323</span></li>
-        <li>Token system: Mixed &mdash; requires token migration before implementation</li>
+        <li>Token system: <strong>Legacy (/Primary + Roboto)</strong></li>
         <li>3 total variant configurations in Figma</li>
-        <li>Auto-layout structure to be documented after Figma MCP extraction</li>
+        <li>Tokens verified via Figma MCP extraction — ready for CSS mapping</li>
       </ul>
     </div>
   </div>
