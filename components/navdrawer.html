@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NavDrawer (Side Nav) — AMI Design System Audit</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="../index.html">Overview</a>
+      <a href="../tokens.html">Tokens</a>
+      <a href="../components.html" class="active">Components</a>
+      <a href="../screens.html">Screens</a>
+      <a href="../assets.html">Assets</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../patterns.html">Patterns</a>
+      <a href="../remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="max-width:960px">
+  <div style="margin-bottom:8px">
+    <a href="../components.html" style="color:var(--brand);text-decoration:none;font-size:13px">&larr; All Components</a>
+  </div>
+
+  <div class="section-header" style="flex-wrap:wrap;gap:8px">
+    <h1 style="margin:0">NavDrawer (Side Nav)</h1>
+    <span class="status-badge status-gap">Mixed (new semantic + LEGACY reference)</span>
+  </div>
+  <p style="color:var(--text-secondary);margin-top:4px;font-size:13px">
+    Figma Node: <code>40019054:169025</code> &middot; Category: Navigation &middot; Variants: 16+
+  </p>
+
+  <div class="card" style="padding:20px;margin:16px 0">
+    <p style="margin:0;line-height:1.6">Collapsible side navigation panel for mobile and tablet viewports. Slides in from the left. Mostly uses new semantic tokens but contains a legacy NavBar reference token that should be cleaned up.</p>
+  </div>
+
+  <div class="section">
+
+    <div class="subsection">
+      <h3 class="subsection-title">Anatomy</h3>
+      <div class="card" style="padding:16px 24px">
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container (white base)</li><li>Header (logo + close)</li><li>Navigation links</li><li>Nested folders (expandable)</li><li>Segments dividers</li><li>Footer actions</li></ol>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">States</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Expanded</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Collapsed</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Link Active</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Folder Open</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Folder Closed</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Sizes</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Default (280px width)</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Figma Variant Properties</h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
+        <tbody>
+          <tr><td><strong>State</strong></td><td>Open / Closed</td></tr>
+          <tr><td><strong>Link State</strong></td><td>Default / Active / Hover</td></tr>
+          <tr><td><strong>Has Folders</strong></td><td>Yes / No</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
+        <tbody>
+          <tr><td>Link Text</td><td><span class="token-name">Text/Neutral/Interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text</td><td><span class="token-name">Text/Neutral/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text (Inverted)</td><td><span class="token-name">Text/Neutral/Inverted</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Nav Link (Brand)</td><td><span class="token-name">Color/Container/Brand/Navlink/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff00;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff00</td></tr>
+          <tr><td>Container (Transparent)</td><td><span class="token-name">Color/Container/Neutral/Transparent interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff00;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff00</td></tr>
+          <tr><td>Active Fill</td><td><span class="token-name">Color/Container/Neutral/Interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Background</td><td><span class="token-name">Section bg/Neutral/Base</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Corner Radius</td><td><span class="token-name">Corner/Extra small</span></td><td>4px</td></tr>
+          <tr><td>Spacing</td><td><span class="token-name">spacing/08</span></td><td>8px</td></tr>
+          <tr><td>Gap</td><td><span class="token-name">spacing/12</span></td><td>12px</td></tr>
+          <tr><td>Padding</td><td><span class="token-name">spacing/16</span></td><td>16px</td></tr>
+          <tr><td>Font</td><td><span class="token-name">font family/graphik</span></td><td>Graphik</td></tr>
+          <tr><td>Font Size</td><td><span class="token-name">font size/04</span></td><td>14px</td></tr>
+          <tr><td>LEGACY Link Height</td><td><span class="token-name">Components (LEGACY)/NavBar (LEGACY)/NavBar/Consumer/Link</span></td><td>20px</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p>Contains legacy reference <code>Components (LEGACY)/NavBar (LEGACY)/NavBar/Consumer/Link: 20</code>. This hardcoded link dimension should be migrated to a semantic spacing token.</p>
+    </div>
+
+    <div class="subsection" style="margin-top:24px">
+      <h3 class="subsection-title">Engineering Notes</h3>
+      <div class="card" style="padding:16px 24px">
+        <ul style="margin:0;padding-left:20px;line-height:2">
+          <li>Component category: <strong>Navigation</strong></li>
+          <li>Token system: <strong>Mixed (new semantic + LEGACY reference)</strong></li>
+          <li>Figma node: <code>40019054:169025</code></li>
+          <li>Total token bindings: <strong>14</strong></li>
+          <li>Font family: Graphik (verify weight availability)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>

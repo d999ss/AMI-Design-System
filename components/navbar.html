@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consumer NavBar — AMI Design System Audit</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="../index.html">Overview</a>
+      <a href="../tokens.html">Tokens</a>
+      <a href="../components.html" class="active">Components</a>
+      <a href="../screens.html">Screens</a>
+      <a href="../assets.html">Assets</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../patterns.html">Patterns</a>
+      <a href="../remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="max-width:960px">
+  <div style="margin-bottom:8px">
+    <a href="../components.html" style="color:var(--brand);text-decoration:none;font-size:13px">&larr; All Components</a>
+  </div>
+
+  <div class="section-header" style="flex-wrap:wrap;gap:8px">
+    <h1 style="margin:0">Consumer NavBar</h1>
+    <span class="status-badge status-good">New semantic (lowercase)</span>
+  </div>
+  <p style="color:var(--text-secondary);margin-top:4px;font-size:13px">
+    Figma Node: <code>40019054:170805</code> &middot; Category: Navigation &middot; Variants: 24+
+  </p>
+
+  <div class="card" style="padding:20px;margin:16px 0">
+    <p style="margin:0;line-height:1.6">Primary horizontal navigation bar for the consumer-facing application. Uses new semantic tokens consistently. Contains viewport breakpoint references for responsive behavior. Links to Profile Menu and NavDrawer components.</p>
+  </div>
+
+  <div class="section">
+
+    <div class="subsection">
+      <h3 class="subsection-title">Anatomy</h3>
+      <div class="card" style="padding:16px 24px">
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container (full-width, white base)</li><li>Logo area</li><li>Nav link group</li><li>Search button</li><li>Profile avatar button</li><li>Brand accent border</li></ol>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">States</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Default</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Link Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Link Active</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Mobile (hamburger)</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Sizes</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">XLarge (1440px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Large (1280px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Medium (768px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Small (375px)</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Figma Variant Properties</h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Breakpoint</strong></td><td>XLarge (1440) / Large (1280) / Medium (768) / Small (375)</td></tr>
+          <tr><td><strong>State</strong></td><td>Default / Menu Open</td></tr>
+          <tr><td><strong>User State</strong></td><td>Logged In / Logged Out</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
+        <tbody>
+          <tr><td>Icon</td><td><span class="token-name">Color/Icon/Neutral/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Icon (Interactive)</td><td><span class="token-name">Color/Icon/Neutral/Interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Link Text</td><td><span class="token-name">Text/Neutral/Interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text</td><td><span class="token-name">Text/Neutral/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text (Inverted)</td><td><span class="token-name">Text/Neutral/Inverted</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Container (Transparent)</td><td><span class="token-name">Color/Container/Neutral/Transparent interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff00;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff00</td></tr>
+          <tr><td>Button Fill</td><td><span class="token-name">Color/Container/Neutral/Interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Background</td><td><span class="token-name">Section bg/Neutral/Base</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Brand Accent</td><td><span class="token-name">Color/Border/Brand/Medium 3</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9a6b5e;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#9a6b5e</td></tr>
+          <tr><td>Nav Font</td><td><span class="token-name">Body/Small/Regular</span></td><td>Graphik Regular 14/20</td></tr>
+          <tr><td>Viewport Min</td><td><span class="token-name">viewport/min</span></td><td>1280</td></tr>
+          <tr><td>Viewport Max</td><td><span class="token-name">viewport/max</span></td><td>2560</td></tr>
+          <tr><td>Viewport Common</td><td><span class="token-name">viewport/common</span></td><td>1440</td></tr>
+          <tr><td>Device Logic</td><td><span class="token-name">device logic/show desktop</span></td><td>true</td></tr>
+          <tr><td>Gap</td><td><span class="token-name">spacing/04</span></td><td>4px</td></tr>
+          <tr><td>Spacing</td><td><span class="token-name">spacing/08</span></td><td>8px</td></tr>
+          <tr><td>Padding</td><td><span class="token-name">spacing/16</span></td><td>16px</td></tr>
+          <tr><td>Section Gap</td><td><span class="token-name">spacing/24</span></td><td>24px</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="subsection" style="margin-top:24px">
+      <h3 class="subsection-title">Engineering Notes</h3>
+      <div class="card" style="padding:16px 24px">
+        <ul style="margin:0;padding-left:20px;line-height:2">
+          <li>Component category: <strong>Navigation</strong></li>
+          <li>Token system: <strong>New semantic (lowercase)</strong></li>
+          <li>Figma node: <code>40019054:170805</code></li>
+          <li>Total token bindings: <strong>18</strong></li>
+          <li>Font family: Graphik (verify weight availability)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>

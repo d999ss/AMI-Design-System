@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card (Product) — AMI Design System Audit</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="../index.html">Overview</a>
+      <a href="../tokens.html">Tokens</a>
+      <a href="../components.html" class="active">Components</a>
+      <a href="../screens.html">Screens</a>
+      <a href="../assets.html">Assets</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../patterns.html">Patterns</a>
+      <a href="../remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="max-width:960px">
+  <div style="margin-bottom:8px">
+    <a href="../components.html" style="color:var(--brand);text-decoration:none;font-size:13px">&larr; All Components</a>
+  </div>
+
+  <div class="section-header" style="flex-wrap:wrap;gap:8px">
+    <h1 style="margin:0">Card (Product)</h1>
+    <span class="status-badge status-critical">Fully legacy (Text & Icons/ + Desktop/)</span>
+  </div>
+  <p style="color:var(--text-secondary);margin-top:4px;font-size:13px">
+    Figma Node: <code>40006816:21739</code> &middot; Category: Data Display &middot; Variants: 20+
+  </p>
+
+  <div class="card" style="padding:20px;margin:16px 0">
+    <p style="margin:0;line-height:1.6">Product-specific card used throughout the application for courses, events, and content. FULLY LEGACY — uses Text & Icons/ naming, Desktop/P3 font tokens, and Color/Dusty Rose/100. High-priority migration target as cards appear on every major screen.</p>
+  </div>
+
+  <div class="section">
+
+    <div class="subsection">
+      <h3 class="subsection-title">Anatomy</h3>
+      <div class="card" style="padding:16px 24px">
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container (with shadow/border)</li><li>Image area (top)</li><li>Content area</li><li>Title (Headline/Small Medium)</li><li>Description (Body/Small)</li><li>Metadata (P3 font)</li><li>Action button</li><li>Brand accent (Dusty Rose)</li></ol>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">States</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Default</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Selected</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Loading</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Sizes</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">XL (1440px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">L (1280px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">M (768px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">S (375px)</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Figma Variant Properties</h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Size</strong></td><td>XL / L / M / S</td></tr>
+          <tr><td><strong>Type</strong></td><td>Standard (product specific) / List / Marketing / Article</td></tr>
+          <tr><td><strong>State</strong></td><td>Default / Hover</td></tr>
+          <tr><td><strong>Has Image</strong></td><td>Yes / No</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
+        <tbody>
+          <tr><td>Text</td><td><span class="token-name">Text & Icons/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text (White)</td><td><span class="token-name">Text & Icons/White</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Text (Neutral)</td><td><span class="token-name">Text & Icons/Neutral</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#323131;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#323131</td></tr>
+          <tr><td>Text (Subdued)</td><td><span class="token-name">Text & Icons/Subdued</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#818386;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#818386</td></tr>
+          <tr><td>Brand Accent</td><td><span class="token-name">Color/Dusty Rose/100</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#c08676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#c08676</td></tr>
+          <tr><td>Background</td><td><span class="token-name">Color/White/100</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Border/Divider</td><td><span class="token-name">Color/Neutral Grey/80</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#e9e5de;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#e9e5de</td></tr>
+          <tr><td>Dark Fill</td><td><span class="token-name">Color/Black/50</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#323131;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#323131</td></tr>
+          <tr><td>Meta Font</td><td><span class="token-name">Desktop/P3</span></td><td>Graphik Regular 13/24</td></tr>
+          <tr><td>Title</td><td><span class="token-name">Headline/Small (Medium)</span></td><td>Graphik Medium 22/1.2</td></tr>
+          <tr><td>Body</td><td><span class="token-name">Body/Small</span></td><td>Graphik Regular 13/20</td></tr>
+          <tr><td>Button</td><td><span class="token-name">Button/Regular</span></td><td>Graphik Regular 16/1.5</td></tr>
+          <tr><td>Spacing (0)</td><td><span class="token-name">Spacing/0</span></td><td>0px</td></tr>
+          <tr><td>Spacing (8)</td><td><span class="token-name">Spacing/8</span></td><td>8px</td></tr>
+          <tr><td>Spacing (12)</td><td><span class="token-name">Spacing/12</span></td><td>12px</td></tr>
+          <tr><td>Spacing (16)</td><td><span class="token-name">Spacing/16</span></td><td>16px</td></tr>
+          <tr><td>Spacing (24)</td><td><span class="token-name">Spacing/24</span></td><td>24px</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p><strong>HIGH PRIORITY MIGRATION:</strong> Cards appear on every major screen (Home Dashboard, Course Catalog, Live Events). All 17 tokens use legacy naming. Migration map: <code>Text & Icons/Default</code> → <code>Text/Neutral/Default</code>, <code>Color/Dusty Rose/100</code> → <code>Color/Border/Brand/Medium 3</code> or new brand token, <code>Desktop/P3</code> → <code>Body/Small/Regular</code>, <code>Headline/Small (Medium)</code> → needs new semantic headline token.</p>
+    </div>
+
+    <div class="subsection" style="margin-top:24px">
+      <h3 class="subsection-title">Engineering Notes</h3>
+      <div class="card" style="padding:16px 24px">
+        <ul style="margin:0;padding-left:20px;line-height:2">
+          <li>Component category: <strong>Data Display</strong></li>
+          <li>Token system: <strong>Fully legacy (Text & Icons/ + Desktop/)</strong></li>
+          <li>Figma node: <code>40006816:21739</code></li>
+          <li>Total token bindings: <strong>17</strong></li>
+          <li>Font family: Graphik (verify weight availability)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>

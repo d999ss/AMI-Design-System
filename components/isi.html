@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISI (Important Safety Info) — AMI Design System Audit</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="../index.html">Overview</a>
+      <a href="../tokens.html">Tokens</a>
+      <a href="../components.html" class="active">Components</a>
+      <a href="../screens.html">Screens</a>
+      <a href="../assets.html">Assets</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../patterns.html">Patterns</a>
+      <a href="../remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="max-width:960px">
+  <div style="margin-bottom:8px">
+    <a href="../components.html" style="color:var(--brand);text-decoration:none;font-size:13px">&larr; All Components</a>
+  </div>
+
+  <div class="section-header" style="flex-wrap:wrap;gap:8px">
+    <h1 style="margin:0">ISI (Important Safety Info)</h1>
+    <span class="status-badge status-critical">Fully legacy (Text & Icons/)</span>
+  </div>
+  <p style="color:var(--text-secondary);margin-top:4px;font-size:13px">
+    Figma Node: <code>40000195:43952</code> &middot; Category: Layout &middot; Variants: 6
+  </p>
+
+  <div class="card" style="padding:20px;margin:16px 0">
+    <p style="margin:0;line-height:1.6">Important Safety Information component — a regulatory requirement for pharmaceutical product pages. Uses entirely legacy token naming with large spacing values (80px, 124px) not found elsewhere in the system. Contains expandable/collapsible behavior for long-form safety content.</p>
+  </div>
+
+  <div class="section">
+
+    <div class="subsection">
+      <h3 class="subsection-title">Anatomy</h3>
+      <div class="card" style="padding:16px 24px">
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container (neutral grey bg)</li><li>Headline (Graphik Regular 24)</li><li>Safety text items (13px body)</li><li>Expand/collapse toggle</li><li>Scroll container</li></ol>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">States</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Collapsed (preview)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Expanded (full content)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Sticky footer mode</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Sizes</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">XL (logged in)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">L (1280px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">M (768px)</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">S (375px)</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Figma Variant Properties</h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Breakpoint</strong></td><td>XL (Logged In) / L / M / S</td></tr>
+          <tr><td><strong>State</strong></td><td>Collapsed / Expanded</td></tr>
+          <tr><td><strong>Context</strong></td><td>Logged In / Marketing</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
+        <tbody>
+          <tr><td>Text</td><td><span class="token-name">Text & Icons/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text (Neutral)</td><td><span class="token-name">Text & Icons/Neutral</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#323131;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#323131</td></tr>
+          <tr><td>Text (White)</td><td><span class="token-name">Text & Icons/White</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Text (Light)</td><td><span class="token-name">Text & Icons/Light</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#e5e5e5;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#e5e5e5</td></tr>
+          <tr><td>Background</td><td><span class="token-name">Color/White/100</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Container Bg</td><td><span class="token-name">Color/Neutral Grey/40</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#f7f5f1;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#f7f5f1</td></tr>
+          <tr><td>Headline</td><td><span class="token-name">Headline/Medium</span></td><td>Graphik Regular 24/1.2</td></tr>
+          <tr><td>Body</td><td><span class="token-name">Body/Small</span></td><td>Graphik Regular 13/20</td></tr>
+          <tr><td>Spacing (32)</td><td><span class="token-name">Spacing/32</span></td><td>32px</td></tr>
+          <tr><td>Spacing (48)</td><td><span class="token-name">Spacing/48</span></td><td>48px</td></tr>
+          <tr><td>Spacing (80)</td><td><span class="token-name">Spacing/80</span></td><td>80px</td></tr>
+          <tr><td>Spacing (124)</td><td><span class="token-name">Spacing/124</span></td><td>124px</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p><strong>FULLY LEGACY:</strong> Every token uses old naming (<code>Text & Icons/</code>, <code>Color/White/100</code>, <code>Spacing/</code>). Spacing values 80px and 124px are unique to ISI — may need new tokens in the semantic system. Migration map: <code>Text & Icons/Default</code> → <code>Text/Neutral/Default</code>, <code>Color/Neutral Grey/40</code> → <code>Color/Container/Neutral/Mute 1</code>.</p>
+    </div>
+
+    <div class="subsection" style="margin-top:24px">
+      <h3 class="subsection-title">Engineering Notes</h3>
+      <div class="card" style="padding:16px 24px">
+        <ul style="margin:0;padding-left:20px;line-height:2">
+          <li>Component category: <strong>Layout</strong></li>
+          <li>Token system: <strong>Fully legacy (Text & Icons/)</strong></li>
+          <li>Figma node: <code>40000195:43952</code></li>
+          <li>Total token bindings: <strong>12</strong></li>
+          <li>Font family: Graphik (verify weight availability)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>

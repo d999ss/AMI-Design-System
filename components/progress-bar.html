@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress Bar — AMI Design System Audit</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="../index.html">Overview</a>
+      <a href="../tokens.html">Tokens</a>
+      <a href="../components.html" class="active">Components</a>
+      <a href="../screens.html">Screens</a>
+      <a href="../assets.html">Assets</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../patterns.html">Patterns</a>
+      <a href="../remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="max-width:960px">
+  <div style="margin-bottom:8px">
+    <a href="../components.html" style="color:var(--brand);text-decoration:none;font-size:13px">&larr; All Components</a>
+  </div>
+
+  <div class="section-header" style="flex-wrap:wrap;gap:8px">
+    <h1 style="margin:0">Progress Bar</h1>
+    <span class="status-badge status-critical">Legacy (AMIO/Primary — oldest system)</span>
+  </div>
+  <p style="color:var(--text-secondary);margin-top:4px;font-size:13px">
+    Figma Node: <code>40007190:39151</code> &middot; Category: Data Display &middot; Variants: 4+
+  </p>
+
+  <div class="card" style="padding:20px;margin:16px 0">
+    <p style="margin:0;line-height:1.6">Linear progress indicator used in course completion tracking. Uses the OLDEST token system found in the design system: AMIO/Primary/ prefix. Also uses Color/Dusty Rose/ legacy naming. Highest migration priority among data display components.</p>
+  </div>
+
+  <div class="section">
+
+    <div class="subsection">
+      <h3 class="subsection-title">Anatomy</h3>
+      <div class="card" style="padding:16px 24px">
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Track (background bar)</li><li>Fill (progress indicator)</li><li>Percentage label</li><li>Optional course count text</li></ol>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">States</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">0%</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">25%</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">50%</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">75%</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">100%</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Indeterminate</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Sizes</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Default (container-width)</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Figma Variant Properties</h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Progress</strong></td><td>0% / 25% / 50% / 75% / 100%</td></tr>
+          <tr><td><strong>Size</strong></td><td>Default</td></tr>
+          <tr><td><strong>Has Label</strong></td><td>Yes / No</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
+        <tbody>
+          <tr><td>Track Color (Light)</td><td><span class="token-name">Color/Dusty Rose/60</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#e7cdc0;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#e7cdc0</td></tr>
+          <tr><td>Fill Color</td><td><span class="token-name">Color/Dusty Rose/100</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#c08676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#c08676</td></tr>
+          <tr><td>Text (Black)</td><td><span class="token-name">AMIO/Primary/Black</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#000000;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#000000</td></tr>
+          <tr><td>Fill Alt</td><td><span class="token-name">AMIO/Primary/Dusty Rose</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#c08676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#c08676</td></tr>
+          <tr><td>Label Font</td><td><span class="token-name">Caption/Regular</span></td><td>Graphik Regular 13/24 (3px tracking)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p><strong>OLDEST TOKEN SYSTEM:</strong> Uses <code>AMIO/Primary/</code> prefix — the earliest naming convention found, pre-dating even <code>Text & Icons/</code>. Migration map: <code>AMIO/Primary/Black</code> → <code>Text/Neutral/Default</code>, <code>AMIO/Primary/Dusty Rose</code> → <code>Color/Container/Brand/Interactive/Enable</code> or brand token, <code>Color/Dusty Rose/60</code> → needs new semantic track token, <code>Caption/Regular</code> → <code>Body/Small/Regular</code>.</p>
+    </div>
+
+    <div class="subsection" style="margin-top:24px">
+      <h3 class="subsection-title">Engineering Notes</h3>
+      <div class="card" style="padding:16px 24px">
+        <ul style="margin:0;padding-left:20px;line-height:2">
+          <li>Component category: <strong>Data Display</strong></li>
+          <li>Token system: <strong>Legacy (AMIO/Primary — oldest system)</strong></li>
+          <li>Figma node: <code>40007190:39151</code></li>
+          <li>Total token bindings: <strong>5</strong></li>
+          <li>Font family: Graphik (verify weight availability)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bottom Sheet — AMI Design System Audit</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="../index.html">Overview</a>
+      <a href="../tokens.html">Tokens</a>
+      <a href="../components.html" class="active">Components</a>
+      <a href="../screens.html">Screens</a>
+      <a href="../assets.html">Assets</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../patterns.html">Patterns</a>
+      <a href="../remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="max-width:960px">
+  <div style="margin-bottom:8px">
+    <a href="../components.html" style="color:var(--brand);text-decoration:none;font-size:13px">&larr; All Components</a>
+  </div>
+
+  <div class="section-header" style="flex-wrap:wrap;gap:8px">
+    <h1 style="margin:0">Bottom Sheet</h1>
+    <span class="status-badge status-gap">Mixed (new semantic + LEGACY reference)</span>
+  </div>
+  <p style="color:var(--text-secondary);margin-top:4px;font-size:13px">
+    Figma Node: <code>40009097:47982</code> &middot; Category: Navigation &middot; Variants: 8+
+  </p>
+
+  <div class="card" style="padding:20px;margin:16px 0">
+    <p style="margin:0;line-height:1.6">Mobile-first overlay sheet that slides up from the bottom of the viewport. Mostly uses new semantic tokens but contains a legacy reference token. Uses upward elevation shadow (Cast up) — the only component with this shadow direction.</p>
+  </div>
+
+  <div class="section">
+
+    <div class="subsection">
+      <h3 class="subsection-title">Anatomy</h3>
+      <div class="card" style="padding:16px 24px">
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Container (base white)</li><li>Handle bar (Circle radius)</li><li>Header (title + close)</li><li>Content area (scrollable)</li><li>Action buttons</li></ol>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">States</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Collapsed</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Half-expanded</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Full-expanded</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Dismissing</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Sizes</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Responsive (viewport width)</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Figma Variant Properties</h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
+        <tbody>
+          <tr><td><strong>State</strong></td><td>Default / Expanded / Collapsed</td></tr>
+          <tr><td><strong>Has Header</strong></td><td>Yes / No</td></tr>
+          <tr><td><strong>Content Type</strong></td><td>List / Form / Custom</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
+        <tbody>
+          <tr><td>Container</td><td><span class="token-name">Color/Container/Neutral/Base</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Container (Transparent)</td><td><span class="token-name">Color/Container/Neutral/Transparent interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff00;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff00</td></tr>
+          <tr><td>Container (Mute)</td><td><span class="token-name">Color/Container/Neutral/Transparent interactive/Mute enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff00;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff00</td></tr>
+          <tr><td>Container (Action)</td><td><span class="token-name">Color/Container/Neutral/Interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Border</td><td><span class="token-name">Color/Border/Neutral/Subtle 2</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#dedad7;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#dedad7</td></tr>
+          <tr><td>Icon</td><td><span class="token-name">Color/Icon/Neutral/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text</td><td><span class="token-name">Text/Neutral/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text (Inverted)</td><td><span class="token-name">Text/Neutral/Inverted</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Shadow</td><td><span class="token-name">Elevation 2/Cast up</span></td><td>upward multi-shadow</td></tr>
+          <tr><td>Title Style</td><td><span class="token-name">Body/Large/Medium</span></td><td>Graphik Medium 18/26</td></tr>
+          <tr><td>Body Style</td><td><span class="token-name">Body/Small/Regular</span></td><td>Graphik Regular 14/20</td></tr>
+          <tr><td>Corner Radius</td><td><span class="token-name">Corner/Extra small</span></td><td>4px</td></tr>
+          <tr><td>Handle (Pill)</td><td><span class="token-name">Corner/Circle</span></td><td>999px</td></tr>
+          <tr><td>Padding (Space/6)</td><td><span class="token-name">Space/6</span></td><td>6px</td></tr>
+          <tr><td>Spacing</td><td><span class="token-name">spacing/08</span></td><td>8px</td></tr>
+          <tr><td>Gap</td><td><span class="token-name">spacing/12</span></td><td>12px</td></tr>
+          <tr><td>Padding</td><td><span class="token-name">spacing/16</span></td><td>16px</td></tr>
+          <tr><td>Padding (Large)</td><td><span class="token-name">spacing/24</span></td><td>24px</td></tr>
+          <tr><td>Viewport</td><td><span class="token-name">viewport/common</span></td><td>1440px</td></tr>
+          <tr><td>LEGACY Margin</td><td><span class="token-name">Components (LEGACY)/Bottom Sheet (LEGACY)/24-Margin</span></td><td>24px</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p>Contains legacy reference <code>Components (LEGACY)/Bottom Sheet (LEGACY)/24-Margin</code>. This should be migrated to <code>spacing/24</code> which already exists on this component with the same value.</p>
+    </div>
+
+    <div class="subsection" style="margin-top:24px">
+      <h3 class="subsection-title">Engineering Notes</h3>
+      <div class="card" style="padding:16px 24px">
+        <ul style="margin:0;padding-left:20px;line-height:2">
+          <li>Component category: <strong>Navigation</strong></li>
+          <li>Token system: <strong>Mixed (new semantic + LEGACY reference)</strong></li>
+          <li>Figma node: <code>40009097:47982</code></li>
+          <li>Total token bindings: <strong>20</strong></li>
+          <li>Font family: Graphik (verify weight availability)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>

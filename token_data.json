@@ -378,6 +378,270 @@
     "naming_system": "legacy_text_and_icons",
     "note": "Uses 'Text & Icons' + 'Color/Utility' + 'Spacing/' naming - third spacing system found"
   },
+  "navbar": {
+    "node_id": "40019054:170805",
+    "tokens": {
+      "Color/Icon/Neutral/Default": "#090909",
+      "Text/Neutral/Interactive/Enable": "#090909",
+      "Text/Neutral/Default": "#090909",
+      "Text/Neutral/Inverted": "#ffffff",
+      "Color/Icon/Neutral/Interactive/Enable": "#090909",
+      "Color/Container/Neutral/Transparent interactive/Enable": "#ffffff00",
+      "Color/Container/Neutral/Interactive/Enable": "#090909",
+      "Color/Border/Brand/Medium 3": "#9a6b5e",
+      "Section bg/Neutral/Base": "#ffffff",
+      "Body/Small/Regular": "Font(Graphik, Regular, 14, 20, -0.2)",
+      "Corner/Small": "8",
+      "spacing/04": "4",
+      "spacing/08": "8",
+      "spacing/16": "16",
+      "spacing/24": "24",
+      "spacing/00": "0",
+      "viewport/min": "1280",
+      "viewport/max": "2560",
+      "viewport/common": "1440",
+      "device logic/show desktop": "true",
+      "font family/graphik": "Graphik",
+      "font size/04": "14",
+      "line height/20": "20",
+      "letter spacing/05": "-0.2"
+    },
+    "naming_system": "new_semantic_lowercase",
+    "note": "Primary consumer navigation bar. Uses new semantic tokens consistently. Contains viewport breakpoint references."
+  },
+  "navdrawer": {
+    "node_id": "40019054:169025",
+    "tokens": {
+      "Text/Neutral/Interactive/Enable": "#090909",
+      "Text/Neutral/Default": "#090909",
+      "Text/Neutral/Inverted": "#ffffff",
+      "Color/Container/Brand/Navlink/Enable": "#ffffff00",
+      "Color/Container/Neutral/Transparent interactive/Enable": "#ffffff00",
+      "Color/Container/Neutral/Interactive/Enable": "#090909",
+      "Section bg/Neutral/Base": "#ffffff",
+      "Corner/Extra small": "4",
+      "spacing/00": "0",
+      "spacing/08": "8",
+      "spacing/12": "12",
+      "spacing/16": "16",
+      "Components (LEGACY)/NavBar (LEGACY)/NavBar/Consumer/Link": "20",
+      "font family/graphik": "Graphik",
+      "font size/04": "14",
+      "line height/20": "20",
+      "line height/24": "24",
+      "letter spacing/05": "-0.2"
+    },
+    "naming_system": "mixed_new_and_legacy",
+    "note": "Side navigation drawer. Mostly new semantic but contains 'Components (LEGACY)/NavBar (LEGACY)' reference token — needs cleanup."
+  },
+  "footer": {
+    "node_id": "40019515:57329",
+    "tokens": {
+      "Fill / White": "#FFFFFF",
+      "Icon/Neutral/White": "#FFFFFF"
+    },
+    "alt_node_id": "40017359:55504",
+    "alt_tokens": {
+      "/Primary / 000000": "#000000",
+      "Desktop/P3": "Font(Roboto, Regular, 13, 1.5)",
+      "Desktop/Eyebrow": "Font(Roboto, Regular, 13, 1.5, letterSpacing: 3)",
+      "Desktop/P1": "Font(Roboto, Regular, 18, 1.5)",
+      "Primary/FFFFFF": "#FFFFFF",
+      "UI / Zoom Blue": "#4188FB"
+    },
+    "naming_system": "legacy",
+    "note": "Latest footer (40019515) has only 2 legacy tokens. 4.0 footer (40017359) uses Roboto and /Primary legacy system — pre-rebrand artifact. Needs full migration to new semantic system."
+  },
+  "profile-menu": {
+    "node_id": "40019054:170681",
+    "tokens": {
+      "Color/Container/Neutral/Transparent interactive/Enable": "#ffffff00",
+      "Color/Container/Brand/Mute 2": "#f9f3f1",
+      "Color/Container/Brand/Medium 3": "#9a6b5e",
+      "Color/Container/Neutral/Static/Black": "#090909",
+      "Color/Border/Neutral/Subtle 2": "#dedad7",
+      "Color/Border/Neutral/Default 08": "#09090914",
+      "Color/Border/Brand/Medium 3": "#9a6b5e",
+      "Text/Neutral/Default": "#090909",
+      "Text/Neutral/Support": "#787676",
+      "Text/Brand/Default": "#9a6b5e",
+      "Section bg/Neutral/Base": "#ffffff",
+      "Section bg/Brand/Subtle 1": "#f1e5e2",
+      "Elevation 2/Cast down": "multi-shadow",
+      "Corner/Circle": "999",
+      "Corner/Medium": "16",
+      "Space/6": "6",
+      "spacing/04": "4",
+      "spacing/08": "8",
+      "spacing/16": "16",
+      "spacing/24": "24",
+      "Body/Medium/Medium": "Font(Graphik, Medium, 16, 24, -0.2)",
+      "Body/Medium/Regular": "Font(Graphik, Regular, 16, 24, -0.2)",
+      "Body/Small/Regular": "Font(Graphik, Regular, 14, 20, -0.2)",
+      "Footnote/Regular": "Font(Graphik, Regular, 12, 18, -0.2)",
+      "font family/graphik": "Graphik",
+      "font size/03": "12",
+      "font size/04": "14",
+      "font size/05": "16",
+      "line height/18": "18",
+      "line height/20": "20",
+      "line height/24": "24",
+      "letter spacing/05": "-0.2"
+    },
+    "naming_system": "new_semantic_mixed",
+    "note": "Richest tokenization of all components (33 tokens). Uses new semantic system with both Space/ and spacing/ naming. Contains elevation shadow, brand section backgrounds, and Corner/Medium (16px) — unique to this component."
+  },
+  "search": {
+    "node_id": "72:37300",
+    "tokens": {},
+    "naming_system": "none",
+    "note": "ZERO token bindings — component has no variable references. Needs full tokenization."
+  },
+  "modal": {
+    "node_id": "40006598:91459",
+    "tokens": {
+      "Text/Neutral/Default": "#090909",
+      "Color/Icon/Neutral/Default": "#090909",
+      "Color/Container/Neutral/Transparent interactive/Enable": "#ffffff00",
+      "Color/Container/Transparent/Clear": "#ffffff00",
+      "Color/Container/Neutral/Tinted interactive/Enable": "#0909091f",
+      "Headline/Extra small/Primary medium": "Font(Graphik, Medium, 20, 24, -0.2)",
+      "Corner/Extra small": "4",
+      "Corner/Circle": "999",
+      "Space/6": "6",
+      "Space/8": "8",
+      "spacing/00": "0",
+      "spacing/08": "8",
+      "spacing/16": "16",
+      "spacing/24": "24",
+      "font family/graphik": "Graphik",
+      "font size/07": "20",
+      "line height/24": "24",
+      "letter spacing/05": "-0.2"
+    },
+    "naming_system": "new_semantic_mixed",
+    "note": "Modal header component. Uses new semantic tokens with mixed Space/ and spacing/ naming for padding/gaps. No dedicated modal container or overlay tokens found."
+  },
+  "bottom-sheet": {
+    "node_id": "40009097:47982",
+    "tokens": {
+      "Color/Container/Neutral/Base": "#ffffff",
+      "Color/Container/Neutral/Transparent interactive/Enable": "#ffffff00",
+      "Color/Container/Neutral/Transparent interactive/Mute enable": "#ffffff00",
+      "Color/Container/Neutral/Interactive/Enable": "#090909",
+      "Color/Border/Neutral/Subtle 2": "#dedad7",
+      "Color/Icon/Neutral/Default": "#090909",
+      "Text/Neutral/Default": "#090909",
+      "Text/Neutral/Inverted": "#ffffff",
+      "Elevation 2/Cast up": "multi-shadow (upward)",
+      "Body/Large/Medium": "Font(Graphik, Medium, 18, 26, -0.2)",
+      "Body/Small/Regular": "Font(Graphik, Regular, 14, 20, -0.2)",
+      "Corner/Extra small": "4",
+      "Corner/Circle": "999",
+      "Space/6": "6",
+      "spacing/02": "2",
+      "spacing/08": "8",
+      "spacing/12": "12",
+      "spacing/16": "16",
+      "spacing/24": "24",
+      "viewport/common": "1440",
+      "Components (LEGACY)/Bottom Sheet (LEGACY)/24-Margin": "24",
+      "font family/graphik": "Graphik",
+      "font size/04": "14",
+      "font size/06": "18",
+      "line height/20": "20",
+      "line height/26": "26",
+      "letter spacing/05": "-0.2"
+    },
+    "naming_system": "mixed_new_and_legacy",
+    "note": "Bottom sheet overlay. Mostly new semantic but contains legacy 'Components (LEGACY)/Bottom Sheet (LEGACY)/24-Margin' token. Uses upward elevation shadow (Cast up)."
+  },
+  "isi": {
+    "node_id": "40000195:43952",
+    "tokens": {
+      "Text & Icons/Default": "#090909",
+      "Text & Icons/Neutral": "#323131",
+      "Text & Icons/White": "#ffffff",
+      "Text & Icons/Light": "#e5e5e5",
+      "Color/White/100": "#ffffff",
+      "Color/Neutral Grey/40": "#f7f5f1",
+      "Headline/Medium": "Font(Graphik, Regular, 24, 1.2, letterSpacing: -1)",
+      "Body/Small": "Font(Graphik, Regular, 13, 20)",
+      "Spacing/32": "32",
+      "Spacing/48": "48",
+      "Spacing/80": "80",
+      "Spacing/124": "124"
+    },
+    "naming_system": "legacy_text_and_icons",
+    "note": "FULLY LEGACY. Uses 'Text & Icons/' naming, 'Color/White/100', 'Color/Neutral Grey/', 'Spacing/' (capitalized full word). Large spacing values (80, 124) unique to this component. Needs complete migration."
+  },
+  "brand-container": {
+    "node_id": "40006816:21702",
+    "tokens": {
+      "Spacing/16": "16",
+      "Spacing/8": "8",
+      "Color/Black/20": "#e5e5e5",
+      "Color/Black/50": "#323131"
+    },
+    "naming_system": "legacy",
+    "note": "Brand Container (Botox variant). Only 4 legacy tokens. Uses 'Color/Black/' naming and capitalized 'Spacing/'. Brand-specific styling is likely hardcoded rather than tokenized."
+  },
+  "card": {
+    "node_id": "40006816:21739",
+    "tokens": {
+      "Text & Icons/Default": "#090909",
+      "Text & Icons/White": "#ffffff",
+      "Text & Icons/Neutral": "#323131",
+      "Text & Icons/Subdued": "#818386",
+      "Color/Dusty Rose/100": "#c08676",
+      "Color/White/100": "#ffffff",
+      "Color/Neutral Grey/80": "#e9e5de",
+      "Color/Black/50": "#323131",
+      "Desktop/P3": "Font(Graphik, Regular, 13, 24)",
+      "Headline/Small (Medium)": "Font(Graphik, Medium, 22, 1.2, letterSpacing: -1)",
+      "Body/Small": "Font(Graphik, Regular, 13, 20)",
+      "Button/Regular": "Font(Graphik, Regular, 16, 1.5)",
+      "Spacing/0": "0",
+      "Spacing/8": "8",
+      "Spacing/12": "12",
+      "Spacing/16": "16",
+      "Spacing/24": "24"
+    },
+    "naming_system": "legacy_text_and_icons",
+    "note": "FULLY LEGACY. Product-specific card (XL). Uses 'Text & Icons/', 'Color/Dusty Rose/100', 'Desktop/P3' font tokens. 17 tokens all in legacy naming. High-priority migration target as cards appear on every screen."
+  },
+  "progress-bar": {
+    "node_id": "40007190:39151",
+    "tokens": {
+      "Color/Dusty Rose/60": "#e7cdc0",
+      "Color/Dusty Rose/100": "#c08676",
+      "AMIO/Primary/Black": "#000000",
+      "AMIO/Primary/Dusty Rose": "#c08676",
+      "Caption/Regular": "Font(Graphik, Regular, 13, 24, letterSpacing: 3)"
+    },
+    "naming_system": "legacy_amio",
+    "note": "Uses OLDEST token system found: 'AMIO/Primary/' prefix. Also uses 'Color/Dusty Rose/' legacy naming. Only 5 tokens, all legacy. Highest migration priority among Tier 1 components."
+  },
+  "navigation-xl": {
+    "node_id": "40018784:370535",
+    "tokens": {
+      "Flowkit/White": "#FFFFFF",
+      "Text & Icons/Default": "#090909",
+      "Text & Icons/Neutral": "#323131",
+      "Text & Icons/Light": "#e5e5e5",
+      "Color/Dusty Rose/100": "#c08676",
+      "Color/White/100": "#ffffff",
+      "Color/Neutral Grey/40": "#f7f5f1",
+      "Color/Border/Neutral/Subtle 2": "#dedad7",
+      "Spacing/0": "0",
+      "Spacing/12": "12",
+      "Spacing/16": "16",
+      "Spacing/32": "32",
+      "spacing/04": "4"
+    },
+    "naming_system": "mixed_legacy_and_new",
+    "note": "Navigation XL variant. Primarily legacy ('Text & Icons/', 'Color/Dusty Rose/', 'Flowkit/') with ONE new semantic token (Color/Border/Neutral/Subtle 2, spacing/04). This suggests partial migration was started but not completed."
+  },
   "_naming_inconsistencies": {
     "error_red": {
       "Button": "#de3b2d",
@@ -387,13 +651,16 @@
       "Select": "#de3b2d"
     },
     "spacing_systems": {
-      "system_1_lowercase": "spacing/08 (Button, Select, Tabs, Chip, Tooltip, Link, Badge)",
-      "system_2_pascal": "Space/8 (Text Input, Checkbox, Action Menu)",
-      "system_3_full_word": "Spacing/8 (Alert inpage)"
+      "system_1_lowercase": "spacing/08 (Button, Select, Tabs, Chip, Tooltip, Link, Badge, NavBar, NavDrawer, Modal, Bottom Sheet)",
+      "system_2_pascal": "Space/8 (Text Input, Checkbox, Action Menu, Modal, Profile Menu)",
+      "system_3_full_word": "Spacing/8 (Alert inpage, ISI, Brand Container, Card, Progress Bar, Navigation XL)",
+      "note": "Modal and Profile Menu use BOTH spacing/ and Space/ — the two systems coexist within single components"
     },
     "font_token_systems": {
-      "system_1_lowercase": "font size/05, font weight/medium (Button, Select, Tabs, Link, Badge, Chip, Tooltip)",
-      "system_2_pascal": "Font/Font size/5, Font/Weights/Medium (Text Input, Accordion, Checkbox)"
+      "system_1_lowercase": "font size/05, font weight/medium (Button, Select, Tabs, Link, Badge, Chip, Tooltip, NavBar, NavDrawer, Modal, Bottom Sheet, Profile Menu)",
+      "system_2_pascal": "Font/Font size/5, Font/Weights/Medium (Text Input, Accordion, Checkbox)",
+      "system_3_legacy_desktop": "Desktop/P3, Desktop/P1, Desktop/Eyebrow (Footer 4.0, Card) — uses Roboto in Footer 4.0",
+      "system_4_legacy_composite": "Body/Small, Headline/Medium, Button/Regular, Caption/Regular (ISI, Card, Progress Bar) — composite font tokens"
     },
     "corner_radius": {
       "Corner/Small": "8 (most components)",

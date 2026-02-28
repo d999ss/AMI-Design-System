@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Menu — AMI Design System Audit</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">AMI Design System</a>
+    <div class="nav-links">
+      <a href="../index.html">Overview</a>
+      <a href="../tokens.html">Tokens</a>
+      <a href="../components.html" class="active">Components</a>
+      <a href="../screens.html">Screens</a>
+      <a href="../assets.html">Assets</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../patterns.html">Patterns</a>
+      <a href="../remediation.html">Remediation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="max-width:960px">
+  <div style="margin-bottom:8px">
+    <a href="../components.html" style="color:var(--brand);text-decoration:none;font-size:13px">&larr; All Components</a>
+  </div>
+
+  <div class="section-header" style="flex-wrap:wrap;gap:8px">
+    <h1 style="margin:0">Profile Menu</h1>
+    <span class="status-badge status-good">New semantic (mixed Space/ + spacing/)</span>
+  </div>
+  <p style="color:var(--text-secondary);margin-top:4px;font-size:13px">
+    Figma Node: <code>40019054:170681</code> &middot; Category: Navigation &middot; Variants: 4+
+  </p>
+
+  <div class="card" style="padding:20px;margin:16px 0">
+    <p style="margin:0;line-height:1.6">User profile dropdown menu accessed from the NavBar avatar. The most richly tokenized component in the system with 33 variable bindings. Uses brand mute colors, elevation shadows, section backgrounds, and multiple type styles. Contains Corner/Medium (16px) — unique to this component.</p>
+  </div>
+
+  <div class="section">
+
+    <div class="subsection">
+      <h3 class="subsection-title">Anatomy</h3>
+      <div class="card" style="padding:16px 24px">
+        <ol style="margin:0;padding-left:20px;line-height:2"><li>Avatar trigger (Circle radius)</li><li>Dropdown container (elevation shadow)</li><li>User info section (brand mute bg)</li><li>Menu links (with icons)</li><li>Divider (subtle border)</li><li>Sign out action</li></ol>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">States</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Closed</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Open</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Link Hover</span><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Link Active</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Sizes</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="status-badge" style="margin-right:8px;background:var(--bg-page);color:var(--text-default)">Fixed width (320px est.)</span></div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Figma Variant Properties</h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Values</th></tr></thead>
+        <tbody>
+          <tr><td><strong>State</strong></td><td>Closed / Open</td></tr>
+          <tr><td><strong>User Type</strong></td><td>Consumer</td></tr>
+          <tr><td><strong>Has Avatar</strong></td><td>Yes / No</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Token Usage <span class="status-badge status-good" style="font-size:10px">From Figma</span></h3>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Token Path</th><th>Resolved Value</th></tr></thead>
+        <tbody>
+          <tr><td>Container (Transparent)</td><td><span class="token-name">Color/Container/Neutral/Transparent interactive/Enable</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff00;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff00</td></tr>
+          <tr><td>User Section Bg</td><td><span class="token-name">Color/Container/Brand/Mute 2</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#f9f3f1;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#f9f3f1</td></tr>
+          <tr><td>Brand Fill</td><td><span class="token-name">Color/Container/Brand/Medium 3</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9a6b5e;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#9a6b5e</td></tr>
+          <tr><td>Static Black</td><td><span class="token-name">Color/Container/Neutral/Static/Black</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Border</td><td><span class="token-name">Color/Border/Neutral/Subtle 2</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#dedad7;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#dedad7</td></tr>
+          <tr><td>Border (Alpha)</td><td><span class="token-name">Color/Border/Neutral/Default 08</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#09090914;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#09090914</td></tr>
+          <tr><td>Brand Border</td><td><span class="token-name">Color/Border/Brand/Medium 3</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9a6b5e;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#9a6b5e</td></tr>
+          <tr><td>Text</td><td><span class="token-name">Text/Neutral/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#090909;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#090909</td></tr>
+          <tr><td>Text (Support)</td><td><span class="token-name">Text/Neutral/Support</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#787676;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#787676</td></tr>
+          <tr><td>Text (Brand)</td><td><span class="token-name">Text/Brand/Default</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#9a6b5e;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#9a6b5e</td></tr>
+          <tr><td>Background</td><td><span class="token-name">Section bg/Neutral/Base</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#ffffff</td></tr>
+          <tr><td>Section Bg (Brand)</td><td><span class="token-name">Section bg/Brand/Subtle 1</span></td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#f1e5e2;border:1px solid #ddd;vertical-align:middle;margin-right:6px"></span>#f1e5e2</td></tr>
+          <tr><td>Shadow</td><td><span class="token-name">Elevation 2/Cast down</span></td><td>multi-shadow</td></tr>
+          <tr><td>Avatar Radius</td><td><span class="token-name">Corner/Circle</span></td><td>999px</td></tr>
+          <tr><td>Container Radius</td><td><span class="token-name">Corner/Medium</span></td><td>16px</td></tr>
+          <tr><td>Spacing (Space/6)</td><td><span class="token-name">Space/6</span></td><td>6px</td></tr>
+          <tr><td>Gap</td><td><span class="token-name">spacing/04</span></td><td>4px</td></tr>
+          <tr><td>Spacing</td><td><span class="token-name">spacing/08</span></td><td>8px</td></tr>
+          <tr><td>Padding</td><td><span class="token-name">spacing/16</span></td><td>16px</td></tr>
+          <tr><td>Section Gap</td><td><span class="token-name">spacing/24</span></td><td>24px</td></tr>
+          <tr><td>Title</td><td><span class="token-name">Body/Medium/Medium</span></td><td>Graphik Medium 16/24</td></tr>
+          <tr><td>Body</td><td><span class="token-name">Body/Medium/Regular</span></td><td>Graphik Regular 16/24</td></tr>
+          <tr><td>Small Text</td><td><span class="token-name">Body/Small/Regular</span></td><td>Graphik Regular 14/20</td></tr>
+          <tr><td>Footnote</td><td><span class="token-name">Footnote/Regular</span></td><td>Graphik Regular 12/18</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="issue-card info" style="margin-top:16px">
+      <h4>Migration Note</h4>
+      <p>Uses BOTH <code>Space/6</code> (PascalCase) and <code>spacing/04</code> (lowercase) within the same component. These should be unified during migration.</p>
+    </div>
+
+    <div class="subsection" style="margin-top:24px">
+      <h3 class="subsection-title">Engineering Notes</h3>
+      <div class="card" style="padding:16px 24px">
+        <ul style="margin:0;padding-left:20px;line-height:2">
+          <li>Component category: <strong>Navigation</strong></li>
+          <li>Token system: <strong>New semantic (mixed Space/ + spacing/)</strong></li>
+          <li>Figma node: <code>40019054:170681</code></li>
+          <li>Total token bindings: <strong>24</strong></li>
+          <li>Font family: Graphik (verify weight availability)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+</footer>
+
+</body>
+</html>

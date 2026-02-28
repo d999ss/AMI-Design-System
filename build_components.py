@@ -149,30 +149,40 @@ lines.append('''
 ''')
 
 tier1_info = [
-    ('Button', '40006598:72259', '308+', 'Form Controls', 'New semantic'),
+    # Batch 1 — Verified with real Figma token data
+    ('Button', '40006598:72259', '308+', 'Form Controls', 'Mixed'),        # New + legacy coexist
     ('Text Input', '40006598:70760', '36', 'Form Controls', 'New semantic'),
     ('Select', '40006598:84030', '72', 'Form Controls', 'New semantic'),
     ('Accordion', '40006598:90126', '15', 'Form Controls', 'New semantic'),
-    ('Chip', '40006598:71720', '10', 'Form Controls', 'Mixed'),
+    ('Chip', '40006598:71720', '10', 'Form Controls', 'New semantic'),      # Reclassified from Mixed
     ('Badge', '40003841:33610', '30', 'Data Display', 'New semantic'),
     ('Link - Standalone', '40008110:15068', '96', 'Navigation', 'New semantic'),
     ('Checkbox', '40006598:81360', '12', 'Form Controls', 'New semantic'),
-    ('Tabs', '40008120:29000', '32', 'Navigation', 'Mixed'),
+    ('Tabs', '40008120:29000', '32', 'Navigation', 'New semantic'),         # Reclassified from Mixed
     ('Tooltip', '40003841:33483', '4', 'Feedback', 'New semantic'),
     ('Action Menu', '40006598:82298', '6', 'Navigation', 'New semantic'),
     ('Counter Badge', '40006598:71412', '2', 'Form Controls', 'New semantic'),
     ('Button Group', '40006598:81018', '36', 'Form Controls', 'New semantic'),
-    ('Toggle', '40015525:22363', '2', 'Form Controls', 'Mixed'),
+    ('Toggle', '40015525:22363', '2', 'Form Controls', 'Legacy'),           # Zero tokens = legacy
     ('Progress Circle', '40000054:23550', '2', 'Data Display', 'Mixed'),
     ('Avatar', '40019054:169935', '3', 'Data Display', 'New semantic'),
-    ('Consumer NavBar', '40019054:170805', '3', 'Navigation', 'Mixed'),
-    ('Footer', '40006816:22081', '8', 'Navigation', 'Legacy'),
-    ('Profile Menu', '40019054:170681', '2', 'Navigation', 'New semantic'),
-    ('Snackbar', '40017359:55323', '3', 'Feedback', 'Mixed'),
-    ('Alert / inpage', '40007190:39217', '3', 'Feedback', 'Mixed'),
+    ('Snackbar', '40017359:55323', '3', 'Feedback', 'Legacy'),              # Roboto + /Primary
+    ('Alert / inpage', '40007190:39217', '3', 'Feedback', 'Legacy'),        # Text & Icons + Color/Utility
     ('Alert / top', '40009097:47558', '1', 'Feedback', 'Mixed'),
     ('Action List', '40006598:71903', '5', 'Form Controls', 'New semantic'),
     ('Checkbox List', '40006598:90371', '2', 'Form Controls', 'New semantic'),
+    # Batch 2 — New Figma token data extracted
+    ('Consumer NavBar', '40019054:170805', '24+', 'Navigation', 'New semantic'),
+    ('NavDrawer', '40019054:169025', '16+', 'Navigation', 'Mixed'),         # Has LEGACY reference
+    ('Footer', '40019515:57329', '6+', 'Navigation', 'Legacy'),             # 2 legacy tokens only
+    ('Profile Menu', '40019054:170681', '4+', 'Navigation', 'New semantic'), # 33 tokens, richest
+    ('Modal', '40006598:91459', '12+', 'Feedback', 'New semantic'),
+    ('Bottom Sheet', '40009097:47982', '8+', 'Navigation', 'Mixed'),        # Has LEGACY reference
+    ('Search', '72:37300', '8+', 'Form Controls', 'Legacy'),                # Zero tokens
+    ('ISI', '40000195:43952', '6', 'Layout', 'Legacy'),                     # Fully legacy
+    ('Brand Container', '40006816:21702', '6', 'Brand / Logos', 'Legacy'),  # 4 legacy tokens
+    ('Card (Product)', '40006816:21739', '20+', 'Data Display', 'Legacy'),  # Fully legacy
+    ('Progress Bar', '40007190:39151', '4+', 'Data Display', 'Legacy'),     # AMIO/Primary (oldest)
 ]
 
 slug_map = {
@@ -184,8 +194,12 @@ slug_map = {
     'Toggle': 'toggle', 'Progress Circle': 'progress-circle',
     'Avatar': 'avatar', 'Snackbar': 'snackbar',
     'Alert / inpage': 'alert-inpage', 'Action List': 'action-list',
-    'Checkbox List': 'checkbox-list', 'Consumer NavBar': 'consumer-navbar',
+    'Checkbox List': 'checkbox-list', 'Consumer NavBar': 'navbar',
     'Footer': 'footer', 'Profile Menu': 'profile-menu', 'Alert / top': 'alert-top',
+    'Modal': 'modal', 'Bottom Sheet': 'bottom-sheet',
+    'NavDrawer': 'navdrawer', 'Search': 'search',
+    'ISI': 'isi', 'Brand Container': 'brand-container',
+    'Card (Product)': 'card', 'Progress Bar': 'progress-bar',
 }
 
 for name, nid, variants, cat, system in tier1_info:

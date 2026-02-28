@@ -57,9 +57,9 @@
         <span class="score-value">2/5</span>
       </div>
       <div class="score-item">
-        <div class="score-bar"><div class="fill warn" style="width:50%"></div></div>
+        <div class="score-bar"><div class="fill warn" style="width:40%"></div></div>
         <span class="score-label">Naming Consistency</span>
-        <span class="score-value">3/5</span>
+        <span class="score-value">2/5</span>
       </div>
       <div class="score-item">
         <div class="score-bar"><div class="fill bad" style="width:20%"></div></div>
@@ -81,24 +81,38 @@
 
   <!-- Full Gap Inventory -->
   <div class="section">
-    <h2 class="section-title">Gap Inventory <span class="status-badge status-gap">15 Items — Verified via Figma MCP</span></h2>
-    <p class="section-desc">All identified gaps categorized by severity. Updated with findings from <code>get_variable_defs</code> extraction across all 18 Tier 1 components.</p>
+    <h2 class="section-title">Gap Inventory <span class="status-badge status-gap">22 Items — Verified via Figma MCP</span></h2>
+    <p class="section-desc">All identified gaps categorized by severity. Updated with findings from <code>get_variable_defs</code> extraction across all 29 documented components (Batch 1 + Batch 2).</p>
 
     <div class="issues-grid">
-      <div class="issue-card drift"><h4>4 Different Error Red Values</h4><p>Button/Select: <code>#de3b2d</code>, Text Input/Checkbox: <code>#dc3426</code>, Badge text: <code>#961307</code>, Alert inpage: <code>#ff0000</code>. Four different "error red" values across Tier 1 components.</p></div>
-      <div class="issue-card naming"><h4>3 Spacing Naming Systems (Confirmed)</h4><p>System 1: <code>spacing/08</code> (lowercase, Button/Select/Tabs/Chip/Tooltip/Link/Badge). System 2: <code>Space/8</code> (PascalCase, Text Input/Checkbox/Action Menu). System 3: <code>Spacing/8</code> (capitalized, Alert inpage).</p></div>
-      <div class="issue-card naming"><h4>2 Font Token Systems (Confirmed)</h4><p>System 1: <code>font size/05</code> (lowercase, 7 components). System 2: <code>Font/Font size/5</code> (PascalCase, 3 components). Accordion uses BOTH systems simultaneously.</p></div>
-      <div class="issue-card naming"><h4>3 Corner Radius Naming Patterns</h4><p><code>Corner/Small: 8</code> (PascalCase), <code>corner/extra_small: 4</code> (lowercase with underscore), <code>Corner/Extra small: 4</code> (PascalCase with space). Same value, three naming conventions.</p></div>
-      <div class="issue-card drift"><h4>Toggle: Zero Token Bindings</h4><p>Toggle component returned 0 variables from <code>get_variable_defs</code>. All visual properties are hardcoded — must be fully tokenized before implementation.</p></div>
-      <div class="issue-card drift"><h4>Snackbar: Legacy /Primary + Roboto</h4><p>Only 2 token bindings total: <code>/Primary / 000000</code> and <code>Desktop/P2</code> (Roboto 16px). Last component using Roboto font.</p></div>
-      <div class="issue-card drift"><h4>Alert: Legacy Text &amp; Icons System</h4><p>Uses <code>Text &amp; Icons/Default</code>, <code>Color/Utility/Red</code> (#ff0000 raw), and a third spacing convention. Three legacy systems in one component.</p></div>
-      <div class="issue-card drift"><h4>Button: Old + New Tokens Coexist</h4><p>Button contains both <code>Color/Container/Brand/Interactive/Enable</code> (new) AND <code>color/surface/interactive/Brand/Enable</code> (old) pointing to the same values.</p></div>
-      <div class="issue-card gap"><h4>Incomplete Elevation System</h4><p>Only "Elevation 2/Cast down" exists (used by Select, Tooltip, Action Menu). Need Elevation 1 (cards), Elevation 3 (modals), Elevation 4 (tooltips).</p></div>
-      <div class="issue-card drift"><h4>4 Font Families Active</h4><p>Graphik (primary, all components), Petersburg (Accordion headlines), F37 Lineca (mobile), Roboto (Snackbar only — migrate).</p></div>
-      <div class="issue-card gap"><h4>No Breakpoint Tokens</h4><p>XL (1536), L (1279), M (768), S (480) inferred from variant names but no formal variables.</p></div>
+      <!-- Token Naming Gaps -->
+      <div class="issue-card naming"><h4>3 Spacing Naming Systems Coexist</h4><p>System 1: <code>spacing/08</code> (lowercase — Button, Select, Tabs, Chip, NavBar, NavDrawer, Modal, Bottom Sheet). System 2: <code>Space/8</code> (PascalCase — Text Input, Checkbox, Action Menu, Modal, Profile Menu). System 3: <code>Spacing/8</code> (capitalized — Alert, ISI, Brand Container, Card, Progress Bar, Navigation XL). <strong>Modal and Profile Menu use BOTH spacing/ and Space/.</strong></p></div>
+      <div class="issue-card naming"><h4>4 Font Token Systems Found</h4><p>1: <code>font size/05</code> (lowercase, 12 components). 2: <code>Font/Font size/5</code> (PascalCase, 3 components). 3: <code>Desktop/P3</code> (legacy composite — Footer 4.0, Card). 4: <code>Body/Small</code>, <code>Caption/Regular</code> (legacy composite — ISI, Card, Progress Bar). Footer 4.0 uses <strong>Roboto</strong> in Desktop/ tokens.</p></div>
+      <div class="issue-card naming"><h4>5 Corner Radius Naming Patterns</h4><p><code>Corner/Small: 8</code>, <code>Corner/Extra small: 4</code>, <code>corner/extra_small: 4</code> (lowercase underscore), <code>Corner/Circle: 999</code>, <code>Corner/Medium: 16</code> (Profile Menu only), <code>Corner/Medium small: 12</code> (Text Input only).</p></div>
+      <div class="issue-card drift"><h4>4 Different Error Red Values</h4><p>Button/Select: <code>#de3b2d</code>, Text Input/Checkbox: <code>#dc3426</code>, Badge text: <code>#961307</code>, Alert inpage: <code>#ff0000</code>. No canonical error color defined.</p></div>
+      <div class="issue-card naming"><h4>Line Height Inconsistency</h4><p>Ratio (1.5 in Snackbar/Card Roboto, 1.2 in Headlines) vs px values (18/20/24/26/30px in semantic system).</p></div>
+
+      <!-- Legacy System Gaps -->
+      <div class="issue-card drift"><h4>AMIO/Primary — Oldest Token System</h4><p>Progress Bar uses <code>AMIO/Primary/Black</code> and <code>AMIO/Primary/Dusty Rose</code> — the earliest naming convention found, pre-dating even Text &amp; Icons/. Needs immediate migration.</p></div>
+      <div class="issue-card drift"><h4>Card: Fully Legacy (High Priority)</h4><p>Product cards appear on <strong>every major screen</strong>. All 17 tokens use legacy naming: <code>Text &amp; Icons/</code>, <code>Desktop/P3</code>, <code>Color/Dusty Rose/100</code>. Highest-impact migration target.</p></div>
+      <div class="issue-card drift"><h4>ISI: Fully Legacy System</h4><p>Uses <code>Text &amp; Icons/</code>, <code>Color/White/100</code>, <code>Color/Neutral Grey/40</code>. Contains unique large spacing values (80px, 124px) not found in the semantic system.</p></div>
+      <div class="issue-card drift"><h4>Footer 4.0: Pre-Rebrand Roboto</h4><p>Uses <code>/Primary / 000000</code> and <strong>Roboto</strong> font (not Graphik). Also references <code>UI / Zoom Blue: #4188FB</code> — a blue not used anywhere else in AMI.</p></div>
+      <div class="issue-card drift"><h4>Snackbar: Legacy /Primary + Roboto</h4><p>Only 2 token bindings: <code>/Primary / 000000</code> and <code>Desktop/P2</code> (Roboto 16px).</p></div>
+      <div class="issue-card drift"><h4>Alert: Legacy Text &amp; Icons + Color/Utility</h4><p>Uses <code>Text &amp; Icons/Default</code>, <code>Color/Utility/Red</code> (#ff0000 raw), and capitalized <code>Spacing/</code> convention.</p></div>
+      <div class="issue-card drift"><h4>Navigation XL: Partial Migration Stalled</h4><p>Contains both <code>Text &amp; Icons/</code> (legacy) and <code>Color/Border/Neutral/Subtle 2</code> (new semantic). Migration was started but not completed. Also has <code>Flowkit/White</code> — a third-party tool artifact.</p></div>
+
+      <!-- Zero/Minimal Binding Gaps -->
+      <div class="issue-card drift"><h4>Toggle: Zero Token Bindings</h4><p>All visual properties hardcoded. Must be fully tokenized before implementation.</p></div>
+      <div class="issue-card drift"><h4>Search: Zero Token Bindings</h4><p>Core form control with no variable references. Should inherit Text Input field tokens (same family).</p></div>
+      <div class="issue-card drift"><h4>Brand Container: 4 Legacy Tokens Only</h4><p>Brand-specific styling appears hardcoded per product. Only <code>Spacing/16</code>, <code>Spacing/8</code>, <code>Color/Black/20</code>, <code>Color/Black/50</code>. Needs brand token collections.</p></div>
+      <div class="issue-card drift"><h4>Footer (Latest): Only 2 Tokens</h4><p><code>Fill / White</code> and <code>Icon/Neutral/White</code> — among the least tokenized components. All other visual properties hardcoded.</p></div>
+      <div class="issue-card drift"><h4>Button: Old + New Tokens Coexist</h4><p>Contains both <code>Color/Container/Brand/Interactive/Enable</code> (new) AND <code>color/surface/interactive/Brand/Enable</code> (old) pointing to the same values.</p></div>
+
+      <!-- System-Level Gaps -->
+      <div class="issue-card gap"><h4>Elevation System Incomplete</h4><p>"Elevation 2/Cast down" and "Elevation 2/Cast up" (Bottom Sheet) exist. Need Elevation 1 (cards), Elevation 3 (modals), Elevation 4 (high-priority tooltips).</p></div>
+      <div class="issue-card gap"><h4>Breakpoint Tokens Found but Informal</h4><p>NavBar contains <code>viewport/min: 1280</code>, <code>viewport/max: 2560</code>, <code>viewport/common: 1440</code>. These exist but are not formalized across all responsive components.</p></div>
       <div class="issue-card gap"><h4>No Grid Tokens</h4><p>No column count, gutter width, or margin tokens. Only observable from screen designs.</p></div>
       <div class="issue-card gap"><h4>Missing Gradient Definitions</h4><p>"Gradients/Light Marketing Banner" referenced but undefined.</p></div>
-      <div class="issue-card naming"><h4>Line Height Inconsistency</h4><p>Ratio (1.5 in Snackbar/Roboto) vs px values (18/20/24/26/30px in semantic system).</p></div>
       <div class="issue-card gap"><h4>No Motion / Animation Tokens</h4><p>No duration, easing, or transition tokens defined anywhere in the system.</p></div>
     </div>
   </div>
@@ -112,23 +126,27 @@
       <p class="section-desc">Items that block BTS from starting the build.</p>
       <div class="card" style="padding:24px;border-left:4px solid var(--status-drift)">
         <ul style="list-style:none;padding:0">
-          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Resolve status color discrepancies</strong> &mdash; Pick canonical values for error red and success green</li>
-          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Define breakpoint tokens</strong> &mdash; Codify XL (1536), L (1279), M (768), S (480)</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Migrate Card tokens to semantic system</strong> &mdash; Cards appear on every screen. All 17 tokens use legacy naming (Text &amp; Icons/, Desktop/P3, Color/Dusty Rose/).</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Resolve status color discrepancies</strong> &mdash; Pick canonical error red from #de3b2d, #dc3426, #961307, #ff0000</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Define breakpoint tokens</strong> &mdash; Formalize viewport/ tokens already in NavBar (min:1280, max:2560, common:1440)</li>
           <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Document grid specifications</strong> &mdash; Column counts, gutters, margins per breakpoint</li>
-          <li style="padding:8px 0;font-size:14px"><strong>Complete elevation scale</strong> &mdash; Define Elevation 1, 3, 4 based on Elevation 2 pattern</li>
+          <li style="padding:8px 0;font-size:14px"><strong>Complete elevation scale</strong> &mdash; Elevation 2 exists (Cast down + Cast up). Need Elevation 1 (cards) and Elevation 3 (modals).</li>
         </ul>
       </div>
     </div>
 
     <div class="subsection">
-      <h3 class="subsection-title">P1 — Sprint 1: Token Standardization</h3>
-      <p class="section-desc">Unify naming conventions and begin legacy migration.</p>
+      <h3 class="subsection-title">P1 — Sprint 1: Token Standardization + Legacy Migration</h3>
+      <p class="section-desc">Unify naming conventions and migrate highest-impact legacy components.</p>
       <div class="card" style="padding:24px;border-left:4px solid var(--status-gap)">
         <ul style="list-style:none;padding:0">
-          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Standardize color naming</strong> &mdash; Migrate to <code>Color/{role}/{category}/{state}</code></li>
-          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Unify spacing tokens</strong> &mdash; Standardize on <code>Space/{value}</code></li>
-          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Unify font tokens</strong> &mdash; PascalCase: <code>Font/Font size/5</code></li>
-          <li style="padding:8px 0;font-size:14px"><strong>Migrate Footer from Roboto to Graphik</strong></li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Unify spacing tokens</strong> &mdash; Pick one of spacing/08, Space/8, or Spacing/8 across all 29 components</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Unify font tokens</strong> &mdash; Standardize on one system (lowercase or PascalCase)</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Migrate ISI to semantic system</strong> &mdash; Replace Text &amp; Icons/, Color/White/100, Spacing/ with new equivalents</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Migrate Footer + Snackbar from Roboto to Graphik</strong> &mdash; Two components still using pre-rebrand font</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Migrate Progress Bar from AMIO/Primary/</strong> &mdash; Oldest token system in the file</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:14px"><strong>Tokenize Toggle and Search</strong> &mdash; Both have zero variable bindings</li>
+          <li style="padding:8px 0;font-size:14px"><strong>Remove Button legacy duplicates</strong> &mdash; Clean up color/surface/ tokens that duplicate new Color/Container/ tokens</li>
         </ul>
       </div>
     </div>
@@ -165,33 +183,50 @@
     <p class="section-desc">Component-level token system status. "New semantic" components are ready for direct token-to-CSS mapping. "Mixed" components require migration before implementation.</p>
 
     <table class="data-table">
-      <thead><tr><th>Component</th><th>Current System</th><th>Migration</th><th>Effort</th><th>Priority</th></tr></thead>
+      <thead><tr><th>Component</th><th>Current System</th><th>Tokens</th><th>Migration</th><th>Effort</th><th>Priority</th></tr></thead>
       <tbody>
-        <tr><td><a href="components/button.html" style="color:var(--brand)"><strong>Button</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
-        <tr><td><a href="components/text-input.html" style="color:var(--brand)"><strong>Text Input</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
-        <tr><td><a href="components/select.html" style="color:var(--brand)"><strong>Select</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
-        <tr><td><a href="components/accordion.html" style="color:var(--brand)"><strong>Accordion</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
-        <tr><td><a href="components/badge.html" style="color:var(--brand)"><strong>Badge</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
-        <tr><td><a href="components/link.html" style="color:var(--brand)"><strong>Link</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
-        <tr><td><a href="components/checkbox.html" style="color:var(--brand)"><strong>Checkbox</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
-        <tr><td><a href="components/avatar.html" style="color:var(--brand)"><strong>Avatar</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>None needed</td><td>—</td><td>—</td></tr>
-        <tr><td><a href="components/chip.html" style="color:var(--brand)"><strong>Chip</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap to semantic tokens</td><td>Medium</td><td>P1</td></tr>
-        <tr><td><a href="components/tabs.html" style="color:var(--brand)"><strong>Tabs</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap Text &amp; Icons tokens</td><td>Medium</td><td>P1</td></tr>
-        <tr><td><a href="components/toggle.html" style="color:var(--brand)"><strong>Toggle</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap to semantic tokens</td><td>Low</td><td>P2</td></tr>
-        <tr><td><a href="components/snackbar.html" style="color:var(--brand)"><strong>Snackbar</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap to semantic tokens</td><td>Low</td><td>P2</td></tr>
-        <tr><td><a href="components/progress-circle.html" style="color:var(--brand)"><strong>Progress Circle</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap AMIO tokens</td><td>Medium</td><td>P2</td></tr>
-        <tr><td><a href="components/alert-inpage.html" style="color:var(--brand)"><strong>Alert (inpage)</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap to semantic tokens</td><td>Low</td><td>P2</td></tr>
-        <tr><td><strong>Consumer NavBar</strong></td><td><span class="status-badge status-gap">Mixed</span></td><td>Remap Text &amp; Icons tokens</td><td>High</td><td>P1</td></tr>
-        <tr><td><strong>Footer</strong></td><td><span class="status-badge status-drift">Legacy</span></td><td>Migrate /Primary + Roboto</td><td>Medium</td><td>P1</td></tr>
-        <tr><td><strong>Side Nav</strong></td><td><span class="status-badge status-drift">Legacy</span></td><td>Migrate Text &amp; Icons</td><td>Medium</td><td>P3</td></tr>
-        <tr><td><strong>Tabs Selectors</strong></td><td><span class="status-badge status-drift">Legacy</span></td><td>Migrate Tertiary tokens</td><td>Low</td><td>P3</td></tr>
+        <tr class="cat-header"><td colspan="6">New Semantic — Ready for Implementation</td></tr>
+        <tr><td><a href="components/text-input.html" style="color:var(--brand)"><strong>Text Input</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>18</td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/select.html" style="color:var(--brand)"><strong>Select</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>15</td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/badge.html" style="color:var(--brand)"><strong>Badge</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>16</td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/link.html" style="color:var(--brand)"><strong>Link</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>9</td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/checkbox.html" style="color:var(--brand)"><strong>Checkbox</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>7</td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/chip.html" style="color:var(--brand)"><strong>Chip</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>13</td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/tabs.html" style="color:var(--brand)"><strong>Tabs</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>10</td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/tooltip.html" style="color:var(--brand)"><strong>Tooltip</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>8</td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/action-menu.html" style="color:var(--brand)"><strong>Action Menu</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>5</td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/avatar.html" style="color:var(--brand)"><strong>Avatar</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>5</td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/navbar.html" style="color:var(--brand)"><strong>Consumer NavBar</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>22</td><td>None needed</td><td>—</td><td>—</td></tr>
+        <tr><td><a href="components/profile-menu.html" style="color:var(--brand)"><strong>Profile Menu</strong></a></td><td><span class="status-badge status-good">New semantic</span></td><td>33</td><td>None needed</td><td>—</td><td>—</td></tr>
+
+        <tr class="cat-header"><td colspan="6">Mixed — Partial Migration Required</td></tr>
+        <tr><td><a href="components/button.html" style="color:var(--brand)"><strong>Button</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>47</td><td>Remove legacy <code>color/surface/</code> duplicates</td><td>Medium</td><td>P1</td></tr>
+        <tr><td><a href="components/accordion.html" style="color:var(--brand)"><strong>Accordion</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>13</td><td>Unify Font/ and font/ naming</td><td>Low</td><td>P2</td></tr>
+        <tr><td><a href="components/modal.html" style="color:var(--brand)"><strong>Modal</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>18</td><td>Unify Space/ and spacing/ naming</td><td>Low</td><td>P2</td></tr>
+        <tr><td><a href="components/bottom-sheet.html" style="color:var(--brand)"><strong>Bottom Sheet</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>23</td><td>Remove LEGACY Bottom Sheet margin token</td><td>Low</td><td>P2</td></tr>
+        <tr><td><a href="components/navdrawer.html" style="color:var(--brand)"><strong>NavDrawer (Side Nav)</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>20</td><td>Remove LEGACY NavBar reference token</td><td>Low</td><td>P2</td></tr>
+        <tr><td><a href="components/progress-circle.html" style="color:var(--brand)"><strong>Progress Circle</strong></a></td><td><span class="status-badge status-gap">Mixed</span></td><td>5</td><td>Remap legacy tokens</td><td>Medium</td><td>P2</td></tr>
+
+        <tr class="cat-header"><td colspan="6">Legacy — Full Migration Required</td></tr>
+        <tr><td><a href="components/card.html" style="color:var(--brand)"><strong>Card (Product)</strong></a></td><td><span class="status-badge status-drift">Legacy</span></td><td>17</td><td>Migrate Text &amp; Icons/ + Desktop/ + Color/Dusty Rose/</td><td><strong>High</strong></td><td><strong>P0</strong></td></tr>
+        <tr><td><a href="components/isi.html" style="color:var(--brand)"><strong>ISI</strong></a></td><td><span class="status-badge status-drift">Legacy</span></td><td>12</td><td>Migrate Text &amp; Icons/ + Spacing/ + Color/White/</td><td>High</td><td>P1</td></tr>
+        <tr><td><a href="components/footer.html" style="color:var(--brand)"><strong>Footer</strong></a></td><td><span class="status-badge status-drift">Legacy</span></td><td>2</td><td>Full tokenization + migrate Roboto to Graphik</td><td>High</td><td>P1</td></tr>
+        <tr><td><a href="components/alert-inpage.html" style="color:var(--brand)"><strong>Alert (inpage)</strong></a></td><td><span class="status-badge status-drift">Legacy</span></td><td>7</td><td>Migrate Text &amp; Icons/ + Color/Utility/</td><td>Medium</td><td>P1</td></tr>
+        <tr><td><a href="components/snackbar.html" style="color:var(--brand)"><strong>Snackbar</strong></a></td><td><span class="status-badge status-drift">Legacy</span></td><td>2</td><td>Migrate /Primary + Roboto to Graphik</td><td>Medium</td><td>P1</td></tr>
+        <tr><td><a href="components/progress-bar.html" style="color:var(--brand)"><strong>Progress Bar</strong></a></td><td><span class="status-badge status-drift">Legacy</span></td><td>5</td><td>Migrate AMIO/Primary/ (oldest system)</td><td>Medium</td><td>P1</td></tr>
+        <tr><td><a href="components/brand-container.html" style="color:var(--brand)"><strong>Brand Container</strong></a></td><td><span class="status-badge status-drift">Legacy</span></td><td>4</td><td>Migrate Spacing/ + Color/Black/ + add brand tokens</td><td>High</td><td>P2</td></tr>
+
+        <tr class="cat-header"><td colspan="6">Zero Tokens — Full Tokenization Required</td></tr>
+        <tr><td><a href="components/toggle.html" style="color:var(--brand)"><strong>Toggle</strong></a></td><td><span class="status-badge status-critical">None</span></td><td>0</td><td>Full tokenization needed</td><td>Medium</td><td>P1</td></tr>
+        <tr><td><a href="components/search.html" style="color:var(--brand)"><strong>Search</strong></a></td><td><span class="status-badge status-critical">None</span></td><td>0</td><td>Full tokenization needed (inherit from Text Input)</td><td>Medium</td><td>P1</td></tr>
       </tbody>
     </table>
 
-    <div style="margin-top:16px;display:flex;gap:24px;font-size:13px;color:var(--text-support)">
-      <div><span class="status-badge status-good">New semantic</span> 8 components &mdash; ready</div>
-      <div><span class="status-badge status-gap">Mixed</span> 7 components &mdash; partial migration</div>
-      <div><span class="status-badge status-drift">Legacy</span> 3 components &mdash; full migration</div>
+    <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:24px;font-size:13px;color:var(--text-support)">
+      <div><span class="status-badge status-good">New semantic</span> 12 components &mdash; ready</div>
+      <div><span class="status-badge status-gap">Mixed</span> 6 components &mdash; minor cleanup</div>
+      <div><span class="status-badge status-drift">Legacy</span> 7 components &mdash; full migration</div>
+      <div><span class="status-badge status-critical">None</span> 2 components &mdash; tokenize from scratch</div>
     </div>
   </div>
 </div>
