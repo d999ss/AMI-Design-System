@@ -6,16 +6,196 @@
 <title>Components — AMI Design System Audit</title>
 <link rel="stylesheet" href="style.css">
 <style>
-  .tier-badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; }
-  .tier-1 { background:#f1e5e2; color:#9a6b5e; }
-  .tier-2 { background:#e3f2fd; color:#1565c0; }
-  .tier-3 { background:#f7f6f5; color:#b3b0ae; }
-  .cat-header td { background:#f7f6f5; font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:#787676; padding:12px 16px !important; border-bottom:2px solid #ece9e5 !important; }
-  .bar-chart { display:flex; flex-direction:column; gap:8px; margin-top:16px; }
-  .bar-row { display:flex; align-items:center; gap:12px; }
-  .bar-label { width:120px; font-size:12px; font-weight:500; text-align:right; flex-shrink:0; }
-  .bar-track { flex:1; height:24px; background:#f7f6f5; border-radius:4px; overflow:hidden; }
-  .bar-fill { height:100%; background:#9a6b5e; border-radius:4px; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; font-size:11px; color:#fff; font-weight:600; min-width:30px; }
+  /* ========== Component Gallery ========== */
+  .gallery-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .filter-btn {
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid var(--border-default);
+    background: var(--bg-card);
+    color: var(--text-support);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--brand); color: var(--text-default); }
+  .filter-btn.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .filter-btn .count {
+    display: inline-block;
+    background: rgba(0,0,0,0.08);
+    padding: 1px 6px;
+    border-radius: 99px;
+    font-size: 11px;
+    margin-left: 4px;
+  }
+  .filter-btn.active .count { background: rgba(255,255,255,0.25); }
+
+  /* Component Cards */
+  .component-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .comp-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .comp-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    transform: translateY(-3px);
+    border-color: var(--brand-subtle);
+  }
+  .comp-card-img {
+    height: 180px;
+    overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid var(--border-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .comp-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 12px;
+  }
+  .comp-card-img .no-img {
+    color: var(--text-disabled);
+    font-size: 13px;
+    font-style: italic;
+  }
+  .comp-card-body {
+    padding: 16px 20px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .comp-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .comp-card-name {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .comp-card-meta {
+    font-size: 12px;
+    color: var(--text-support);
+    margin-bottom: 10px;
+  }
+  .comp-card-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .comp-card .token-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .token-status.good { background: var(--status-good-bg); color: var(--status-good); }
+  .token-status.gap { background: var(--status-gap-bg); color: var(--status-gap); }
+  .token-status.drift { background: var(--status-drift-bg); color: var(--status-drift); }
+  .comp-card .variant-count {
+    font-size: 11px;
+    color: var(--text-support);
+    font-weight: 500;
+  }
+  .comp-card .arrow {
+    font-size: 16px;
+    color: var(--text-disabled);
+    transition: transform 0.15s, color 0.15s;
+  }
+  .comp-card:hover .arrow { transform: translateX(3px); color: var(--brand); }
+
+  /* Status Legend */
+  .status-legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 16px 24px;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+    margin-bottom: 32px;
+    font-size: 12px;
+    color: var(--text-support);
+  }
+  .status-legend .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .legend-dot.good { background: var(--status-good); }
+  .legend-dot.gap { background: var(--status-gap); }
+  .legend-dot.drift { background: var(--status-drift); }
+
+  /* Hero stats */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border-default);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .hero-stat {
+    background: var(--bg-card);
+    padding: 24px 28px;
+    text-align: center;
+  }
+  .hero-stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--brand);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--text-support);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .component-gallery { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>
@@ -38,968 +218,419 @@
 
 <div class="page">
   <div class="page-header">
-    <h1>Component Inventory</h1>
-    <p class="subtitle">Master inventory of all 774 elements from the Internal Only Canvas page. Components are categorized by function and tiered by documentation depth.</p>
-    <div class="meta">
-      <strong>Source:</strong> Page 0:2 — Internal Only Canvas (component library)<br>
-      <strong>Total:</strong> 774 elements (522 frames + 252 symbols) · <strong>Tier 1:</strong> ~25 fully documented · <strong>Tier 2:</strong> screenshot + summary · <strong>Tier 3:</strong> listed
+    <h1>Component Library</h1>
+    <p class="subtitle">29 documented components from the AMI Figma master file. Each card shows the live Figma screenshot, token migration status, and variant count. Click through for full specs, anatomy, and token mappings.</p>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-number">29</div>
+      <div class="hero-stat-label">Components</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">15</div>
+      <div class="hero-stat-label">New Semantic</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">5</div>
+      <div class="hero-stat-label">Mixed Tokens</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">9</div>
+      <div class="hero-stat-label">Legacy Tokens</div>
     </div>
   </div>
 
-
-  <div class="stat-row">
-    <div class="stat-card"><div class="stat-number">774</div><div class="stat-label">Total Elements</div></div>
-    <div class="stat-card"><div class="stat-number">522</div><div class="stat-label">Frames</div></div>
-    <div class="stat-card"><div class="stat-number">252</div><div class="stat-label">Symbols</div></div>
-    <div class="stat-card"><div class="stat-number">9</div><div class="stat-label">Categories</div></div>
-    <div class="stat-card"><div class="stat-number">24</div><div class="stat-label">Tier 1 Components</div></div>
+  <div class="status-legend">
+    <span style="font-weight:600;color:var(--text-default)">Token Status:</span>
+    <span class="legend-item"><span class="legend-dot good"></span> New semantic tokens</span>
+    <span class="legend-item"><span class="legend-dot gap"></span> Mixed (new + legacy)</span>
+    <span class="legend-item"><span class="legend-dot drift"></span> Legacy tokens only</span>
   </div>
 
-
-  <div class="section">
-    <h2 class="section-title">Category Breakdown</h2>
-    <p class="section-desc">Distribution of elements across functional categories.</p>
-    <div class="card" style="padding:24px">
-      <div class="bar-chart">
-
-        <div class="bar-row"><div class="bar-label">Icons</div><div class="bar-track"><div class="bar-fill" style="width:100%">208</div></div></div>
-        <div class="bar-row"><div class="bar-label">Brand / Logos</div><div class="bar-track"><div class="bar-fill" style="width:48%">100</div></div></div>
-        <div class="bar-row"><div class="bar-label">Navigation</div><div class="bar-track"><div class="bar-fill" style="width:47%">99</div></div></div>
-        <div class="bar-row"><div class="bar-label">Form Controls</div><div class="bar-track"><div class="bar-fill" style="width:39%">83</div></div></div>
-        <div class="bar-row"><div class="bar-label">Data Display</div><div class="bar-track"><div class="bar-fill" style="width:37%">79</div></div></div>
-        <div class="bar-row"><div class="bar-label">Layout</div><div class="bar-track"><div class="bar-fill" style="width:25%">52</div></div></div>
-        <div class="bar-row"><div class="bar-label">Feedback</div><div class="bar-track"><div class="bar-fill" style="width:22%">47</div></div></div>
-        <div class="bar-row"><div class="bar-label">Other</div><div class="bar-track"><div class="bar-fill" style="width:46%">97</div></div></div>
-        <div class="bar-row"><div class="bar-label">Media</div><div class="bar-track"><div class="bar-fill" style="width:4%">9</div></div></div>
-      </div>
-    </div>
+  <div class="gallery-controls">
+    <button class="filter-btn active" onclick="filterCards('all')">All <span class="count">29</span></button>
+    <button class="filter-btn" onclick="filterCards('Form Controls')">Form Controls <span class="count">11</span></button>
+    <button class="filter-btn" onclick="filterCards('Navigation')">Navigation <span class="count">8</span></button>
+    <button class="filter-btn" onclick="filterCards('Data Display')">Data Display <span class="count">5</span></button>
+    <button class="filter-btn" onclick="filterCards('Feedback')">Feedback <span class="count">4</span></button>
+    <button class="filter-btn" onclick="filterCards('Layout')">Layout <span class="count">1</span></button>
   </div>
 
-  <div class="section">
-    <h2 class="section-title">Tier 1 Components <span class="status-badge status-new">Full Documentation</span></h2>
-    <p class="section-desc">Core components targeted for full documentation with screenshots, anatomy diagrams, variant tables, and token usage.</p>
-    <div class="nav-card-grid">
+  <div class="component-gallery" id="gallery">
 
-      <a href="components/button.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Button</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 308+ variants</div>
-          </div>
-          <span class="status-badge status-gap" style="margin-left:8px">Mixed</span>
+    <a href="components/button.html" class="comp-card" data-category="Form Controls">
+      <div class="comp-card-img"><img src="img/components/button.png" alt="Button" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Button</span></div>
+        <div class="comp-card-meta">Form Controls &middot; 308+ variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status gap">Mixed</span>
+          <span class="arrow">&rarr;</span>
         </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:72259</div>
-      </div></a>
-      <a href="components/text-input.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Text Input</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 36 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:70760</div>
-      </div></a>
-      <a href="components/select.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Select</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 72 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:84030</div>
-      </div></a>
-      <a href="components/accordion.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Accordion</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 15 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:90126</div>
-      </div></a>
-      <a href="components/chip.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Chip</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 10 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:71720</div>
-      </div></a>
-      <a href="components/badge.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Badge</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Data Display · 30 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40003841:33610</div>
-      </div></a>
-      <a href="components/link.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Link - Standalone</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Navigation · 96 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40008110:15068</div>
-      </div></a>
-      <a href="components/checkbox.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Checkbox</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 12 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:81360</div>
-      </div></a>
-      <a href="components/tabs.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Tabs</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Navigation · 32 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40008120:29000</div>
-      </div></a>
-      <a href="components/tooltip.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Tooltip</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Feedback · 4 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40003841:33483</div>
-      </div></a>
-      <a href="components/action-menu.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Action Menu</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Navigation · 6 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:82298</div>
-      </div></a>
-      <a href="components/counter-badge.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Counter Badge</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 2 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:71412</div>
-      </div></a>
-      <a href="components/button-group.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Button Group</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 36 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:81018</div>
-      </div></a>
-      <a href="components/toggle.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Toggle</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 2 variants</div>
-          </div>
-          <span class="status-badge status-drift" style="margin-left:8px">Legacy</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40015525:22363</div>
-      </div></a>
-      <a href="components/progress-circle.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Progress Circle</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Data Display · 2 variants</div>
-          </div>
-          <span class="status-badge status-gap" style="margin-left:8px">Mixed</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40000054:23550</div>
-      </div></a>
-      <a href="components/avatar.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Avatar</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Data Display · 3 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40019054:169935</div>
-      </div></a>
-      <a href="components/snackbar.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Snackbar</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Feedback · 3 variants</div>
-          </div>
-          <span class="status-badge status-drift" style="margin-left:8px">Legacy</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40017359:55323</div>
-      </div></a>
-      <a href="components/alert-inpage.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Alert / inpage</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Feedback · 3 variants</div>
-          </div>
-          <span class="status-badge status-drift" style="margin-left:8px">Legacy</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40007190:39217</div>
-      </div></a>
-      <div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Alert / top</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Feedback · 1 variants</div>
-          </div>
-          <span class="status-badge status-gap" style="margin-left:8px">Mixed</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40009097:47558</div>
       </div>
-      <div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Action List</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 5 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
+    </a>
+
+    <a href="components/text-input.html" class="comp-card" data-category="Form Controls">
+      <div class="comp-card-img"><img src="img/components/text-input.png" alt="Text Input" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Text Input</span></div>
+        <div class="comp-card-meta">Form Controls &middot; 36 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
         </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:71903</div>
       </div>
-      <div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Checkbox List</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 2 variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
+    </a>
+
+    <a href="components/select.html" class="comp-card" data-category="Form Controls">
+      <div class="comp-card-img"><img src="img/components/select.png" alt="Select" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Select</span></div>
+        <div class="comp-card-meta">Form Controls &middot; 72 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
         </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:90371</div>
       </div>
-      <a href="components/navbar.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Consumer NavBar</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Navigation · 24+ variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40019054:170805</div>
-      </div></a>
-      <a href="components/navdrawer.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">NavDrawer</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Navigation · 16+ variants</div>
-          </div>
-          <span class="status-badge status-gap" style="margin-left:8px">Mixed</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40019054:169025</div>
-      </div></a>
-      <a href="components/footer.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Footer</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Navigation · 6+ variants</div>
-          </div>
-          <span class="status-badge status-drift" style="margin-left:8px">Legacy</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40019515:57329</div>
-      </div></a>
-      <a href="components/profile-menu.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Profile Menu</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Navigation · 4+ variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40019054:170681</div>
-      </div></a>
-      <a href="components/modal.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Modal</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Feedback · 12+ variants</div>
-          </div>
-          <span class="status-badge status-good" style="margin-left:8px">New semantic</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006598:91459</div>
-      </div></a>
-      <a href="components/bottom-sheet.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Bottom Sheet</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Navigation · 8+ variants</div>
-          </div>
-          <span class="status-badge status-gap" style="margin-left:8px">Mixed</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40009097:47982</div>
-      </div></a>
-      <a href="components/search.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Search</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Form Controls · 8+ variants</div>
-          </div>
-          <span class="status-badge status-drift" style="margin-left:8px">Legacy</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">72:37300</div>
-      </div></a>
-      <a href="components/isi.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">ISI</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Layout · 6 variants</div>
-          </div>
-          <span class="status-badge status-drift" style="margin-left:8px">Legacy</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40000195:43952</div>
-      </div></a>
-      <a href="components/brand-container.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Brand Container</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Brand / Logos · 6 variants</div>
-          </div>
-          <span class="status-badge status-drift" style="margin-left:8px">Legacy</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006816:21702</div>
-      </div></a>
-      <a href="components/card.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Card (Product)</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Data Display · 20+ variants</div>
-          </div>
-          <span class="status-badge status-drift" style="margin-left:8px">Legacy</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40006816:21739</div>
-      </div></a>
-      <a href="components/progress-bar.html" style="text-decoration:none;color:inherit"><div class="card" style="padding:16px 20px;cursor:pointer;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor=''">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong style="font-size:14px">Progress Bar</strong>
-            <div style="font-size:11px;color:var(--text-support);margin-top:2px">Data Display · 4+ variants</div>
-          </div>
-          <span class="status-badge status-drift" style="margin-left:8px">Legacy</span>
-        </div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text-disabled);margin-top:4px">40007190:39151</div>
-      </div></a>
-    </div>
-  </div>
+    </a>
 
-  <div class="section">
-    <h2 class="section-title">Token System Coverage</h2>
-    <p class="section-desc">Which naming system each audited component uses. "New" = semantic system, "Mixed" = both old and new, "Old" = legacy only.</p>
-
-    <div class="subsection">
-      <h3 class="subsection-title">New Semantic System (9 components)</h3>
-      <div class="component-grid">
-        <div class="component-tag new"><strong>Button</strong><div class="system">New semantic</div></div>
-        <div class="component-tag new"><strong>Text Input</strong><div class="system">New semantic</div></div>
-        <div class="component-tag new"><strong>Accordion</strong><div class="system">New semantic</div></div>
-        <div class="component-tag new"><strong>Select</strong><div class="system">New semantic</div></div>
-        <div class="component-tag new"><strong>Badge</strong><div class="system">New semantic</div></div>
-        <div class="component-tag new"><strong>Action List</strong><div class="system">New semantic</div></div>
-        <div class="component-tag new"><strong>Link</strong><div class="system">New semantic</div></div>
-        <div class="component-tag new"><strong>Checkbox</strong><div class="system">New semantic</div></div>
-        <div class="component-tag new"><strong>Profile Menu</strong><div class="system">New semantic</div></div>
+    <a href="components/accordion.html" class="comp-card" data-category="Form Controls">
+      <div class="comp-card-img"><img src="img/components/accordion.png" alt="Accordion" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Accordion</span></div>
+        <div class="comp-card-meta">Form Controls &middot; 15 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
       </div>
-    </div>
+    </a>
 
-    <div class="subsection">
-      <h3 class="subsection-title">Mixed Systems (8 components)</h3>
-      <div class="component-grid">
-        <div class="component-tag mixed"><strong>Tabs</strong><div class="system">Mixed old+new</div></div>
-        <div class="component-tag mixed"><strong>Chip</strong><div class="system">Mixed old+new</div></div>
-        <div class="component-tag mixed"><strong>Modal</strong><div class="system">Mixed old+new</div></div>
-        <div class="component-tag mixed"><strong>Navigation</strong><div class="system">Mixed (Text & Icons)</div></div>
-        <div class="component-tag mixed"><strong>Cards</strong><div class="system">Mixed (Text & Icons)</div></div>
-        <div class="component-tag mixed"><strong>Training Center</strong><div class="system">Mixed (Text & Icons)</div></div>
-        <div class="component-tag mixed"><strong>Progress Bar</strong><div class="system">Mixed (AMIO naming)</div></div>
-        <div class="component-tag mixed"><strong>Brand Containers</strong><div class="system">Mixed (Color/Black)</div></div>
+    <a href="components/chip.html" class="comp-card" data-category="Form Controls">
+      <div class="comp-card-img"><img src="img/components/chip.png" alt="Chip" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Chip</span></div>
+        <div class="comp-card-meta">Form Controls &middot; 10 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
       </div>
-    </div>
+    </a>
 
-    <div class="subsection">
-      <h3 class="subsection-title">Legacy Only (4 components)</h3>
-      <div class="component-grid">
-        <div class="component-tag old"><strong>Side Nav</strong><div class="system">Old (Color/White, Text & Icons)</div></div>
-        <div class="component-tag old"><strong>Footer</strong><div class="system">Old (/Primary, Roboto)</div></div>
-        <div class="component-tag old"><strong>Tabs Selectors</strong><div class="system">Old (Tertiary, Roboto)</div></div>
-        <div class="component-tag old"><strong>Live Events</strong><div class="system">Old (YELLOW)</div></div>
+    <a href="components/checkbox.html" class="comp-card" data-category="Form Controls">
+      <div class="comp-card-img"><img src="img/components/checkbox.png" alt="Checkbox" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Checkbox</span></div>
+        <div class="comp-card-meta">Form Controls &middot; 12 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
       </div>
-    </div>
-  </div>
+    </a>
 
+    <a href="components/toggle.html" class="comp-card" data-category="Form Controls">
+      <div class="comp-card-img"><img src="img/components/toggle.png" alt="Toggle" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Toggle</span></div>
+        <div class="comp-card-meta">Form Controls &middot; 2 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status drift">Legacy</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
 
-  <div class="section">
-    <h2 class="section-title">Master Inventory Table</h2>
-    <p class="section-desc">Complete list of all 774 elements from the Internal Only Canvas, grouped by category.</p>
+    <a href="components/counter-badge.html" class="comp-card" data-category="Form Controls">
+      <div class="comp-card-img"><span class="no-img">Screenshot pending</span></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Counter Badge</span></div>
+        <div class="comp-card-meta">Form Controls &middot; 2 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
 
-    <table class="data-table">
-      <thead>
-        <tr><th>Name</th><th>Type</th><th>Variants</th><th>Node ID</th><th>Tier</th></tr>
-      </thead>
-      <tbody>
+    <a href="components/button-group.html" class="comp-card" data-category="Form Controls">
+      <div class="comp-card-img"><span class="no-img">Screenshot pending</span></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Button Group</span></div>
+        <div class="comp-card-meta">Form Controls &middot; 36 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
 
-        <tr class="cat-header"><td colspan="5">Icons (208 elements, 37 unique shown)</td></tr>
-        <tr><td><strong>AMI4.0Caret</strong></td><td>frame</td><td>4</td><td><span class="token-name">40006911:31463</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action/Close</strong></td><td>frame</td><td>9</td><td><span class="token-name">40000015:220377</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Annotation / Arrows</strong></td><td>frame</td><td>90</td><td><span class="token-name">40019054:170837</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Arrow/Right</strong></td><td>frame</td><td>3</td><td><span class="token-name">40007193:39833</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>ArrowCircleUpRight</strong></td><td>frame</td><td>12</td><td><span class="token-name">40015525:26523</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>ArrowRight</strong></td><td>frame</td><td>12</td><td><span class="token-name">40015267:1731</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Calendar/Outline</strong></td><td>frame</td><td>3</td><td><span class="token-name">40017790:427789</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>CaretDown</strong></td><td>frame</td><td>12</td><td><span class="token-name">40015267:1504</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>CaretUp</strong></td><td>frame</td><td>12</td><td><span class="token-name">40015267:1817</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Check / Circled Outline</strong></td><td>frame</td><td>3</td><td><span class="token-name">40010047:76298</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Clock/Outline</strong></td><td>frame</td><td>3</td><td><span class="token-name">40007649:231</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Confetti</strong></td><td>frame</td><td>12</td><td><span class="token-name">40015525:26566</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Direction/Chevron</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:82044</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Download</strong></td><td>frame</td><td>3</td><td><span class="token-name">40010047:76966</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Education/Outline</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019943:60704</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Filter - Accordion Plus Minus</strong></td><td>frame</td><td>2</td><td><span class="token-name">40015267:1580</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Icon 24x24</strong></td><td>frame</td><td>—</td><td><span class="token-name">40000015:220572</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Icon Sizes</strong></td><td>frame</td><td>5</td><td><span class="token-name">40000015:219936</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Icon/placeholder</strong></td><td>frame</td><td>3</td><td><span class="token-name">40000054:23423</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Icons/Arrow/Left</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:56967</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Like/Outline</strong></td><td>frame</td><td>3</td><td><span class="token-name">40017790:427746</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Location/Outline</strong></td><td>frame</td><td>3</td><td><span class="token-name">40007759:64589</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>MapPin</strong></td><td>frame</td><td>12</td><td><span class="token-name">40015267:1423</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Maps/Location</strong></td><td>frame</td><td>3</td><td><span class="token-name">40003620:97959</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Objects/Money</strong></td><td>frame</td><td>9</td><td><span class="token-name">40019515:61425</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>PLUS</strong></td><td>frame</td><td>6</td><td><span class="token-name">40016120:27752</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>PencilSimple</strong></td><td>frame</td><td>12</td><td><span class="token-name">40015267:1542</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Preference/Star</strong></td><td>frame</td><td>9</td><td><span class="token-name">40019515:60979</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Syringe/Outline</strong></td><td>frame</td><td>3</td><td><span class="token-name">40007649:197</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>System/Check</strong></td><td>frame</td><td>9</td><td><span class="token-name">40006598:71679</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Team/Outline</strong></td><td>frame</td><td>3</td><td><span class="token-name">40007649:247</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>WarningCircle</strong></td><td>frame</td><td>12</td><td><span class="token-name">40015267:1461</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Button Icon (20px Icon)</strong></td><td>frame</td><td>70</td><td><span class="token-name">40006598:89840</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / icon secondary</strong></td><td>frame</td><td>20</td><td><span class="token-name">40000015:219962</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>icon / counter</strong></td><td>symbol</td><td>—</td><td><span class="token-name">72:7311</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>remix-icons/fill/system/close-circle-fill</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017177:140232</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>↪️ Icon options</strong></td><td>frame</td><td>42</td><td><span class="token-name">40003084:290888</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr class="cat-header"><td colspan="5">Brand / Logos (100 elements, 22 unique shown)</td></tr>
-        <tr><td><strong>Alle Logo</strong></td><td>frame</td><td>9</td><td><span class="token-name">40019515:57265</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Brand Container / Botox</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006816:21702</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Brand Logos</strong></td><td>frame</td><td>50</td><td><span class="token-name">40006816:21463</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Latisse Logo - No Lash</strong></td><td>frame</td><td>2</td><td><span class="token-name">40000052:36732</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Product Logo</strong></td><td>frame</td><td>13</td><td><span class="token-name">40017338:417919</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>SKINVIVEBYJUV_Logo_LeftStack_Black_RGB</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006816:21717</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Badge Tooltips/Brand over subtle</strong></td><td>frame</td><td>6</td><td><span class="token-name">40003841:33544</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Brand Options</strong></td><td>frame</td><td>48</td><td><span class="token-name">40000051:12495</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_ButtonSelect / Overflow - Ghost Active / Brand</strong></td><td>frame</td><td>3</td><td><span class="token-name">40006598:82422</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Default Options</strong></td><td>frame</td><td>6</td><td><span class="token-name">40000051:12667</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Emblem Options</strong></td><td>frame</td><td>3</td><td><span class="token-name">40000051:12383</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Indication Options</strong></td><td>frame</td><td>36</td><td><span class="token-name">40000051:12594</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Logo</strong></td><td>frame</td><td>4</td><td><span class="token-name">40019054:169190</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Logo Options</strong></td><td>frame</td><td>6</td><td><span class="token-name">40000051:12451</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Logotype Options</strong></td><td>frame</td><td>3</td><td><span class="token-name">40000051:12373</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Monogram Options</strong></td><td>frame</td><td>8</td><td><span class="token-name">40000051:12409</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Primary Options</strong></td><td>frame</td><td>3</td><td><span class="token-name">40005311:226029</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Seal Options</strong></td><td>frame</td><td>2</td><td><span class="token-name">40000051:12359</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Secondary Options</strong></td><td>frame</td><td>3</td><td><span class="token-name">40005311:226036</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>card / list (non-brand) / default / XL - L</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006816:21451</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>element / AMI Logo</strong></td><td>frame</td><td>2</td><td><span class="token-name">40004677:177092</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>logo</strong></td><td>frame</td><td>2</td><td><span class="token-name">40017359:55413</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr class="cat-header"><td colspan="5">Navigation (99 elements)</td></tr>
-        <tr><td><strong>Link - Standalone</strong></td><td>frame</td><td>96</td><td><span class="token-name">40008110:15068</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Header Button</strong></td><td>frame</td><td>48</td><td><span class="token-name">40006598:91346</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tab Parts / Tabs</strong></td><td>frame</td><td>40</td><td><span class="token-name">40008120:24462</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Tabs</strong></td><td>frame</td><td>32</td><td><span class="token-name">40008120:29000</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Tabs</strong></td><td>frame</td><td>32</td><td><span class="token-name">40019515:57741</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tab Parts / Tabs</strong></td><td>frame</td><td>32</td><td><span class="token-name">40019515:57418</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>✦ Tabs</strong></td><td>frame</td><td>32</td><td><span class="token-name">40008120:29161</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_ButtonSelect / Overflow / MenuPosition</strong></td><td>frame</td><td>24</td><td><span class="token-name">40006598:82333</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_NavBar Button</strong></td><td>frame</td><td>18</td><td><span class="token-name">40019054:168879</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tab Parts / More</strong></td><td>frame</td><td>16</td><td><span class="token-name">40008120:28923</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Menu toggle button</strong></td><td>frame</td><td>15</td><td><span class="token-name">40019054:169158</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_NavDrawer Folder</strong></td><td>frame</td><td>13</td><td><span class="token-name">40019054:168703</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Accordion</strong></td><td>frame</td><td>10</td><td><span class="token-name">40006598:82171</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Accordion</strong></td><td>frame</td><td>10</td><td><span class="token-name">40006598:83637</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Accordion</strong></td><td>frame</td><td>10</td><td><span class="token-name">40008120:28780</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Multi-level</strong></td><td>frame</td><td>10</td><td><span class="token-name">40006598:81920</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Multi-level</strong></td><td>frame</td><td>10</td><td><span class="token-name">40006598:83418</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Multi-level</strong></td><td>frame</td><td>10</td><td><span class="token-name">40008120:28583</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / No-selection</strong></td><td>frame</td><td>10</td><td><span class="token-name">40006598:71956</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / No-selection</strong></td><td>frame</td><td>10</td><td><span class="token-name">40006598:82877</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / No-selection</strong></td><td>frame</td><td>10</td><td><span class="token-name">40008120:28253</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_NavBar Link Group</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:169295</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_NavDrawer Content</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:168813</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_NavDrawer Link</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:168632</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Profile link group</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:170427</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Multi-select</strong></td><td>frame</td><td>9</td><td><span class="token-name">40006598:81487</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Multi-select</strong></td><td>frame</td><td>9</td><td><span class="token-name">40006598:83256</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Multi-select</strong></td><td>frame</td><td>9</td><td><span class="token-name">40008120:28440</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Multi-select</strong></td><td>frame</td><td>9</td><td><span class="token-name">40018784:373538</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Single-select</strong></td><td>frame</td><td>9</td><td><span class="token-name">40006598:81245</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Single-select</strong></td><td>frame</td><td>9</td><td><span class="token-name">40006598:83091</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Menu Section / Single-select</strong></td><td>frame</td><td>9</td><td><span class="token-name">40008120:28349</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Footer</strong></td><td>frame</td><td>8</td><td><span class="token-name">40006816:22081</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Footer</strong></td><td>frame</td><td>8</td><td><span class="token-name">40007787:4786</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tab Parts / More</strong></td><td>frame</td><td>8</td><td><span class="token-name">40019515:57700</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action Menu</strong></td><td>frame</td><td>6</td><td><span class="token-name">40006598:82298</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Action Menu</strong></td><td>frame</td><td>6</td><td><span class="token-name">40006598:83764</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action Menu</strong></td><td>frame</td><td>6</td><td><span class="token-name">40008120:28887</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action Menu</strong></td><td>frame</td><td>6</td><td><span class="token-name">40018784:373658</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar Button w/ Menu / Consumer</strong></td><td>frame</td><td>6</td><td><span class="token-name">40019054:170729</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Nav Bar Link / Nested</strong></td><td>frame</td><td>6</td><td><span class="token-name">40018784:373999</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Nav Bar Link / Nested</strong></td><td>frame</td><td>6</td><td><span class="token-name">40018784:373694</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / text link</strong></td><td>frame</td><td>6</td><td><span class="token-name">40006816:21335</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Navigation / XLarge</strong></td><td>frame</td><td>5</td><td><span class="token-name">40018784:370535</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu</strong></td><td>frame</td><td>5</td><td><span class="token-name">40008120:28876</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Sections</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:82287</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Sections</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:83753</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Action Menu / Sections</strong></td><td>frame</td><td>5</td><td><span class="token-name">40018784:373647</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Nav Bar Link / Default</strong></td><td>frame</td><td>5</td><td><span class="token-name">40018784:373466</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_NavDrawer Link</strong></td><td>frame</td><td>5</td><td><span class="token-name">40019054:168490</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / side nav / element</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006816:21201</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / side nav / element</strong></td><td>frame</td><td>5</td><td><span class="token-name">40007190:38513</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / text link</strong></td><td>frame</td><td>5</td><td><span class="token-name">40009097:46544</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / top nav / avatar</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006816:21293</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / top nav / avatar</strong></td><td>frame</td><td>5</td><td><span class="token-name">40007190:38589</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / top nav / search</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006816:21277</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / top nav / search</strong></td><td>frame</td><td>5</td><td><span class="token-name">40007190:38575</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_More Menu</strong></td><td>frame</td><td>4</td><td><span class="token-name">40019515:57685</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Consumer NavBar</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019054:170805</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Mobile_Live Events Tab</strong></td><td>frame</td><td>3</td><td><span class="token-name">40017012:230</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Pagination dots</strong></td><td>frame</td><td>3</td><td><span class="token-name">40017012:3752</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Tabs Selectors</strong></td><td>frame</td><td>3</td><td><span class="token-name">40006956:23191</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_NavBar ButtonGroup</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019054:169015</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Sub-menu</strong></td><td>frame</td><td>3</td><td><span class="token-name">40006598:81804</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>FOOTER</strong></td><td>frame</td><td>2</td><td><span class="token-name">40017012:3664</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Pagination dots</strong></td><td>frame</td><td>2</td><td><span class="token-name">40016115:1775</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Transcript Tab</strong></td><td>frame</td><td>2</td><td><span class="token-name">40017012:33013</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>User Profile Menu / Consumer</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019054:170681</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>_Bottom Sheet/Footer</strong></td><td>frame</td><td>2</td><td><span class="token-name">40009097:47977</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Bottom Sheet/Header</strong></td><td>frame</td><td>2</td><td><span class="token-name">40007759:24490</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Menu Item</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019515:57676</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Nav Bar Link</strong></td><td>frame</td><td>2</td><td><span class="token-name">40018784:373720</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_NavDrawer Segments</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019054:168808</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Responsive Layer (Tablet)</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019054:170751</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Responsive Layer (Tablet)</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019054:170781</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong> Icons / Basic / Menu</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:56947</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>*** EXPANDED MENU ***</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40016115:1844</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>*** EXPANDED MENU ***</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017012:3884</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>4.0 Footer</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017359:55504</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Bottom Sheet</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009097:47982</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Button / Side Nav/Active</strong></td><td>symbol</td><td>—</td><td><span class="token-name">52:10778</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Button / Side Nav/Active</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007787:4763</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Carousel / Navigation</strong></td><td>symbol</td><td>—</td><td><span class="token-name">118:21239</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Footer</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:57329</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>LinkedIn - Negative</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017359:55492</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / Nav Bar / S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007193:39342</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / Nav Bar / XL - L</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31353</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>NavDrawer</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019054:169025</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Navigation / Medium/Desktop/Menu/Closed</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019949:87470</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Pagination numbers</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015267:1537</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Side Nav / Default / XL - M</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006816:21242</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Side Nav / Default / XL - M</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007190:38554</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Tab</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40016205:122359</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Mobile Bottom Sheet</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019054:170759</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Mobile Bottom Sheet (A-List)</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019054:170789</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Modal/Footer</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006598:91473</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>top bar / closed / desktop</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40018784:54744</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>topnav / default / XL</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006816:21312</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>topnav / default / XL</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007190:38608</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr class="cat-header"><td colspan="5">Form Controls (83 elements)</td></tr>
-        <tr><td><strong>Button</strong></td><td>frame</td><td>616</td><td><span class="token-name">40006598:75957</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button</strong></td><td>frame</td><td>616</td><td><span class="token-name">40007190:25811</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button Icon</strong></td><td>frame</td><td>616</td><td><span class="token-name">40019515:61959</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button</strong></td><td>frame</td><td>384</td><td><span class="token-name">40008120:24977</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button</strong></td><td>frame</td><td>308</td><td><span class="token-name">40006598:72259</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Button</strong></td><td>frame</td><td>308</td><td><span class="token-name">40006598:86336</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button</strong></td><td>frame</td><td>308</td><td><span class="token-name">40006598:93947</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button</strong></td><td>frame</td><td>308</td><td><span class="token-name">40007193:39867</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button</strong></td><td>frame</td><td>308</td><td><span class="token-name">40009097:43439</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button</strong></td><td>frame</td><td>280</td><td><span class="token-name">40019515:58031</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button Icon</strong></td><td>frame</td><td>280</td><td><span class="token-name">40019515:60230</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button Counter</strong></td><td>frame</td><td>264</td><td><span class="token-name">40006598:91930</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Select / Overflow / Base</strong></td><td>frame</td><td>192</td><td><span class="token-name">40006598:74843</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button</strong></td><td>frame</td><td>98</td><td><span class="token-name">40019515:57014</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Text Button</strong></td><td>frame</td><td>84</td><td><span class="token-name">40008110:15543</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button Group</strong></td><td>frame</td><td>72</td><td><span class="token-name">40006598:82570</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button Group</strong></td><td>frame</td><td>72</td><td><span class="token-name">40007190:39958</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Select</strong></td><td>frame</td><td>72</td><td><span class="token-name">40006598:84030</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>_Select / Select (Overflow Button)</strong></td><td>frame</td><td>64</td><td><span class="token-name">40006598:82434</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>4.0/Button</strong></td><td>frame</td><td>58</td><td><span class="token-name">40017359:54760</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>4.0/Button</strong></td><td>frame</td><td>58</td><td><span class="token-name">40018913:99051</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Button Group</strong></td><td>frame</td><td>36</td><td><span class="token-name">40006598:81018</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Button Group</strong></td><td>frame</td><td>36</td><td><span class="token-name">40008120:28123</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Text Input</strong></td><td>frame</td><td>36</td><td><span class="token-name">40006598:70760</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Chip</strong></td><td>frame</td><td>20</td><td><span class="token-name">40017790:430294</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Accordion</strong></td><td>frame</td><td>15</td><td><span class="token-name">40006598:90126</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>button / primary</strong></td><td>frame</td><td>15</td><td><span class="token-name">12278:325551</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / primary</strong></td><td>frame</td><td>15</td><td><span class="token-name">40006816:21797</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / primary</strong></td><td>frame</td><td>15</td><td><span class="token-name">40009097:46984</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / secondary</strong></td><td>frame</td><td>15</td><td><span class="token-name">40006816:21379</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / secondary</strong></td><td>frame</td><td>15</td><td><span class="token-name">40009097:46570</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Checkbox</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:81360</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Checkbox</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:90300</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar Button / Provider</strong></td><td>frame</td><td>12</td><td><span class="token-name">40019054:170371</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Counter Filter</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:91890</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Accordion</strong></td><td>frame</td><td>10</td><td><span class="token-name">40006598:82070</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Accordion</strong></td><td>frame</td><td>10</td><td><span class="token-name">40006598:83536</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Accordion</strong></td><td>frame</td><td>10</td><td><span class="token-name">40008120:28679</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Chip</strong></td><td>frame</td><td>10</td><td><span class="token-name">40000015:220500</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Chip</strong></td><td>frame</td><td>10</td><td><span class="token-name">40006598:71720</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Chip</strong></td><td>frame</td><td>10</td><td><span class="token-name">40006598:91485</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>button / text button</strong></td><td>frame</td><td>10</td><td><span class="token-name">40007174:31309</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar Button / Consumer</strong></td><td>frame</td><td>9</td><td><span class="token-name">40019054:170094</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Chip</strong></td><td>frame</td><td>8</td><td><span class="token-name">40019515:57221</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_chip_group</strong></td><td>frame</td><td>6</td><td><span class="token-name">40006598:71781</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Multi-select</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:81431</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Multi-select</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:81748</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Multi-select</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:83200</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Multi-select</strong></td><td>frame</td><td>5</td><td><span class="token-name">40018784:373482</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / No-selection</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:71903</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Action List / No-selection</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:81644</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / No-selection</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:82826</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Single-select</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:81192</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Single-select</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:81695</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Single-select</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:83038</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Insights-segmented-button</strong></td><td>frame</td><td>5</td><td><span class="token-name">40019515:61051</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Toggle</strong></td><td>frame</td><td>4</td><td><span class="token-name">40017012:14514</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_emptyStateButtons</strong></td><td>frame</td><td>4</td><td><span class="token-name">40008110:16264</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>CTA</strong></td><td>frame</td><td>3</td><td><span class="token-name">40016115:1786</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Insights-button</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019515:61106</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Search / Filter</strong></td><td>frame</td><td>3</td><td><span class="token-name">40017012:187</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_ButtonSelect / Overflow - Ghost Active / Muted</strong></td><td>frame</td><td>3</td><td><span class="token-name">40006598:82409</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>.Button segment</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019515:61042</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Accordion entry</strong></td><td>frame</td><td>2</td><td><span class="token-name">40016115:1819</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Accordion entry / Mobile</strong></td><td>frame</td><td>2</td><td><span class="token-name">40017012:3646</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Checkbox List</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:90371</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Counter Badge</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:71412</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Counter Badge</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:86317</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Counter Badge</strong></td><td>frame</td><td>2</td><td><span class="token-name">40008120:24451</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Dropdown 2</strong></td><td>frame</td><td>2</td><td><span class="token-name">40017012:35188</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Toggle</strong></td><td>frame</td><td>2</td><td><span class="token-name">40015525:22363</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>_Accordion Checkbox List</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:90414</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>validate npi</strong></td><td>frame</td><td>2</td><td><span class="token-name">40009097:47567</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Counter Badge/Default</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:57408</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Dropdown</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40016115:18945</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Dropdown / Post Input</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007649:184</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Filter - Checkbox</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40016115:11678</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Filter - Radio Button</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015525:22360</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / Start Online Training CTA / S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">120:45789</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / The Basics CTA / S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">812:51782</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Search</strong></td><td>symbol</td><td>—</td><td><span class="token-name">72:37300</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>button / primary / with badge</strong></td><td>symbol</td><td>—</td><td><span class="token-name">81:40203</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>validate npi / start / xl - m</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007190:39749</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr class="cat-header"><td colspan="5">Data Display (79 elements)</td></tr>
-        <tr><td><strong>_Progress Circle Prototype</strong></td><td>frame</td><td>120</td><td><span class="token-name">40000054:23654</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Progress Circle Prototype</strong></td><td>frame</td><td>120</td><td><span class="token-name">40006598:85825</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Progress Circle Prototype</strong></td><td>frame</td><td>90</td><td><span class="token-name">40000054:24137</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Progress Circle Prototype</strong></td><td>frame</td><td>90</td><td><span class="token-name">40006598:75542</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Progress Circle Prototype</strong></td><td>frame</td><td>90</td><td><span class="token-name">40006598:90982</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar / BB / Providers</strong></td><td>frame</td><td>50</td><td><span class="token-name">40019054:169451</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Badge</strong></td><td>frame</td><td>30</td><td><span class="token-name">40003841:33610</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Badge</strong></td><td>frame</td><td>30</td><td><span class="token-name">40007759:62704</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Badge</strong></td><td>frame</td><td>30</td><td><span class="token-name">40017790:430084</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Progress Circle Static</strong></td><td>frame</td><td>24</td><td><span class="token-name">40000054:23555</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Progress Circle Static</strong></td><td>frame</td><td>24</td><td><span class="token-name">40006598:85726</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Indicator</strong></td><td>frame</td><td>18</td><td><span class="token-name">40019054:168161</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Progress Circle Static</strong></td><td>frame</td><td>18</td><td><span class="token-name">40006598:74767</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Progress Circle Static</strong></td><td>frame</td><td>18</td><td><span class="token-name">40006598:75469</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Progress Circle Static</strong></td><td>frame</td><td>18</td><td><span class="token-name">40008120:24859</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Card Image</strong></td><td>frame</td><td>10</td><td><span class="token-name">40017012:3937</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar / BB / Kelly Vargas Esquivel</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:169697</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar / BB / Kristin Driver</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:169399</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar / BB / Kristin Driver</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:169655</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar / BB / Peggy Rutherford</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:169739</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar / BB / Robert Colston</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:169823</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar / BB / Sophia Semmes</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:169865</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar / BB / Vincent Mercado</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:169781</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Avatar</strong></td><td>frame</td><td>9</td><td><span class="token-name">40015267:1097</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Badge</strong></td><td>frame</td><td>8</td><td><span class="token-name">40019054:168449</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Avatar/Profile</strong></td><td>frame</td><td>6</td><td><span class="token-name">40019515:61316</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar / BB / Patients</strong></td><td>frame</td><td>6</td><td><span class="token-name">40019054:169906</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Avatar / BB / Default</strong></td><td>frame</td><td>5</td><td><span class="token-name">40019054:169919</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>✦ Badge</strong></td><td>frame</td><td>5</td><td><span class="token-name">40007759:62855</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Stamp</strong></td><td>frame</td><td>4</td><td><span class="token-name">9939:7656</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Title</strong></td><td>frame</td><td>4</td><td><span class="token-name">40006598:91844</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>card / standard (product specific) / default / M</strong></td><td>frame</td><td>4</td><td><span class="token-name">61:67322</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>card / standard (product specific) / default / S</strong></td><td>frame</td><td>4</td><td><span class="token-name">40009097:47719</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>card / standard (product specific) / default / XL</strong></td><td>frame</td><td>4</td><td><span class="token-name">40006816:21739</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>element / tag / content</strong></td><td>frame</td><td>4</td><td><span class="token-name">40007190:39173</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Avatar</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019054:169935</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Progress</strong></td><td>frame</td><td>3</td><td><span class="token-name">40017359:54750</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Status Dot</strong></td><td>frame</td><td>3</td><td><span class="token-name">40015267:192</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>element / badge</strong></td><td>frame</td><td>3</td><td><span class="token-name">40006816:21729</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>element / progress bar</strong></td><td>frame</td><td>3</td><td><span class="token-name">40007190:39151</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Count</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019515:57212</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Progress Circle</strong></td><td>frame</td><td>2</td><td><span class="token-name">40000054:23550</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Progress Circle</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:72207</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Progress Circle</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:75903</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Progress Circle</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:86306</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Progress Circle</strong></td><td>frame</td><td>2</td><td><span class="token-name">40008120:24932</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>element / medal</strong></td><td>frame</td><td>2</td><td><span class="token-name">40007190:39146</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>element / tag / lesson / progress</strong></td><td>frame</td><td>2</td><td><span class="token-name">40007190:39192</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Section Title</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40008120:28250</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Instagram - Negative</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017359:55487</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / destination course card / s</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007193:39365</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / destination course card / xl</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31642</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / training center course card / compact / xl</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31613</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / training center course card / s</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007193:39352</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / training center course card / wide / xl</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31602</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing Card / M - S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">812:51003</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Page Template / Course Title / XL - L</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009097:47056</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Page Template / Title / XL - M</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006816:21328</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Page Template / Title / XL - M</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007787:4767</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Patient treatment status</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:61416</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Progress</strong></td><td>symbol</td><td>—</td><td><span class="token-name">52:36819</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Tag</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015267:190</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Tag</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015539:2059</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Progress Motion</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40000054:24135</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Progress Motion</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006598:85823</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Progress Status</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40000054:23652</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Progress Status</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40000054:24498</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Progress Status</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006598:85722</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>card / list (product specific) / default / XL - L</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006816:21440</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>card / list (product specific) / default / XL - L</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009097:46631</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>course / progress bar / 0%</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007190:39162</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>course / progress bar / 50%</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009097:47687</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>element / tag / Product Specific</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006816:21371</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>element / tag / Product Specific</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009097:46565</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>element / tag / lesson / progress / circle</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007190:39183</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>element / tag / marketing</strong></td><td>symbol</td><td>—</td><td><span class="token-name">599:61953</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>tag / zoomWebinar</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015196:448949</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>the basics / card / article/XL/DR 80/Default</strong></td><td>symbol</td><td>—</td><td><span class="token-name">3330:85939</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>the basics / card / article/XL/DR 80/Hover</strong></td><td>symbol</td><td>—</td><td><span class="token-name">3330:85959</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr class="cat-header"><td colspan="5">Layout (52 elements)</td></tr>
-        <tr><td><strong>ISI / Item / M - S</strong></td><td>frame</td><td>22</td><td><span class="token-name">40000196:16510</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>ISI / Item / M - S</strong></td><td>frame</td><td>22</td><td><span class="token-name">40009097:47774</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>ISI / Item / XL - L</strong></td><td>frame</td><td>22</td><td><span class="token-name">40000195:43815</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>ISI / Item / XL - L</strong></td><td>frame</td><td>22</td><td><span class="token-name">40006816:21912</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>🎛 Fixed Aspect Ratio Spacer (Variants)</strong></td><td>frame</td><td>22</td><td><span class="token-name">9904:98683</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Responsive Layer (Mobile)</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019054:170763</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Responsive Layer (Mobile)</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019054:170793</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Marketing / Lockup / Training Centers</strong></td><td>frame</td><td>2</td><td><span class="token-name">40007174:31517</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Slot</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:72074</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Slot</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:75329</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Slot</strong></td><td>frame</td><td>2</td><td><span class="token-name">40008120:24735</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Training Center / Program Element / XL - M</strong></td><td>frame</td><td>2</td><td><span class="token-name">40007174:31431</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Responsive Layer</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019054:169373</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>2:1 Fixed Aspect Ratio Spacer</strong></td><td>symbol</td><td>—</td><td><span class="token-name">9904:98681</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>ISI / L</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40000195:44271</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>ISI / M</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40000196:16669</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>ISI / S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40000196:16959</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>ISI / S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009097:47933</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>ISI / XL (Logged In)</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40000195:43952</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>ISI / XL (Logged In)</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006816:22049</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>ISI / XL (Marketing)</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31480</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Large</strong></td><td>frame</td><td>—</td><td><span class="token-name">61:71221</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Live Events</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017012:3821</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / FAQ / XL - L</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31407</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / FAQ Element / XL - M / Collapsed</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31402</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / FAQ Element / XL - M / Expanded</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007235:55155</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / Feature Row / s</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007193:39361</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / Feature Row / xl</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31638</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / Stats / S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">812:51724</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / Training Centers / Cover / XL</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31543</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Medium (Logged In)</strong></td><td>frame</td><td>—</td><td><span class="token-name">30:23926</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Medium (Marketing)</strong></td><td>frame</td><td>—</td><td><span class="token-name">2074:66907</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Page Template / Headline Section Header / XL - S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006816:21350</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Page Template / Headline Section Header / XL - S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009097:46556</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Page Template / Medium Section Header / S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007193:39350</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Page Template / Medium Section Header / XL - L</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31556</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Page Template / Small Section Header / XL - M</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31400</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Small</strong></td><td>frame</td><td>—</td><td><span class="token-name">27:1459</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Small</strong></td><td>frame</td><td>—</td><td><span class="token-name">40007190:40218</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Training Center / Course / Cover / XL</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31366</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Training Center / Highlight Block / XL - M</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31372</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Training Center / Locations &amp; Courses (General) / XL</strong></td><td>symbol</td><td>—</td><td><span class="token-name">141:18974</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Training Center / Locations &amp; Courses / XL</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31448</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Training Center / Program Detail / XL - S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31381</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Training Portal / Program / Details / XL</strong></td><td>symbol</td><td>—</td><td><span class="token-name">141:18863</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>View Ports/Large (768 - 1279)</strong></td><td>frame</td><td>—</td><td><span class="token-name">40019515:56944</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>XLarge (Logged In)</strong></td><td>frame</td><td>—</td><td><span class="token-name">30:23927</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>XLarge (Logged In)</strong></td><td>frame</td><td>—</td><td><span class="token-name">40000195:43777</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>XLarge (Logged In)</strong></td><td>frame</td><td>—</td><td><span class="token-name">40006816:21322</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>XLarge (Marketing)</strong></td><td>frame</td><td>—</td><td><span class="token-name">141:18760</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>XLarge (Marketing)</strong></td><td>frame</td><td>—</td><td><span class="token-name">40007174:31302</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>[Actions Slot]</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006598:90027</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr class="cat-header"><td colspan="5">Feedback (47 elements)</td></tr>
-        <tr><td><strong>Annotation / Notes</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:91552</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Annotation / Notes</strong></td><td>frame</td><td>12</td><td><span class="token-name">40019691:448851</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Alert / Active</strong></td><td>frame</td><td>12</td><td><span class="token-name">40003841:33152</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Alert / Active</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:69992</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Help / Active</strong></td><td>frame</td><td>12</td><td><span class="token-name">40003841:33110</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Help / Active</strong></td><td>frame</td><td>12</td><td><span class="token-name">40003841:33431</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Help / Active</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:69642</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Help / Active</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:69690</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Info / Active</strong></td><td>frame</td><td>12</td><td><span class="token-name">40003841:33065</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Info / Active</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:69950</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Badge Tooltips/Action</strong></td><td>frame</td><td>6</td><td><span class="token-name">40003841:33492</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Badge Tooltips/Action</strong></td><td>frame</td><td>6</td><td><span class="token-name">40017790:430071</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Badge Tooltips/Negative</strong></td><td>frame</td><td>6</td><td><span class="token-name">40003841:33584</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Badge Tooltips/Negative over subtle</strong></td><td>frame</td><td>6</td><td><span class="token-name">40003841:33531</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Badge Tooltips/Positive</strong></td><td>frame</td><td>6</td><td><span class="token-name">40003841:33571</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Badge Tooltips/Positive over subtle</strong></td><td>frame</td><td>6</td><td><span class="token-name">40003841:33518</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Badge Tooltips/Warning</strong></td><td>frame</td><td>6</td><td><span class="token-name">40003841:33557</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Badge Tooltips/Warning over subtle</strong></td><td>frame</td><td>6</td><td><span class="token-name">40003841:33505</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Tooltip [v1.1]</strong></td><td>frame</td><td>4</td><td><span class="token-name">40003841:33483</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Tooltip [v1.1]</strong></td><td>frame</td><td>4</td><td><span class="token-name">40006598:70044</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Snackbar</strong></td><td>frame</td><td>3</td><td><span class="token-name">40017359:55323</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger</strong></td><td>frame</td><td>3</td><td><span class="token-name">40003841:33194</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger</strong></td><td>frame</td><td>3</td><td><span class="token-name">40003841:33473</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger</strong></td><td>frame</td><td>3</td><td><span class="token-name">40006598:70034</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Alert / Enable</strong></td><td>frame</td><td>3</td><td><span class="token-name">40003084:291643</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Help / Enable</strong></td><td>frame</td><td>3</td><td><span class="token-name">40003084:291111</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Help / Enable</strong></td><td>frame</td><td>3</td><td><span class="token-name">40003841:33424</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Help / Enable</strong></td><td>frame</td><td>3</td><td><span class="token-name">40006598:69627</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Info / Enable</strong></td><td>frame</td><td>3</td><td><span class="token-name">40003841:33046</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Info / Enable</strong></td><td>frame</td><td>3</td><td><span class="token-name">40006598:69943</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>alert / inpage / XL - S</strong></td><td>frame</td><td>3</td><td><span class="token-name">40007190:39217</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>_Modal/Header</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:91459</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Alert</strong></td><td>frame</td><td>2</td><td><span class="token-name">40003841:33189</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Alert</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:70029</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Help</strong></td><td>frame</td><td>2</td><td><span class="token-name">40003841:33147</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Help</strong></td><td>frame</td><td>2</td><td><span class="token-name">40003841:33468</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Help</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:69679</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Help</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:69727</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Info</strong></td><td>frame</td><td>2</td><td><span class="token-name">40003841:33102</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Tooltip / Trigger / Info</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:69987</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>alert / top / XL- M</strong></td><td>frame</td><td>1</td><td><span class="token-name">40009097:47558</span></td><td><span class="tier-badge tier-1">T1</span></td></tr>
-        <tr><td><strong>Tooltip [v1.0]</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006598:69639</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Tooltip [v1.0]</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40003841:33062</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Tooltip [v1.0]</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006598:69687</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>marketing banner / 1 cta / S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007190:40274</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>marketing banner / 1 cta / XL - L</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006816:21859</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>marketing banner / 1 cta / XL - L</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009097:47045</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr class="cat-header"><td colspan="5">Other (97 elements)</td></tr>
-        <tr><td><strong>_Options</strong></td><td>frame</td><td>42</td><td><span class="token-name">40006598:70307</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Options</strong></td><td>frame</td><td>42</td><td><span class="token-name">40019054:168216</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Options</strong></td><td>frame</td><td>33</td><td><span class="token-name">40006598:69449</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Options</strong></td><td>frame</td><td>15</td><td><span class="token-name">40008120:24741</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Notebook</strong></td><td>frame</td><td>12</td><td><span class="token-name">40015267:1769</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Options</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:71637</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Options</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:81596</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Options</strong></td><td>frame</td><td>12</td><td><span class="token-name">40006598:90078</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Options</strong></td><td>frame</td><td>12</td><td><span class="token-name">40019054:168594</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Cursor</strong></td><td>frame</td><td>10</td><td><span class="token-name">40019054:171983</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Options</strong></td><td>frame</td><td>9</td><td><span class="token-name">40006598:81148</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Fragments / Path</strong></td><td>frame</td><td>8</td><td><span class="token-name">40019054:170816</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Icons</strong></td><td>frame</td><td>7</td><td><span class="token-name">40015081:28763</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Options</strong></td><td>frame</td><td>6</td><td><span class="token-name">40006598:71822</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Options</strong></td><td>frame</td><td>6</td><td><span class="token-name">40019054:169072</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Multi-level</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:81868</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Multi-level</strong></td><td>frame</td><td>5</td><td><span class="token-name">40006598:83366</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Action List / Multi-level</strong></td><td>frame</td><td>5</td><td><span class="token-name">40008120:28531</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Admin</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019943:61292</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Key 1</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019515:61296</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Profile/Team</strong></td><td>frame</td><td>3</td><td><span class="token-name">40003841:35514</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Trend</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019515:61391</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Key item 1</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019515:61289</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Last year bar</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019515:61122</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Number of patients</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019515:61140</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>This year bar</strong></td><td>frame</td><td>2</td><td><span class="token-name">40019515:61131</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>_Overflow</strong></td><td>frame</td><td>2</td><td><span class="token-name">40006598:82564</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>.misc / Fill / Black</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:56945</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>AMIO/Desktop/12</strong></td><td>frame</td><td>—</td><td><span class="token-name">44:10084</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Additional Info</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017012:3874</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Additional Info</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017012:3881</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:56970</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:56975</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:56978</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:56983</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:56988</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:56997</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:57000</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:57003</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:57005</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:57010</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Berty White</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019591:135008</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Enrolled Event</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015196:448968</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Event Overview</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015196:448960</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Facebook - Negative</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017359:55485</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Frame 1171279896</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006598:90751</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>HEADER</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017012:3767</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>HEADER Desktop</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40016115:1793</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>HEADER Mobile</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017012:165</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Horizontal single bar graph</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:61378</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Iconly/Light/Calendar</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009095:6135</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Iconly/Light/Calendar</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015196:448932</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Iconly/Light/Call</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015196:448956</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Iconly/Light/Location</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009095:5998</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Iconly/Light/Message</strong></td><td>symbol</td><td>—</td><td><span class="token-name">72:37335</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Iconly/Light/Tick Square</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015196:448962</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Iconly/Light/Time Circle</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009101:139744</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Icons/Cancel</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:57219</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Icons/Chevron/Down</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:56957</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Icons/Content Copy</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:63480</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Icons/Help</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:56964</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Icons/Place</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:57217</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Insights Overview – Location</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:61507</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Insights header</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:57247</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Interface / Book_Open</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40016205:122387</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Interface / Heart_01</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40016205:122389</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Join event</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015196:448972</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Key 2</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:61410</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Key base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:61137</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Key item 2</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:61405</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Layer 1</strong></td><td>symbol</td><td>—</td><td><span class="token-name">9621:217739</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Layer 1</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31496</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Line Separator</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006598:71517</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>List Checks Regular 1</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017790:417955</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Location</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017359:55501</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>More Question</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40017012:35197</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Pie chart</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:61280</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>RTBs/Variant2</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40016328:225093</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Reimbursement</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:61454</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Scrim</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019054:169372</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Scrollbar</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40016115:18951</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Text Field / Empty</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007190:39738</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Tile header</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:60961</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Total rewards</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019515:61309</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Virtual Event*</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015196:448970</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019054:169362</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019054:170745</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Base</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019054:170775</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Default</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019054:169382</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Default</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019054:170771</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Default</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019054:170801</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>_Text only body</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006598:90073</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>course / lesson / xl - l</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007190:39199</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>course / lesson locked / xl - l</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009097:47065</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>element / notification / Red</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40006816:21310</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>element / notification / Red</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007190:38606</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>info</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40019054:168436</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr class="cat-header"><td colspan="5">Media (9 elements)</td></tr>
-        <tr><td><strong>Image / Outline</strong></td><td>frame</td><td>3</td><td><span class="token-name">40007193:39846</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Image / Outline</strong></td><td>frame</td><td>3</td><td><span class="token-name">40007651:12812</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Placeholder/Image</strong></td><td>frame</td><td>3</td><td><span class="token-name">40008120:28101</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Placeholder/Image</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019515:57379</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Placeholder/Image</strong></td><td>frame</td><td>3</td><td><span class="token-name">40019515:57650</span></td><td><span class="tier-badge tier-2">T2</span></td></tr>
-        <tr><td><strong>Iconly/Light/Video</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40009095:6162</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Iconly/Light/Video</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40015196:448952</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Marketing / Video Player / XL - S</strong></td><td>symbol</td><td>—</td><td><span class="token-name">40007174:31630</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-        <tr><td><strong>Video Controls</strong></td><td>symbol</td><td>—</td><td><span class="token-name">141:23748</span></td><td><span class="tier-badge tier-3">T3</span></td></tr>
-      </tbody>
-    </table>
+    <a href="components/search.html" class="comp-card" data-category="Form Controls">
+      <div class="comp-card-img"><img src="img/components/search.png" alt="Search" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Search</span></div>
+        <div class="comp-card-meta">Form Controls &middot; 8+ variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status drift">Legacy</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/action-menu.html" class="comp-card" data-category="Form Controls">
+      <div class="comp-card-img"><img src="img/components/action-menu.png" alt="Action Menu" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Action Menu</span></div>
+        <div class="comp-card-meta">Navigation &middot; 6 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/navbar.html" class="comp-card" data-category="Navigation">
+      <div class="comp-card-img"><img src="img/components/navbar.png" alt="NavBar" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Consumer NavBar</span></div>
+        <div class="comp-card-meta">Navigation &middot; 24+ variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/navdrawer.html" class="comp-card" data-category="Navigation">
+      <div class="comp-card-img"><img src="img/components/navdrawer.png" alt="NavDrawer" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">NavDrawer</span></div>
+        <div class="comp-card-meta">Navigation &middot; 16+ variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status gap">Mixed</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/tabs.html" class="comp-card" data-category="Navigation">
+      <div class="comp-card-img"><img src="img/components/tabs.png" alt="Tabs" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Tabs</span></div>
+        <div class="comp-card-meta">Navigation &middot; 32 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/link.html" class="comp-card" data-category="Navigation">
+      <div class="comp-card-img"><img src="img/components/link.png" alt="Link" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Link — Standalone</span></div>
+        <div class="comp-card-meta">Navigation &middot; 96 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/footer.html" class="comp-card" data-category="Navigation">
+      <div class="comp-card-img"><img src="img/components/footer.png" alt="Footer" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Footer</span></div>
+        <div class="comp-card-meta">Navigation &middot; 6+ variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status drift">Legacy</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/profile-menu.html" class="comp-card" data-category="Navigation">
+      <div class="comp-card-img"><img src="img/components/profile-menu.png" alt="Profile Menu" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Profile Menu</span></div>
+        <div class="comp-card-meta">Navigation &middot; 4+ variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/bottom-sheet.html" class="comp-card" data-category="Navigation">
+      <div class="comp-card-img"><img src="img/components/bottom-sheet.png" alt="Bottom Sheet" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Bottom Sheet</span></div>
+        <div class="comp-card-meta">Navigation &middot; 8+ variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status gap">Mixed</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/badge.html" class="comp-card" data-category="Data Display">
+      <div class="comp-card-img"><img src="img/components/badge.png" alt="Badge" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Badge</span></div>
+        <div class="comp-card-meta">Data Display &middot; 30 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/avatar.html" class="comp-card" data-category="Data Display">
+      <div class="comp-card-img"><img src="img/components/avatar.png" alt="Avatar" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Avatar</span></div>
+        <div class="comp-card-meta">Data Display &middot; 3 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/card.html" class="comp-card" data-category="Data Display">
+      <div class="comp-card-img"><img src="img/components/card.png" alt="Card" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Card (Product)</span></div>
+        <div class="comp-card-meta">Data Display &middot; 20+ variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status drift">Legacy</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/progress-bar.html" class="comp-card" data-category="Data Display">
+      <div class="comp-card-img"><img src="img/components/progress-bar.png" alt="Progress Bar" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Progress Bar</span></div>
+        <div class="comp-card-meta">Data Display &middot; 4+ variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status drift">Legacy</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/progress-circle.html" class="comp-card" data-category="Data Display">
+      <div class="comp-card-img"><span class="no-img">Screenshot pending</span></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Progress Circle</span></div>
+        <div class="comp-card-meta">Data Display &middot; 2 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status gap">Mixed</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/tooltip.html" class="comp-card" data-category="Feedback">
+      <div class="comp-card-img"><img src="img/components/tooltip.png" alt="Tooltip" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Tooltip</span></div>
+        <div class="comp-card-meta">Feedback &middot; 4 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/snackbar.html" class="comp-card" data-category="Feedback">
+      <div class="comp-card-img"><img src="img/components/snackbar.png" alt="Snackbar" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Snackbar</span></div>
+        <div class="comp-card-meta">Feedback &middot; 3 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status drift">Legacy</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/alert-inpage.html" class="comp-card" data-category="Feedback">
+      <div class="comp-card-img"><img src="img/components/alert-inpage.png" alt="Alert Inpage" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Alert / In-page</span></div>
+        <div class="comp-card-meta">Feedback &middot; 3 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status drift">Legacy</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/modal.html" class="comp-card" data-category="Feedback">
+      <div class="comp-card-img"><img src="img/components/modal.png" alt="Modal" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Modal</span></div>
+        <div class="comp-card-meta">Feedback &middot; 12+ variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status good">New semantic</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/isi.html" class="comp-card" data-category="Layout">
+      <div class="comp-card-img"><img src="img/components/isi.png" alt="ISI" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">ISI</span></div>
+        <div class="comp-card-meta">Layout &middot; 6 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status drift">Legacy</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="components/brand-container.html" class="comp-card" data-category="Layout">
+      <div class="comp-card-img"><img src="img/components/brand-container.png" alt="Brand Container" loading="lazy"></div>
+      <div class="comp-card-body">
+        <div class="comp-card-header"><span class="comp-card-name">Brand Container</span></div>
+        <div class="comp-card-meta">Brand / Logos &middot; 6 variants</div>
+        <div class="comp-card-footer">
+          <span class="token-status drift">Legacy</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
   </div>
 </div>
 
 <footer class="site-footer">
-  AMI Design System Audit — Generated February 27, 2026 — <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
+  AMI Design System Audit &mdash; Generated February 27, 2026 &mdash; <a href="https://github.com/d999ss/AMI-Design-System">GitHub</a>
 </footer>
+
+<script>
+function filterCards(category) {
+  const cards = document.querySelectorAll('.comp-card');
+  const btns = document.querySelectorAll('.filter-btn');
+
+  btns.forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  cards.forEach(card => {
+    if (category === 'all' || card.dataset.category === category) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
 
 </body>
 </html>
